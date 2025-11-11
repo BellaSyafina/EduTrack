@@ -37,6 +37,7 @@
         </div>
         @include('components.script')
     </div>
+    @stack('script')
 </body>
 
 </html>
