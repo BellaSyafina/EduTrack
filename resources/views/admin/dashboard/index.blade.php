@@ -2,7 +2,8 @@
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html">
+        <li class="breadcrumb-item">
+            <a href="">
                 <svg class="stroke-icon">
                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-home"></use>
                 </svg></a></li>
@@ -18,10 +19,13 @@
                 <div class="d-flex media-wrapper justify-content-between">
                     <div class="flex-grow-1">
                         <div class="greeting-user">
-                            <h2 class="f-w-600">Welcome Emay Walter!</h2>
-                            <p>Here whats happing in your account today</p>
-                            <div class="whatsnew-btn"><a class="btn btn-outline-white" href="user-profile.html"
-                                    target="_blank">View Profile</a></div>
+                            <h2 class="f-w-600">Welcome {{ Auth::user()->username }}!</h2>
+                            <small class="text-white">SMPN 2 Saronggi</small>
+                            <br>
+                            <small class="text-white">tempatnya belajar, berprestasi, dan berkarakter.</small>
+                            <div class="whatsnew-btn">
+                                <a class="btn btn-outline-white" href="user-profile.html" target="_blank">View Profile</a>
+                            </div>
                         </div>
                     </div>
                     <div>
