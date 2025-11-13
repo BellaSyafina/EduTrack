@@ -9,6 +9,12 @@
 <!-- Feather icon-->
 <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/vendors/feather-icon.css">
 <!-- Plugins css start-->
+<link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/vendors/slick.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/vendors/slick-theme.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/vendors/scrollbar.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/vendors/animate.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/vendors/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/vendors/select.bootstrap5.css">
 <!-- Plugins css Ends-->
 <!-- Bootstrap css-->
 <link rel="stylesheet" type="text/css" href="{{ asset('') }}assets/css/vendors/bootstrap.css">
