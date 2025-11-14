@@ -2,13 +2,13 @@
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
+        <li class="breadcrumb-item active">
             <a href="">
                 <svg class="stroke-icon">
                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-home"></use>
-                </svg></a></li>
-        <li class="breadcrumb-item">Dashboard</li>
-        <li class="breadcrumb-item active">Default </li>
+                </svg>
+            </a>
+        </li>
     </ol>
 @endsection
 
