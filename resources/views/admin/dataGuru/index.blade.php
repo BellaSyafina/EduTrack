@@ -40,77 +40,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td>G001</td>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div>
-                                            <a class="f-14 mb-0 f-w-500 c-light" href="">Rafi Nur Maulana, S.Kom</a>
-                                            <p class="c-o-light">2202310098</p>
+                            @foreach ($guru as $item)
+                                <tr>
+                                    <td></td>
+                                    <td>{{ 'G' . str_pad($item->id_guru, 3, '0', STR_PAD_LEFT) }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div>
+                                                <a class="f-14 mb-0 f-w-500 c-light" href="">{{ $item->nama_guru }}</a>
+                                                <p class="c-o-light">{{ $item->nip }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>Laki-laki</td>
-                                <td>Kepala Sekolah</td>
-                                <td>Jl. Merdeka No. 10, Jakarta</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-light p-2 btn-sm" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="/guru/edit">
-                                                    <i class="fa fa-edit me-2 text-primary"></i> Edit
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#">
-                                                    <i class="fa fa-trash me-2"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>G002</td>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div>
-                                            <a class="f-14 mb-0 f-w-500 c-light" href="">Bella Arum Syafina,
-                                                S.Kom</a>
-                                            <p class="c-o-light">2202310099</p>
+                                    </td>
+                                    <td>{{ $item->jenis_kelamin }}</td>
+                                    <td>{{ $item->jabatan }}</td>
+                                    <td>{{ $item->alamat }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-light p-2 btn-sm" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="/guru/{{ $item->id_guru }}/edit">
+                                                        <i class="fa fa-edit me-2 text-primary"></i> Edit
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item text-danger" href="#">
+                                                        <i class="fa fa-trash me-2"></i> Delete
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>Perempuan</td>
-                                <td>Sekretaris</td>
-                                <td>Jl. Raya Tanjung, Saroka, Saronggi</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-light p-2 btn-sm" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="/kelas/edit">
-                                                    <i class="fa fa-edit me-2 text-primary"></i> Edit
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#">
-                                                    <i class="fa fa-trash me-2"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

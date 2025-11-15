@@ -48,7 +48,9 @@
             </div>
 
             <div class="card-body px-0 pt-0 common-option">
-                <div class="recent-table table-responsive custom-scrollbar">
+                <!-- Tabel siswa terkait wali murid -->
+                <div class="recent-table table-responsive currency-table recent-order-table custom-scrollbar">
+
                     <table class="table" id="main-recent-order">
                         <thead>
                             <tr>
@@ -61,73 +63,39 @@
                         </thead>
 
                         <tbody>
+                            <!-- Contoh satu baris data siswa -->
                             <tr>
                                 <td></td>
                                 <td>KP001</td>
                                 <td>Pelanggaran Ringan</td>
-
-                                <!-- Tombol Detail yang mengarah ke menu Bentuk Pelanggaran -->
                                 <td>
-                                    <a href="/bentuk-pelanggaran/KP001" class="btn btn-info btn-sm text-center">
-                                        Detail
-                                    </a>
+                                    <a href="" class="btn btn-primary btn-sm">Detail</a>
                                 </td>
 
+                                <!-- Aksi: dropdown menu -->
                                 <td>
                                     <div class="dropdown">
                                         <button class="btn btn-light p-2 btn-sm" type="button" data-bs-toggle="dropdown">
                                             <i class="fa fa-ellipsis-v"></i>
                                         </button>
+
+                                        <!-- Menu dropdown aksi -->
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="/kategori/edit/K001">
-                                                    <i class="fa fa-edit me-2 text-primary"></i> Edit
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#">
+                                                <button class="dropdown-item text-danger" type="button"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                     <i class="fa fa-trash me-2"></i> Delete
-                                                </a>
+                                                </button>
                                             </li>
                                         </ul>
                                     </div>
                                 </td>
+
                             </tr>
-
-                            <tr>
-                                <td></td>
-                                <td>KP002</td>
-                                <td>Pelanggaran Sedang</td>
-
-                                <td>
-                                    <a href="/bentuk-pelanggaran/KP002" class="btn btn-info btn-sm">
-                                        Detail
-                                    </a>
-                                </td>
-
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-light p-2 btn-sm" type="button" data-bs-toggle="dropdown">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="/kategori/edit/K002">
-                                                    <i class="fa fa-edit me-2 text-primary"></i> Edit
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#">
-                                                    <i class="fa fa-trash me-2"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-
                         </tbody>
+
                     </table>
+
                 </div>
             </div>
         </div>

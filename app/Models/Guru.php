@@ -11,19 +11,7 @@ class Guru extends Model
 
     protected $table = 'Tabel_Guru';
     protected $primaryKey = 'id_guru';
-    protected $fillable = [
-        'nip',
-        'nama_guru',
-        'jenis_kelamin',
-        'jabatan',
-        'alamat',
-        'id_pengguna'
-    ];
-
-    public function pengguna()
-    {
-        return $this->belongsTo(Pengguna::class, 'id_pengguna');
-    }
+    protected $guarded = ['id_guru'];
 
     public function laporan()
     {

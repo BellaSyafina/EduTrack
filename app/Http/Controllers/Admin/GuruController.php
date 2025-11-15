@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -10,6 +11,7 @@ class GuruController extends Controller
     public function index()
     {
         $data = [
+            'guru' => Guru::all(),
             'title' => 'Data Guru',
         ];
 

@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Tabel_Guru', function (Blueprint $table) {
-            $table->id('id_guru');
-            $table->string('nip')->unique();
-            $table->string('nama_guru');
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->string('jabatan');
-            $table->text('alamat');
+        Schema::create('tabel_kelas', function (Blueprint $table) {
+            $table->id('id_kelas');
+            $table->string('nama_kelas');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Tabel_Guru');
+        Schema::dropIfExists('kelas');
     }
 };
