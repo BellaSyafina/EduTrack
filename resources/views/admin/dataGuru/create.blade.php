@@ -12,7 +12,7 @@
         <li class="breadcrumb-item">
             <a href="/guru">Data Guru</a>
         </li>
-        <li class="breadcrumb-item active">{{ $title }} </li>
+        <li class="breadcrumb-item active">{{ $title }}</li>
     </ol>
 @endsection
 
@@ -22,47 +22,79 @@
             <div class="card-header">
                 <h5>Form Guru</h5>
             </div>
+
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input" novalidate="">
+                <form class="row g-3 needs-validation custom-input"
+                      action="{{ route('guru.store') }}" method="POST" novalidate="">
+                    @csrf
+
+                    {{-- NIP --}}
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="nip">NIP</label>
-                        <input class="form-control" id="nip" name="nip" type="text"
-                            placeholder="Masukkan NIP..." required="">
+                        <input class="form-control @error('nip') is-invalid @enderror"
+                               id="nip" name="nip" type="text"
+                               placeholder="Masukkan NIP..."
+                               value="{{ old('nip') }}" required>
                         <div class="valid-tooltip">Looks good!</div>
-                        <div class="invalid-tooltip">Please provide a valid city.</div>
-                    </div>
-                    <div class="col-md-12 position-relative">
-                        <label class="form-label" for="nama_guru">Nama Guru</label>
-                        <input class="form-control" id="nama_guru" name="nama_guru" type="text"
-                            placeholder="Masukkan Nama Guru..." required="">
-                        <div class="valid-tooltip">Looks good!</div>
-                        <div class="invalid-tooltip">Please provide a valid city.</div>
-                    </div>
-                    <div class="col-md-6 position-relative">
-                        <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" id="jenis_kelamin" class="form-select">
-                            <option selected disabled>Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
-                        </select>
-                        <div class="valid-tooltip">Looks good!</div>
-                        <div class="invalid-tooltip">Please provide a valid city.</div>
-                    </div>
-                    <div class="col-md-6 position-relative">
-                        <label class="form-label" for="jabatan">Jabatan</label>
-                        <input class="form-control" id="jabatan" name="jabatan" type="text"
-                            placeholder="Masukkan Jabatan..." required="">
-                        <div class="valid-tooltip">Looks good!</div>
-                        <div class="invalid-tooltip">Please provide a valid city.</div>
-                    </div>
-                    <div class="col-md-12 position-relative">
-                        <label class="form-label" for="alamat">Alamat</label>
-                        <textarea name="alamat" id="alamat" cols="30" rows="10" class="form-control"></textarea>
-                        <div class="valid-tooltip">Looks good!</div>
-                        <div class="invalid-tooltip">Please provide a valid city.</div>
+                        @error('nip')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
-                    <!-- Tombol dibuat sejajar di baris yang sama -->
+                    {{-- Nama Guru --}}
+                    <div class="col-md-12 position-relative">
+                        <label class="form-label" for="nama_guru">Nama Guru</label>
+                        <input class="form-control @error('nama_guru') is-invalid @enderror"
+                               id="nama_guru" name="nama_guru" type="text"
+                               placeholder="Masukkan Nama Guru..."
+                               value="{{ old('nama_guru') }}" required>
+                        <div class="valid-tooltip">Looks good!</div>
+                        @error('nama_guru')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- Jenis Kelamin --}}
+                    <div class="col-md-6 position-relative">
+                        <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" id="jenis_kelamin"
+                                class="form-select @error('jenis_kelamin') is-invalid @enderror" required>
+                            <option disabled selected>Pilih Jenis Kelamin</option>
+                            <option value="Laki-laki" {{ old('jenis_kelamin')=='Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="Perempuan" {{ old('jenis_kelamin')=='Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                        </select>
+                        <div class="valid-tooltip">Looks good!</div>
+                        @error('jenis_kelamin')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- Jabatan --}}
+                    <div class="col-md-6 position-relative">
+                        <label class="form-label" for="jabatan">Jabatan</label>
+                        <input class="form-control @error('jabatan') is-invalid @enderror"
+                               id="jabatan" name="jabatan" type="text"
+                               placeholder="Masukkan Jabatan..."
+                               value="{{ old('jabatan') }}" required>
+                        <div class="valid-tooltip">Looks good!</div>
+                        @error('jabatan')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- Alamat --}}
+                    <div class="col-md-12 position-relative">
+                        <label class="form-label" for="alamat">Alamat</label>
+                        <textarea name="alamat" id="alamat"
+                                  class="form-control @error('alamat') is-invalid @enderror"
+                                  rows="4" placeholder="Masukkan Alamat...">{{ old('alamat') }}</textarea>
+                        <div class="valid-tooltip">Looks good!</div>
+                        @error('alamat')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- Buttons --}}
                     <div class="col-12 mt-3 d-flex gap-2">
                         <button class="btn btn-primary" type="submit">Simpan</button>
                         <button class="btn btn-warning" type="reset">Reset</button>
@@ -71,6 +103,7 @@
 
                 </form>
             </div>
+
         </div>
     </div>
 @endsection
