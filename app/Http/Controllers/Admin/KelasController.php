@@ -37,12 +37,32 @@ class KelasController extends Controller
         return redirect('/kelas')->with('success', 'Data kelas berhasil ditambahkan.');
     }
 
-    public function edit()
+    public function show($id)
     {
+        $kelas = Kelas::where('id_kelas', $id)->first();
         $data = [
             'title' => 'Edit Kelas',
+            'kelas' => $kelas,
         ];
 
         return view('admin.dataKelas.update', $data);
+    }
+    public function update(Request $request, $id)
+    {
+        // Validasi input
+        $validatedData = $request->validate(
+            [
+                'nama_kelas' => 'required|string|max:100',
+            ],
+
+            [
+                'nama_kelas.required' => 'Nama kelas wajib diisi.',
+            ]
+        );
+
+        // Update data kelas
+        Kelas::where('id_kelas', $id)->update($validatedData);
+
+        return redirect('/kelas')->with('success', 'Data Kelas berhasil diperbarui.');
     }
 }

@@ -23,11 +23,13 @@
                 <h5>Form Kelas</h5>
             </div>
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input" novalidate="">
+                <form class="row g-3 needs-validation custom-input" action="{{ route('kelas.update', $kelas->id_kelas) }}"
+                    method="POST" novalidate="">
+                    @csrf
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="namaKelas">Nama Kelas</label>
-                        <input class="form-control" id="namaKelas" type="text" placeholder="Masukkan Nama Kelas..."
-                            required="">
+                        <input class="form-control" id="nama_kelas" name="nama_kelas" type="text"
+                            value="{{ $kelas->nama_kelas }}" placeholder="Masukkan Nama Kelas..." required="">
                         <div class="valid-tooltip">Looks good!</div>
                         <div class="invalid-tooltip">Please provide a valid city.</div>
                     </div>

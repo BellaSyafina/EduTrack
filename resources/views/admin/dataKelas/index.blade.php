@@ -85,7 +85,7 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a class="dropdown-item" href="/guru/{{ $item->id_kelas }}/edit">
+                                                    <a class="dropdown-item" href="/kelas/{{ $item->id_kelas }}/edit">
                                                         <i class="fa fa-edit me-2 text-primary"></i> Edit
                                                     </a>
                                                 </li>

@@ -43,7 +43,8 @@ Route::middleware('auth')->group(function () {
     */
     Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');   // List kelas
     Route::post('/kelas/store', [KelasController::class, 'store'])->name('kelas.store'); // Proses tambah kelas
-    Route::get('/kelas/edit', [KelasController::class, 'edit'])->name('kelas.edit'); // Halaman edit kelas
+    Route::get('/kelas/{id}/edit', [KelasController::class, 'show'])->name('kelas.show'); // Edit kelas
+    Route::post('/kelas/{id}/update', [KelasController::class, 'update'])->name('kelas.update'); // Proses update kelas
 
     /*
     |--------------------------------------------------------------------------
