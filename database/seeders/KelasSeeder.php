@@ -15,16 +15,37 @@ class KelasSeeder extends Seeder
     {
         DB::table('tabel_kelas')->insert([
             [
-                'nama_kelas' => 'Kelas 10 IPA 1',
+                'nama_kelas' => 'Kelas VII - A',
             ],
             [
-                'nama_kelas' => 'Kelas 10 IPA 2',
+                'nama_kelas' => 'Kelas VII - B',
             ],
             [
-                'nama_kelas' => 'Kelas 11 IPS 1',
+                'nama_kelas' => 'Kelas VII - C',
             ],
             [
-                'nama_kelas' => 'Kelas 12 Bahasa 1',
+                'nama_kelas' => 'Kelas VII - D',
+            ],
+            [
+                'nama_kelas' => 'Kelas VIII - A',
+            ],
+            [
+                'nama_kelas' => 'Kelas VIII - B',
+            ],
+            [
+                'nama_kelas' => 'Kelas VIII - C',
+            ],
+            [
+                'nama_kelas' => 'Kelas IX - A',
+            ],
+            [
+                'nama_kelas' => 'Kelas IX - B',
+            ],
+            [
+                'nama_kelas' => 'Kelas IX - C',
+            ],
+            [
+                'nama_kelas' => 'Kelas IX - D',
             ],
         ]);
     }
