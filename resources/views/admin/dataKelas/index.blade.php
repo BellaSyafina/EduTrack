@@ -20,13 +20,19 @@
                 <h5>Form Kelas</h5>
             </div>
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input" novalidate="">
+                <form class="row g-3 needs-validation custom-input" action="{{ route('kelas.store') }}" method="POST"
+                    novalidate="">
+                    @csrf
+                    {{-- Nama Guru --}}
                     <div class="col-md-12 position-relative">
-                        <label class="form-label" for="namaKelas">Nama Kelas</label>
-                        <input class="form-control" id="namaKelas" type="text" placeholder="Masukkan Nama Kelas..."
-                            required="">
+                        <label class="form-label" for="nama_guru">Nama Kelas</label>
+                        <input class="form-control @error('nama_guru') is-invalid @enderror" id="nama_kelas"
+                            name="nama_kelas" type="text" placeholder="Masukkan Nama Kelas..."
+                            value="{{ old('nama_kelas') }}" required>
                         <div class="valid-tooltip">Looks good!</div>
-                        <div class="invalid-tooltip">Please provide a valid city.</div>
+                        @error('nama_kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Tombol dibuat sejajar di baris yang sama -->
