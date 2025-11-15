@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\KategoriPelanggaranController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\WaliMuridController;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 | Hanya pengguna yang belum login yang dapat mengakses route di bawah ini.
 | Digunakan untuk menampilkan halaman login dan proses autentikasi.
 */
+
 Route::middleware('guest')->group(function () {
     // Halaman login
     Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -69,6 +71,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/wali-murid/tambah', [WaliMuridController::class, 'create'])->name('wali-murid.create'); // Tambah wali murid
     Route::get('/wali-murid/edit', [WaliMuridController::class, 'show'])->name('wali-murid.show'); // Edit wali murid
     Route::get('/wali-murid/siswa', [WaliMuridController::class, 'siswa'])->name('wali-murid.siswa'); // Relasi wali murid ke siswa
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Kategori Pelanggaran
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/kategori-pelanggaran', [KategoriPelanggaranController::class, 'index'])->name('kategori-pelanggaran.index'); // List kategori pelanggaran
+
 
     /*
     |--------------------------------------------------------------------------

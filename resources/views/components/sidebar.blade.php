@@ -45,7 +45,8 @@
                     <!-- Logo kecil pada mode mobile -->
                     <li class="back-btn">
                         <a href="">
-                            <img class="img-fluid" src="{{ asset('') }}assets/images/logo/logo-icon.png" alt="">
+                            <img class="img-fluid" src="{{ asset('') }}assets/images/logo/logo-icon.png"
+                                alt="">
                         </a>
                         <div class="mobile-back text-end">
                             <span>Back</span>
@@ -85,7 +86,6 @@
                          MENU UNTUK ROLE ADMIN
                          ============================ -->
                     @if (Auth::user()->role === 'admin')
-
                         <!-- Judul group -->
                         <li class="sidebar-main-title">
                             <div>
@@ -159,7 +159,7 @@
                         <!-- Kategori Pelanggaran -->
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="#">
+                            <a class="sidebar-link sidebar-title link-nav" href="/kategori-pelanggaran">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-form"></use>
                                 </svg>
@@ -230,14 +230,12 @@
                                 <span>Bentuk Kepatuhan</span>
                             </a>
                         </li>
-
                     @endif
 
                     <!-- ============================
                          MENU ROLE ADMIN & WALI KELAS
                          ============================ -->
                     @if (Auth::user()->role === 'admin' || Auth::user()->role === 'wali kelas')
-
                         <li class="sidebar-main-title">
                             <div>
                                 <h6>Kelola Input</h6>
@@ -249,7 +247,8 @@
                             <i class="fa-solid fa-thumbtack"></i>
                             <a class="sidebar-link sidebar-title link-nav" href="landing-page.html">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-landing-page"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-landing-page">
+                                    </use>
                                 </svg>
                                 <svg class="fill-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-landing-page"></use>
@@ -263,7 +262,8 @@
                             <i class="fa-solid fa-thumbtack"></i>
                             <a class="sidebar-link sidebar-title link-nav" href="sample-page.html">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-sample-page"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-sample-page">
+                                    </use>
                                 </svg>
                                 <svg class="fill-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-sample-page"></use>
@@ -271,7 +271,6 @@
                                 <span>Input Pelanggaran Siswa</span>
                             </a>
                         </li>
-
                     @endif
 
                     <!-- Bagian Other -->
