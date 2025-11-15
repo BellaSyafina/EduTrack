@@ -52,12 +52,40 @@ class GuruController extends Controller
         return redirect('/guru')->with('success', 'Data guru berhasil ditambahkan.');
     }
 
-    public function show()
+    public function show($id)
     {
+        $guru = Guru::where('id_guru', $id)->first();
+
         $data = [
             'title' => 'Edit Guru',
+            'guru' => $guru,
         ];
 
         return view('admin.dataGuru.update', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validasi input
+        $validatedData = $request->validate([
+            'nip' => 'required|max:20|unique:Tabel_Guru,nip,' . $id . ',id_guru',
+            'nama_guru' => 'required|string|max:100',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'jabatan' => 'required|string|max:50',
+            'alamat' => 'required|string',
+        ],
+        [
+            'nip.required' => 'NIP wajib diisi.',
+            'nip.unique' => 'NIP sudah terdaftar.',
+            'nama_guru.required' => 'Nama guru wajib diisi.',
+            'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih.',
+            'jabatan.required' => 'Jabatan wajib diisi.',
+            'alamat.required' => 'Alamat wajib diisi.',
+        ]);
+
+        // Update data guru
+        Guru::where('id_guru', $id)->update($validatedData);
+
+        return redirect('/guru')->with('success', 'Data guru berhasil diperbarui.');
     }
 }

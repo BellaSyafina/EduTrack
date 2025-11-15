@@ -62,7 +62,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/guru', [GuruController::class, 'index'])->name('guru.index'); // List guru
     Route::get('/guru/tambah', [GuruController::class, 'create'])->name('guru.create'); // Tambah guru
     Route::post('/guru/store', [GuruController::class, 'store'])->name('guru.store'); // Proses tambah guru
-    Route::get('/guru/edit', [GuruController::class, 'show'])->name('guru.show'); // Edit guru / detail guru
+    Route::get('/guru/{id}/edit', [GuruController::class, 'show'])->name('guru.show'); // Edit guru / detail guru
+    Route::post('/guru/{id}/update', [GuruController::class, 'update'])->name('guru.update'); // Proses update guru
 
     /*
     |--------------------------------------------------------------------------
