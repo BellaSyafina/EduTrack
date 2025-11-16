@@ -207,7 +207,7 @@
 
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="#">
+                            <a class="sidebar-link sidebar-title link-nav" href="/kategori-kepatuhan">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-ui-kits"></use>
                                 </svg>

@@ -20,21 +20,28 @@ class KelasController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
-        $validatedData = $request->validate(
-            [
-                'nama_kelas' => 'required|string|max:100',
-            ],
+        try {
+            // Validasi input
+            $validatedData = $request->validate(
+                [
+                    'nama_kelas' => 'required|string|max:100',
+                ],
 
-            [
-                'nama_kelas.required' => 'Nama kelas wajib diisi.',
-            ]
-        );
+                [
+                    'nama_kelas.required' => 'Nama kelas wajib diisi.',
+                ],
+            );
 
-        // Simpan data kelas baru
-        Kelas::create($validatedData);
+            // Simpan data kelas baru
+            Kelas::create($validatedData);
 
-        return redirect('/kelas')->with('success', 'Data kelas berhasil ditambahkan.');
+            return redirect('/kelas')->with('success', 'Data kelas berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage()])
+                ->withInput();
+        }
     }
 
     public function show($id)
@@ -47,30 +54,44 @@ class KelasController extends Controller
 
         return view('admin.dataKelas.update', $data);
     }
+
     public function update(Request $request, $id)
     {
-        // Validasi input
-        $validatedData = $request->validate(
-            [
-                'nama_kelas' => 'required|string|max:100',
-            ],
+        try {
+            // Validasi input
+            $validatedData = $request->validate(
+                [
+                    'nama_kelas' => 'required|string|max:100',
+                ],
 
-            [
-                'nama_kelas.required' => 'Nama kelas wajib diisi.',
-            ]
-        );
+                [
+                    'nama_kelas.required' => 'Nama kelas wajib diisi.',
+                ],
+            );
 
-        // Update data kelas
-        Kelas::where('id_kelas', $id)->update($validatedData);
+            // Update data kelas
+            Kelas::where('id_kelas', $id)->update($validatedData);
 
-        return redirect('/kelas')->with('success', 'Data Kelas berhasil diperbarui.');
+            return redirect('/kelas')->with('success', 'Data kelas berhasil diperbarui.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Terjadi kesalahan saat memperbarui data: ' . $e->getMessage()])
+                ->withInput();
+        }
     }
 
     public function destroy($id)
     {
-        // Hapus data guru
-        Kelas::where('id_kelas', $id)->delete();
+        try {
+            // Hapus data kelas
+            Kelas::where('id_kelas', $id)->delete();
 
-        return redirect('/kelas')->with('success', 'Data kelas berhasil dihapus.');
+            return redirect('/kelas')->with('success', 'Data kelas berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage()]);
+        }
     }
 }

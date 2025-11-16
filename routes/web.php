@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\KategoriKepatuhanController;
 use App\Http\Controllers\Admin\KategoriPelanggaranController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\SiswaController;
@@ -85,6 +86,13 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/kategori-pelanggaran', [KategoriPelanggaranController::class, 'index'])->name('kategori-pelanggaran.index'); // List kategori pelanggaran
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Kategori Kepatuhan
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/kategori-kepatuhan', [KategoriKepatuhanController::class, 'index'])->name('kategori-kepatuhan.index'); // List kategori kepatuhan
 
 
     /*
