@@ -88,4 +88,12 @@ class GuruController extends Controller
 
         return redirect('/guru')->with('success', 'Data guru berhasil diperbarui.');
     }
+
+    public function destroy($id)
+    {
+        // Hapus data guru
+        Guru::where('id_guru', $id)->delete();
+
+        return redirect('/guru')->with('success', 'Data guru berhasil dihapus.');
+    }
 }

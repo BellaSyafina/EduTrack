@@ -68,7 +68,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item text-danger" href="#">
+                                                    <a class="dropdown-item text-danger" href="/guru/{{ $item->id_guru }}/delete">
                                                         <i class="fa fa-trash me-2"></i> Delete
                                                     </a>
                                                 </li>

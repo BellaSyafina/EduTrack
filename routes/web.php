@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/guru/store', [GuruController::class, 'store'])->name('guru.store'); // Proses tambah guru
     Route::get('/guru/{id}/edit', [GuruController::class, 'show'])->name('guru.show'); // Edit guru / detail guru
     Route::post('/guru/{id}/update', [GuruController::class, 'update'])->name('guru.update'); // Proses update guru
+    Route::get('/guru/{id}/delete', [GuruController::class, 'destroy'])->name('guru.destroy'); // Hapus guru
 
     /*
     |--------------------------------------------------------------------------

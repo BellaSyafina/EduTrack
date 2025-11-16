@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         $login = [
             'username' => $username,
-            'password' => $password
+            'password' => $password,
         ];
         // dd($login);
 
