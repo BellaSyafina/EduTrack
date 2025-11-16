@@ -65,4 +65,12 @@ class KelasController extends Controller
 
         return redirect('/kelas')->with('success', 'Data Kelas berhasil diperbarui.');
     }
+
+    public function destroy($id)
+    {
+        // Hapus data guru
+        Kelas::where('id_kelas', $id)->delete();
+
+        return redirect('/kelas')->with('success', 'Data kelas berhasil dihapus.');
+    }
 }

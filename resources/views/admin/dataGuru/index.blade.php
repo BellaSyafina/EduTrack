@@ -47,7 +47,8 @@
                                     <td>
                                         <div class="d-flex align-items-center gap-2">
                                             <div>
-                                                <a class="f-14 mb-0 f-w-500 c-light" href="">{{ $item->nama_guru }}</a>
+                                                <a class="f-14 mb-0 f-w-500 c-light"
+                                                    href="">{{ $item->nama_guru }}</a>
                                                 <p class="c-o-light">{{ $item->nip }}</p>
                                             </div>
                                         </div>
@@ -64,11 +65,12 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <a class="dropdown-item" href="/guru/{{ $item->id_guru }}/edit">
-                                                        <i class="fa fa-edit me-2 text-primary"></i> Edit
+                                                        <i class="fa fa-edit me-2 text-primary"></i> Update
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item text-danger" href="/guru/{{ $item->id_guru }}/delete">
+                                                    <a class="dropdown-item text-danger"
+                                                        href="/guru/{{ $item->id_guru }}/delete">
                                                         <i class="fa fa-trash me-2"></i> Delete
                                                     </a>
                                                 </li>

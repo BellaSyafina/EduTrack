@@ -24,17 +24,15 @@
             </div>
 
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input"
-                      action="{{ route('guru.store') }}" method="POST" novalidate="">
+                <form class="row g-3 needs-validation custom-input" action="{{ route('guru.store') }}" method="POST"
+                    novalidate="">
                     @csrf
 
                     {{-- NIP --}}
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="nip">NIP</label>
-                        <input class="form-control @error('nip') is-invalid @enderror"
-                               id="nip" name="nip" type="text"
-                               placeholder="Masukkan NIP..."
-                               value="{{ old('nip') }}" required>
+                        <input class="form-control @error('nip') is-invalid @enderror" id="nip" name="nip"
+                            type="text" placeholder="Masukkan NIP..." value="{{ old('nip') }}" required>
                         <div class="valid-tooltip">Looks good!</div>
                         @error('nip')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -44,10 +42,8 @@
                     {{-- Nama Guru --}}
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="nama_guru">Nama Guru</label>
-                        <input class="form-control @error('nama_guru') is-invalid @enderror"
-                               id="nama_guru" name="nama_guru" type="text"
-                               placeholder="Masukkan Nama Guru..."
-                               value="{{ old('nama_guru') }}" required>
+                        <input class="form-control @error('nama_guru') is-invalid @enderror" id="nama_guru" name="nama_guru"
+                            type="text" placeholder="Masukkan Nama Guru..." value="{{ old('nama_guru') }}" required>
                         <div class="valid-tooltip">Looks good!</div>
                         @error('nama_guru')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -58,10 +54,12 @@
                     <div class="col-md-6 position-relative">
                         <label class="form-label" for="jenis_kelamin">Jenis Kelamin</label>
                         <select name="jenis_kelamin" id="jenis_kelamin"
-                                class="form-select @error('jenis_kelamin') is-invalid @enderror" required>
+                            class="form-select @error('jenis_kelamin') is-invalid @enderror" required>
                             <option disabled selected>Pilih Jenis Kelamin</option>
-                            <option value="Laki-laki" {{ old('jenis_kelamin')=='Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="Perempuan" {{ old('jenis_kelamin')=='Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki
+                            </option>
+                            <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan
+                            </option>
                         </select>
                         <div class="valid-tooltip">Looks good!</div>
                         @error('jenis_kelamin')
@@ -72,10 +70,8 @@
                     {{-- Jabatan --}}
                     <div class="col-md-6 position-relative">
                         <label class="form-label" for="jabatan">Jabatan</label>
-                        <input class="form-control @error('jabatan') is-invalid @enderror"
-                               id="jabatan" name="jabatan" type="text"
-                               placeholder="Masukkan Jabatan..."
-                               value="{{ old('jabatan') }}" required>
+                        <input class="form-control @error('jabatan') is-invalid @enderror" id="jabatan" name="jabatan"
+                            type="text" placeholder="Masukkan Jabatan..." value="{{ old('jabatan') }}" required>
                         <div class="valid-tooltip">Looks good!</div>
                         @error('jabatan')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -85,9 +81,8 @@
                     {{-- Alamat --}}
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="alamat">Alamat</label>
-                        <textarea name="alamat" id="alamat"
-                                  class="form-control @error('alamat') is-invalid @enderror"
-                                  rows="4" placeholder="Masukkan Alamat...">{{ old('alamat') }}</textarea>
+                        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror" rows="4"
+                            placeholder="Masukkan Alamat...">{{ old('alamat') }}</textarea>
                         <div class="valid-tooltip">Looks good!</div>
                         @error('alamat')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -96,7 +91,7 @@
 
                     {{-- Buttons --}}
                     <div class="col-12 mt-3 d-flex gap-2">
-                        <button class="btn btn-primary" type="submit">Simpan</button>
+                        <button class="btn btn-primary" type="submit">Submit</button>
                         <button class="btn btn-warning" type="reset">Reset</button>
                         <a href="/guru" class="btn btn-danger">Kembali</a>
                     </div>

@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/kelas/store', [KelasController::class, 'store'])->name('kelas.store'); // Proses tambah kelas
     Route::get('/kelas/{id}/edit', [KelasController::class, 'show'])->name('kelas.show'); // Edit kelas
     Route::post('/kelas/{id}/update', [KelasController::class, 'update'])->name('kelas.update'); // Proses update kelas
+    Route::get('/kelas/{id}/delete', [KelasController::class, 'destroy'])->name('kelas.destroy'); // Hapus Kelas
+
 
     /*
     |--------------------------------------------------------------------------

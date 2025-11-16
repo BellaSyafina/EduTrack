@@ -23,7 +23,7 @@
                 <form class="row g-3 needs-validation custom-input" action="{{ route('kelas.store') }}" method="POST"
                     novalidate="">
                     @csrf
-                    {{-- Nama Guru --}}
+                    {{-- Nama Kelas --}}
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="nama_guru">Nama Kelas</label>
                         <input class="form-control @error('nama_guru') is-invalid @enderror" id="nama_kelas"
@@ -86,11 +86,12 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <a class="dropdown-item" href="/kelas/{{ $item->id_kelas }}/edit">
-                                                        <i class="fa fa-edit me-2 text-primary"></i> Edit
+                                                        <i class="fa fa-edit me-2 text-primary"></i> Update
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item text-danger" href="#">
+                                                    <a class="dropdown-item text-danger"
+                                                        href="/kelas/{{ $item->id_kelas }}/delete">
                                                         <i class="fa fa-trash me-2"></i> Delete
                                                     </a>
                                                 </li>
