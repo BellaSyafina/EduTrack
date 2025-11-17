@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\BentukKepatuhanController;
+use App\Http\Controllers\Admin\BentukPelanggaranController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\KategoriKepatuhanController;
 use App\Http\Controllers\Admin\KategoriPelanggaranController;
 use App\Http\Controllers\Admin\KelasController;
+use App\Http\Controllers\Admin\SanksiPelanggaranController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\WaliMuridController;
 use App\Http\Controllers\Auth\AuthController;
@@ -33,7 +36,6 @@ Route::middleware('guest')->group(function () {
 | Berisi halaman dashboard dan seluruh menu manajemen data.
 */
 Route::middleware('auth')->group(function () {
-
     // Dashboard utama
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -42,12 +44,11 @@ Route::middleware('auth')->group(function () {
     | Menu Kelas
     |--------------------------------------------------------------------------
     */
-    Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');   // List kelas
+    Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index'); // List kelas
     Route::post('/kelas/store', [KelasController::class, 'store'])->name('kelas.store'); // Proses tambah kelas
     Route::get('/kelas/{id}/edit', [KelasController::class, 'show'])->name('kelas.show'); // Edit kelas
     Route::post('/kelas/{id}/update', [KelasController::class, 'update'])->name('kelas.update'); // Proses update kelas
     Route::get('/kelas/{id}/delete', [KelasController::class, 'destroy'])->name('kelas.destroy'); // Hapus Kelas
-
 
     /*
     |--------------------------------------------------------------------------
@@ -89,11 +90,31 @@ Route::middleware('auth')->group(function () {
 
     /*
     |--------------------------------------------------------------------------
+    | Menu Bentuk Pelanggaran
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/bentuk-pelanggaran', [BentukPelanggaranController::class, 'index'])->name('bentuk-pelanggaran.index'); // List bentuk pelanggaran
+
+/*
+    |--------------------------------------------------------------------------
+    | Menu Sanksi Pelanggaran
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/sanksi-pelanggaran', [SanksiPelanggaranController::class, 'index'])->name('sanksi-pelanggaran.index'); // List sanksi pelanggaran
+
+    /*
+    |--------------------------------------------------------------------------
     | Menu Kategori Kepatuhan
     |--------------------------------------------------------------------------
     */
     Route::get('/kategori-kepatuhan', [KategoriKepatuhanController::class, 'index'])->name('kategori-kepatuhan.index'); // List kategori kepatuhan
 
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Bentuk Kepatuhan
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/bentuk-kepatuhan', [BentukKepatuhanController::class, 'index'])->name('bentuk-kepatuhan.index'); // List bentuk kepatuhan
 
     /*
     |--------------------------------------------------------------------------

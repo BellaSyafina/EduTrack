@@ -67,9 +67,9 @@
                             <tr>
                                 <td></td>
                                 <td>KK001</td>
-                                <td>Disiplin</td>
+                                <td>Sikap</td>
                                 <td>
-                                    <a href="" class="btn btn-primary btn-sm">Detail</a>
+                                    <a href="/bentuk-kepatuhan" class="btn btn-primary btn-sm">Detail</a>
                                 </td>
 
                                 <!-- Aksi: dropdown menu -->
@@ -82,7 +82,7 @@
                                         <!-- Menu dropdown aksi -->
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="/kategori-kepatuhan/edit">
+                                                <a class="dropdown-item" href="#">
                                                     <i class="fa fa-edit me-2 text-primary"></i> Update
                                                 </a>
                                             </li>

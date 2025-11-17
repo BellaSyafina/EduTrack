@@ -173,7 +173,7 @@
                         <!-- Bentuk Pelanggaran -->
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="#">
+                            <a class="sidebar-link sidebar-title link-nav" href="/bentuk-pelanggaran">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-table"></use>
                                 </svg>
@@ -187,7 +187,7 @@
                         <!-- Sanksi Pelanggaran -->
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="#">
+                            <a class="sidebar-link sidebar-title link-nav" href="/sanksi-pelanggaran">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-table"></use>
                                 </svg>
@@ -220,7 +220,7 @@
 
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="#">
+                            <a class="sidebar-link sidebar-title link-nav" href="/bentuk-kepatuhan">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-bonus-kit"></use>
                                 </svg>

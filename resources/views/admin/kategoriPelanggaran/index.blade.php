@@ -69,7 +69,7 @@
                                 <td>KP001</td>
                                 <td>Pelanggaran Ringan</td>
                                 <td>
-                                    <a href="" class="btn btn-primary btn-sm">Detail</a>
+                                    <a href="/bentuk-pelanggaran" class="btn btn-primary btn-sm">Detail</a>
                                 </td>
 
                                 <!-- Aksi: dropdown menu -->
@@ -82,7 +82,7 @@
                                         <!-- Menu dropdown aksi -->
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="/kategori-pelanggaran/edit">
+                                                <a class="dropdown-item" href="#">
                                                     <i class="fa fa-edit me-2 text-primary"></i> Update
                                                 </a>
                                             </li>
