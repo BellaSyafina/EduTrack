@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\KategoriPelanggaran;
 use Illuminate\Http\Request;
 
-class KategoriPelanggaranController extends Controller
+class BentukPelanggaranController extends Controller
 {
     public function index()
     {
         $data = [
-            'title' => 'Kategori Pelanggaran',
+            'title' => 'Bentuk Pelanggaran',
         ];
 
-        return view('admin.kategoriPelanggaran.index', $data);
+        return view('admin.bentukPelanggaran.index', $data);
     }
 }

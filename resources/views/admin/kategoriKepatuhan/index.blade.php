@@ -17,14 +17,14 @@
     <div class="col-sm-4 col-lg-4">
         <div class="card">
             <div class="card-header">
-                <h5>Form Kategori Pelanggaran</h5>
+                <h5>Form Kategori Kepatuhan</h5>
             </div>
             <div class="card-body">
                 <form class="row g-3 needs-validation custom-input" novalidate="">
                     <div class="col-md-12 position-relative">
-                        <label class="form-label" for="kategoriPelanggaran">Kategori Pelanggaran</label>
-                        <input class="form-control" id="kategoriPelanggaran" type="text"
-                            placeholder="Masukkan Kategori Pelanggaran..." required="">
+                        <label class="form-label" for="kategoriKepatuhan">Kategori Kepatuhan</label>
+                        <input class="form-control" id="kategoriKepatuhan" type="text"
+                            placeholder="Masukkan Kategori Kepatuhan..." required="">
                         <div class="valid-tooltip">Looks good!</div>
                         <div class="invalid-tooltip">Please provide a valid input.</div>
                     </div>
@@ -43,33 +43,33 @@
         <div class="card">
             <div class="card-header card-no-border">
                 <div class="header-top">
-                    <h5>Daftar Kategori Pelanggaran</h5>
+                    <h5>Daftar Kategori Kepatuhan</h5>
                 </div>
             </div>
 
             <div class="card-body px-0 pt-0 common-option">
-                <!-- Tabel Kategori Pelanggaran terkait Bentuk Pelanggaran -->
+                <!-- Tabel Kategori Kepatuhan terkait Bentuk Kepatuhan -->
                 <div class="recent-table table-responsive currency-table recent-order-table custom-scrollbar">
 
                     <table class="table" id="main-recent-order">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>ID Kategori Pelanggaran</th>
-                                <th>Kategori Pelanggaran</th>
-                                <th>Bentuk Pelanggaran</th>
+                                <th>ID Kategori Kepatuhan</th>
+                                <th>Kategori Kepatuhan</th>
+                                <th>Bentuk Kepatuhan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <!-- Contoh satu baris data kategori pelanggaran -->
+                            <!-- Contoh satu baris data kategori kepatuhan -->
                             <tr>
                                 <td></td>
-                                <td>KP001</td>
-                                <td>Pelanggaran Ringan</td>
+                                <td>KK001</td>
+                                <td>Sikap</td>
                                 <td>
-                                    <a href="/bentuk-pelanggaran" class="btn btn-primary btn-sm">Detail</a>
+                                    <a href="/bentuk-kepatuhan" class="btn btn-primary btn-sm">Detail</a>
                                 </td>
 
                                 <!-- Aksi: dropdown menu -->

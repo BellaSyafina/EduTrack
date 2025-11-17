@@ -47,6 +47,26 @@
     </div>
 
     <div class="col-xxl-8 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e">
+        {{-- Alert Success --}}
+        @if (session('success'))
+            <div class="alert alert-bg-success light alert-dismissible fade show txt-success border-left-success"
+                role="alert">
+                <i data-feather="check-square"></i>
+                <p>{{ session('success') }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        {{-- Alert Error --}}
+        @if (session('error'))
+            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                role="alert">
+                <i data-feather="alert-triangle"></i>
+                <p>{{ session('error') }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header card-no-border">
                 <div class="header-top">
