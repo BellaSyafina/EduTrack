@@ -23,11 +23,12 @@
                 <h5>Form Siswa</h5>
             </div>
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input" novalidate="">
+                <form class="row g-3 needs-validation custom-input" action="{{ route('siswa.store') }}" method="POST" novalidate="">
+                    @csrf
                     <div class="col-md-12 position-relative">
-                        <label class="form-label" for="nisn">NISN</label>
-                        <input class="form-control" id="nisn" name="nisn" type="text"
-                            placeholder="Masukkan NISN..." required="">
+                        <label class="form-label" for="nis">NIS</label>
+                        <input class="form-control" id="nis" name="nis" type="text"
+                            placeholder="Masukkan NIS..." required="">
                         <div class="valid-tooltip">Looks good!</div>
                         <div class="invalid-tooltip">Please provide a valid city.</div>
                     </div>
@@ -49,10 +50,12 @@
                         <div class="invalid-tooltip">Please provide a valid city.</div>
                     </div>
                     <div class="col-md-4 position-relative">
-                        <label class="form-label" for="kelas">Kelas</label>
-                        <select name="kelas" id="kelas" class="form-select">
+                        <label class="form-label" for="id_kelas">Kelas</label>
+                        <select name="id_kelas" id="id_kelas" class="form-select">
                             <option selected disabled>Pilih Kelas</option>
-                            <option value="X - TKJ - 1">X - TKJ - 1</option>
+                            @foreach ($kelas as $item)
+                                <option value="{{ $item->id_kelas }}">{{ $item->nama_kelas }}</option>
+                            @endforeach
                         </select>
                         <div class="valid-tooltip">Looks good!</div>
                         <div class="invalid-tooltip">Please provide a valid city.</div>
@@ -61,7 +64,7 @@
                         <label class="form-label" for="status">Status</label>
                         <select name="status" id="status" class="form-select">
                             <option value="Aktif" selected>Aktif</option>
-                            <option value="Tidak Aktif">Tidak Aktif</option>
+                            <option value="Nonaktif">Nonaktif</option>
                         </select>
                         <div class="valid-tooltip">Looks good!</div>
                         <div class="invalid-tooltip">Please provide a valid city.</div>

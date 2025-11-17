@@ -12,4 +12,9 @@ class Kelas extends Model
     protected $table = 'Tabel_Kelas';
     protected $primaryKey = 'id_kelas';
     protected $guarded = ['id_kelas'];
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'id_kelas');
+    }
 }

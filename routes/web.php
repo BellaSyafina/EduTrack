@@ -55,7 +55,10 @@ Route::middleware('auth')->group(function () {
     */
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa.index'); // List siswa
     Route::get('/siswa/tambah', [SiswaController::class, 'create'])->name('siswa.create'); // Tambah siswa
-    Route::get('/siswa/edit', [SiswaController::class, 'edit'])->name('siswa.edit'); // Edit siswa
+    Route::post('/siswa/store', [SiswaController::class, 'store'])->name('siswa.store'); // Proses tambah siswa
+    Route::get('/siswa/{id}/edit', [SiswaController::class, 'edit'])->name('siswa.edit'); // Edit siswa
+    Route::post('/siswa/{id}/update', [SiswaController::class, 'update'])->name('siswa.update'); // Proses update siswa
+    Route::get('/siswa/{id}/delete', [SiswaController::class, 'destroy'])->name('siswa.destroy'); // Hapus siswa
 
     /*
     |--------------------------------------------------------------------------

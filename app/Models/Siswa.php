@@ -11,14 +11,12 @@ class Siswa extends Model
 
     protected $table = 'Tabel_Siswa';
     protected $primaryKey = 'id_siswa';
-    protected $fillable = [
-        'nis',
-        'nama_siswa',
-        'jenis_kelamin',
-        'kelas',
-        'alamat',
-        'status'
-    ];
+    protected $guarded = ['id_siswa'];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
 
     public function waliMurid()
     {

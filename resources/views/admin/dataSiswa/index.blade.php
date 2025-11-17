@@ -26,25 +26,49 @@
                 </div>
             </div>
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input">
+                <form class="row g-3 needs-validation custom-input" method="GET" action="/siswa">
                     <div class="col-md-8 position-relative">
-                        <select name="namaKelas" id="namaKelas" class="form-select">
-                            <option value="" selected>Semua Kelas</option>
-                            <option value="">X - TKJ - 1</option>
+                        <select name="kelas" id="namaKelas" class="form-select">
+                            <option value="" {{ request('kelas') == '' ? 'selected' : '' }}>Semua Kelas</option>
+                            @foreach ($kelas as $item)
+                                <option value="{{ $item->id_kelas }}"
+                                    {{ request('kelas') == $item->id_kelas ? 'selected' : '' }}>
+                                    {{ $item->nama_kelas }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 
-                    <!-- Tombol dibuat sejajar di baris yang sama -->
                     <div class="col-4 mt-3 d-flex gap-2">
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
-
                 </form>
+
             </div>
         </div>
     </div>
 
     <div class="col-xxl-12 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e">
+        {{-- Alert Success --}}
+        @if (session('success'))
+            <div class="alert alert-bg-success light alert-dismissible fade show txt-success border-left-success"
+                role="alert">
+                <i data-feather="check-square"></i>
+                <p>{{ session('success') }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        {{-- Alert Error --}}
+        @if (session('error'))
+            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                role="alert">
+                <i data-feather="alert-triangle"></i>
+                <p>{{ session('error') }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header card-no-border">
                 <div class="header-top">
@@ -67,82 +91,52 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td>S001</td>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div>
-                                            <a class="f-14 mb-0 f-w-500 c-light" href="">Rafi Nur Maulana</a>
-                                            <p class="c-o-light">2202310098</p>
+                            @foreach ($siswa as $item)
+                                <tr>
+                                    <td></td>
+                                    <td>{{ 'S' . str_pad($item->id_siswa, 3, '0', STR_PAD_LEFT) }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div>
+                                                <a class="f-14 mb-0 f-w-500 c-light"
+                                                    href="">{{ $item->nama_siswa }}</a>
+                                                <p class="c-o-light">{{ $item->nis }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>Laki-laki</td>
-                                <td>X - TKJ - 1</td>
-                                <td>Jl. Merdeka No. 10, Jakarta</td>
-                                <td>
-                                    <button class="btn button-light-success txt-success f-w-500">Aktif</button>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-light p-2 btn-sm" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="/siswa/edit">
-                                                    <i class="fa fa-edit me-2 text-primary"></i> Edit
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#">
-                                                    <i class="fa fa-trash me-2"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>S002</td>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div>
-                                            <a class="f-14 mb-0 f-w-500 c-light" href="">Bella Arum Syafina</a>
-                                            <p class="c-o-light">2202310099</p>
+                                    </td>
+                                    <td>{{ $item->jenis_kelamin }}</td>
+                                    <td>{{ $item->kelas->nama_kelas }}</td>
+                                    <td>{{ $item->alamat }}</td>
+                                    <td>
+                                        @if ($item->status == 'Nonaktif')
+                                            <button class="btn button-light-danger txt-danger f-w-500">Nonaktif</button>
+                                        @else
+                                            <button class="btn button-light-success txt-success f-w-500">Aktif</button>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-light p-2 btn-sm" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="/siswa/{{ $item->id_siswa }}/edit">
+                                                        <i class="fa fa-edit me-2 text-primary"></i> Edit
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item text-danger"
+                                                        href="/siswa/{{ $item->id_siswa }}/delete">
+                                                        <i class="fa fa-trash me-2"></i> Delete
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
-                                    </div>
-                                </td>
-                                <td>Perempuan</td>
-                                <td>X - TKJ - 1</td>
-                                <td>Saroka, Saronggi</td>
-                                <td>
-                                    <button class="btn button-light-success txt-success f-w-500">Aktif</button>
-                                </td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-light p-2 btn-sm" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="/kelas/edit">
-                                                    <i class="fa fa-edit me-2 text-primary"></i> Edit
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#">
-                                                    <i class="fa fa-trash me-2"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

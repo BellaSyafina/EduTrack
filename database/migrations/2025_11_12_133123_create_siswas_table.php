@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id('id_siswa');
             $table->string('nis')->unique();
             $table->string('nama_siswa');
-            $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->string('kelas');
+            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->text('alamat');
             $table->enum('status', ['Aktif', 'Nonaktif'])->default('Aktif');
             $table->timestamps();
