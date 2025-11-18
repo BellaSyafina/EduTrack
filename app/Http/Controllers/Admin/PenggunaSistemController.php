@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Kepatuhan;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
 
-class BentukKepatuhanController extends Controller
+class PenggunaSistemController extends Controller
 {
     public function index()
     {
         $data = [
-            'title' => 'Bentuk Kepatuhan',
+            'title' => 'Pengguna Sistem',
         ];
 
-        return view('admin.bentukKepatuhan.index', $data);
+        return view('admin.penggunaSistem.index', $data);
     }
 }

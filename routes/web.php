@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\KategoriKepatuhanController;
 use App\Http\Controllers\Admin\KategoriPelanggaranController;
 use App\Http\Controllers\Admin\KelasController;
+use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Admin\PenggunaSistemController;
 use App\Http\Controllers\Admin\SanksiPelanggaranController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\WaliMuridController;
@@ -98,7 +100,7 @@ Route::middleware('auth')->group(function () {
     */
     Route::get('/bentuk-pelanggaran', [BentukPelanggaranController::class, 'index'])->name('bentuk-pelanggaran.index'); // List bentuk pelanggaran
 
-/*
+    /*
     |--------------------------------------------------------------------------
     | Menu Sanksi Pelanggaran
     |--------------------------------------------------------------------------
@@ -118,6 +120,21 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/bentuk-kepatuhan', [BentukKepatuhanController::class, 'index'])->name('bentuk-kepatuhan.index'); // List bentuk kepatuhan
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Laporan
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index'); // List laporan
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Pengguna Sistem
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/pengguna-sistem', [PenggunaSistemController::class, 'index'])->name('pengguna-sistem.index'); // List laporan
+
 
     /*
     |--------------------------------------------------------------------------

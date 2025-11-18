@@ -69,7 +69,7 @@
                                 <td>KP001</td>
                                 <td>Pelanggaran Ringan</td>
                                 <td>
-                                    <a href="/bentuk-pelanggaran" class="btn btn-primary btn-sm">Detail</a>
+                                    <a href="/bentuk-pelanggaran" class="btn btn-outline-primary btn-sm">Detail</a>
                                 </td>
 
                                 <!-- Aksi: dropdown menu -->

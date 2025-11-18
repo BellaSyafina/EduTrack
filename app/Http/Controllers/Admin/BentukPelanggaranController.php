@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\KategoriPelanggaran;
+use App\Models\Pelanggaran;
 use Illuminate\Http\Request;
 
 class BentukPelanggaranController extends Controller

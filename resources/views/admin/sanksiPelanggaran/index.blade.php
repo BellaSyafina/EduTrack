@@ -9,7 +9,7 @@
                 </svg>
             </a>
         </li>
-        <li class="breadcrumb-item active">Sanksi Pelanggaran</li>
+        <li class="breadcrumb-item active">{{ $title }} </li>
     </ol>
 @endsection
 
@@ -26,9 +26,7 @@
             </div>
         </div>
 
-
-        {{-- ===== KATEGORI RINGAN ===== --}}
-        <div class="card mb-4">
+        {{-- ===== KATEGORI RINGAN ===== --}} <div class="card mb-4">
             <div class="card-header" style="background:#e8f4ff;">
                 <div class="d-flex align-items-center gap-2">
                     <h5 class="mb-0 text-primary">Sanksi Dan Pembinaan Pelanggaran Ringan</h5>
@@ -139,4 +137,5 @@
                 </table>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection

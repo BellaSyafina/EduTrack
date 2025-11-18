@@ -9,7 +9,7 @@
                 </svg>
             </a>
         </li>
-        <li class="breadcrumb-item active">Bentuk Kepatuhan</li>
+        <li class="breadcrumb-item active">{{ $title }} </li>
     </ol>
 @endsection
 
@@ -136,4 +136,5 @@
                 </table>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection

@@ -245,7 +245,7 @@
                         <!-- Input Kepatuhan -->
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="landing-page.html">
+                            <a class="sidebar-link sidebar-title link-nav" href="#">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-landing-page">
                                     </use>
@@ -260,7 +260,7 @@
                         <!-- Input Pelanggaran -->
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="sample-page.html">
+                            <a class="sidebar-link sidebar-title link-nav" href="#">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-sample-page">
                                     </use>
@@ -283,7 +283,7 @@
                     <!-- Menu Laporan -->
                     <li class="sidebar-list">
                         <i class="fa-solid fa-thumbtack"></i>
-                        <a class="sidebar-link sidebar-title link-nav" href="#">
+                        <a class="sidebar-link sidebar-title link-nav" href="/laporan">
                             <svg class="stroke-icon">
                                 <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-gallery"></use>
                             </svg>
@@ -298,7 +298,7 @@
                     @if (Auth::user()->role === 'admin')
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="#">
+                            <a class="sidebar-link sidebar-title link-nav" href="/pengguna-sistem">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-blog"></use>
                                 </svg>

@@ -9,7 +9,7 @@
                 </svg>
             </a>
         </li>
-        <li class="breadcrumb-item active">Bentuk Pelanggaran</li>
+        <li class="breadcrumb-item active">{{ $title }} </li>
     </ol>
 @endsection
 
@@ -53,7 +53,7 @@
                             <td>Atribut Seragam tidak lengkap</td>
                             <td><span class="badge bg-danger">-3 poin</span></td>
                             <td>
-                                <a href="/sanksi-pelanggaran" class="btn btn-primary btn-sm">Detail</a>
+                                <a href="/sanksi-pelanggaran" class="btn btn-outline-primary btn-sm">Detail</a>
                             </td>
                             <!-- Aksi: dropdown menu -->
                             <td>
@@ -110,7 +110,7 @@
                             <td>Tidak ikut upacara tanpa alasan</td>
                             <td><span class="badge bg-danger">-10 poin</span></td>
                             <td>
-                                <a href="/sanksi-pelanggaran" class="btn btn-primary btn-sm">Detail</a>
+                                <a href="/sanksi-pelanggaran" class="btn btn-outline-primary btn-sm">Detail</a>
                             </td>
                             <!-- Aksi: dropdown menu -->
                             <td>
@@ -140,4 +140,5 @@
                 </table>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
