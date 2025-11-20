@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="cartoon"><img class="img-fluid"
-                        src="https://admin.pixelstrap.com/cuba/assets/images/dashboard/cartoon.svg"
+                        src="{{ asset('') }}assets/images/dashboard/cartoon.svg"
                         alt="vector women with leptop"></div>
             </div>
         </div>

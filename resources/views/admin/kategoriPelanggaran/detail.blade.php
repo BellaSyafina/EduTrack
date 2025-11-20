@@ -9,39 +9,47 @@
                 </svg>
             </a>
         </li>
+        <li class="breadcrumb-item">
+            <a href="/kategori-pelanggaran">Data Kategori Pelanggaran</a>
+        </li>
         <li class="breadcrumb-item active">{{ $title }} </li>
     </ol>
 @endsection
 
 @section('content')
-    <div class="col-sm-4 col-lg-4">
-        @if ($errors->any())
-            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger" role="alert">
-                <i data-feather="alert-triangle"></i>
-                <p>{{ $errors->first() }}</p>
-                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
+    <!-- ============================
+                                FORM UNTUK MEMILIH SISWA
+                                ============================ -->
+    <div class="col-sm-4 col-xxl-4 col-lg-4 ord-xl-5 ord-md-6 box-ord-7 box-col-4e">
         <div class="card">
             <div class="card-header">
-                <h5>Form Kategori Pelanggaran</h5>
+                <h5>Form Tambah Bentuk Pelanggaran</h5>
             </div>
+
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input" action="{{ route('kategori-pelanggaran.store') }}"
-                    method="POST" novalidate="">
+                <!-- Form input siswa yang akan ditambahkan ke wali murid -->
+                <form class="row g-3 needs-validation custom-input" action="{{ route('kategori-pelanggaran.detail', $kategori->id_kategori_pelanggaran) }}" method="POST" novalidate="">
                     @csrf
+                    <!-- Input: Dropdown Nama Siswa -->
                     <div class="col-md-12 position-relative">
-                        <label class="form-label" for="kategoriPelanggaran">Kategori Pelanggaran</label>
-                        <input class="form-control" id="kategoriPelanggaran" type="text" name="nama_kategori"
-                            placeholder="Masukkan Kategori Pelanggaran..." required="">
+                        <label class="form-label" for="namaPelanggaran">Nama Pelanggaran</label>
+                        <input type="text" class="form-control" name="nama_pelanggaran" id="namaPelanggaran" placeholder="Masukkan Nama Pelanggaran..." required>
+                        <!-- Tooltip validasi -->
                         <div class="valid-tooltip">Looks good!</div>
-                        <div class="invalid-tooltip">Please provide a valid input.</div>
+                        <div class="invalid-tooltip"></div>
+                    </div>
+                    <div class="col-md-12 position-relative">
+                        <label class="form-label" for="poin">Poin</label>
+                        <input type="text" class="form-control" name="bobot_poin" id="poin" placeholder="Masukkan Poin..." required>
+                        <!-- Tooltip validasi -->
+                        <div class="valid-tooltip">Looks good!</div>
+                        <div class="invalid-tooltip"></div>
                     </div>
 
+                    <!-- Tombol Form -->
                     <div class="col-12 mt-3 d-flex gap-2">
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                        <button class="btn btn-warning" type="reset">Reset</button>
+                        <button class="btn btn-primary" type="submit">Simpan</button>
+                        <a class="btn btn-danger" href="/kategori-pelanggaran">Kembali</a>
                     </div>
 
                 </form>
@@ -49,7 +57,10 @@
         </div>
     </div>
 
-    <div class="col-xxl-8 col-lg-8">
+    <!-- =======================================
+                                TABEL DAFTAR SISWA YANG SUDAH TERKAIT
+                                ======================================= -->
+    <div class="col-xxl-8 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e">
         {{-- Alert Success --}}
         @if (session('success'))
             <div class="alert alert-bg-success light alert-dismissible fade show txt-success border-left-success"
@@ -73,35 +84,44 @@
         <div class="card">
             <div class="card-header card-no-border">
                 <div class="header-top">
-                    <h5>Daftar Kategori Pelanggaran</h5>
+                    <h5>Daftar Bentuk Pelanggaran {{ $kategori->nama_kategori }}</h5>
                 </div>
             </div>
 
             <div class="card-body px-0 pt-0 common-option">
-                <!-- Tabel Kategori Pelanggaran terkait Bentuk Pelanggaran -->
+                <!-- Tabel siswa terkait wali murid -->
                 <div class="recent-table table-responsive currency-table recent-order-table custom-scrollbar">
 
                     <table class="table" id="main-recent-order">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>ID Kategori Pelanggaran</th>
-                                <th>Kategori Pelanggaran</th>
-                                <th>Bentuk Pelanggaran</th>
+                                <th>ID Bentuk Pelanggaran</th>
+                                <th>Nama Pelanggaran</th>
+                                <th>Bobot Poin</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <!-- Contoh satu baris data kategori pelanggaran -->
-                            @foreach ($kategoriPelanggaran as $item)
+                            @foreach ($pelanggaran as $item)
                                 <tr>
                                     <td></td>
-                                    <td>{{ 'KP' . str_pad($item->id_kategori_pelanggaran, 3, '0', STR_PAD_LEFT) }}</td>
-                                    <td>{{ $item->nama_kategori }}</td>
+                                    <td>{{ 'BP' . str_pad($item->id_pelanggaran, 3, '0', STR_PAD_LEFT) }}</td>
+
+                                    <!-- Nama siswa + NIS -->
                                     <td>
-                                        <a href="/kategori-pelanggaran/{{ $item->id_kategori_pelanggaran }}/detail"
-                                            class="btn btn-outline-primary btn-sm">Detail</a>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div>
+                                                <a class="f-14 mb-0 f-w-500 c-light"
+                                                    href="">{{ $item->nama_pelanggaran }}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge {{ $item->bobot_poin < 0 ? 'bg-danger' : 'bg-success' }}">
+                                            {{ $item->bobot_poin > 0 ? '+' . $item->bobot_poin : $item->bobot_poin }} poin
+                                        </span>
                                     </td>
 
                                     <!-- Aksi: dropdown menu -->
@@ -116,16 +136,17 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <a class="dropdown-item"
-                                                        href="/kategori-pelanggaran/{{ $item->id_kategori_pelanggaran }}/edit">
+                                                        href="/kategori-pelanggaran/{{ $kategori->id_kategori_pelanggaran }}/detail/{{ $item->id_pelanggaran }}/edit">
                                                         <i class="fa fa-edit me-2 text-primary"></i> Update
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <form action="{{ route('kategori-pelanggaran.destroy', ['id' => $item->id_kategori_pelanggaran]) }}" method="POST">
+                                                    <form action="{{ route('kategori-pelanggaran.detailDestroy', [$kategori->id_kategori_pelanggaran, $item->id_pelanggaran]) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="dropdown-item text-danger"
-                                                            onclick="return confirm('Hapus kategori pelanggaran ini?')">
+                                                            onclick="return confirm('Hapus bentuk pelanggaran ini?')">
                                                             <i class="fa fa-trash me-2"></i> Delete
                                                         </button>
                                                     </form>

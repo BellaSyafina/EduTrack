@@ -11,12 +11,7 @@ class Pelanggaran extends Model
 
     protected $table = 'Tabel_Pelanggaran';
     protected $primaryKey = 'id_pelanggaran';
-    protected $fillable = [
-        'id_kategori_pelanggaran',
-        'nama_pelanggaran',
-        'deskripsi_pelanggaran',
-        'bobot_poin'
-    ];
+    protected $guarded = ['id_pelanggaran'];
 
     public function kategoriPelanggaran()
     {

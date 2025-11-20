@@ -24,11 +24,12 @@ class KelasController extends Controller
             // Validasi input
             $validatedData = $request->validate(
                 [
-                    'nama_kelas' => 'required|string|max:100',
+                    'nama_kelas' => 'required|string|max:100|unique:Tabel_Kelas,nama_kelas',
                 ],
 
                 [
                     'nama_kelas.required' => 'Nama kelas wajib diisi.',
+                    'nama_kelas.unique' => 'Nama kelas sudah terdaftar.',
                 ],
             );
 
@@ -61,11 +62,12 @@ class KelasController extends Controller
             // Validasi input
             $validatedData = $request->validate(
                 [
-                    'nama_kelas' => 'required|string|max:100',
+                    'nama_kelas' => 'required|string|max:100|unique:Tabel_Kelas,nama_kelas,' . $id . ',id_kelas',
                 ],
 
                 [
                     'nama_kelas.required' => 'Nama kelas wajib diisi.',
+                    'nama_kelas.unique' => 'Nama kelas sudah terdaftar.',
                 ],
             );
 
@@ -84,8 +86,24 @@ class KelasController extends Controller
     public function destroy($id)
     {
         try {
-            // Hapus data kelas
-            Kelas::where('id_kelas', $id)->delete();
+            // Ambil kelas
+            $kelas = Kelas::where('id_kelas', $id)->first();
+
+            if (!$kelas) {
+                return redirect('/kelas')->withErrors(['error' => 'Kelas tidak ditemukan.']);
+            }
+
+            // Cek apakah kelas punya siswa
+            $jumlahSiswa = $kelas->siswa()->count();
+
+            if ($jumlahSiswa > 0) {
+                return redirect()
+                    ->back()
+                    ->with(['error' => 'Kelas tidak dapat dihapus karena masih memiliki data siswa.']);
+            }
+
+            // Jika aman, hapus
+            $kelas->delete();
 
             return redirect('/kelas')->with('success', 'Data kelas berhasil dihapus.');
         } catch (\Exception $e) {

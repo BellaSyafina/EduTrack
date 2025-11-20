@@ -97,6 +97,15 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/kategori-pelanggaran', [KategoriPelanggaranController::class, 'index'])->name('kategori-pelanggaran.index'); // List kategori pelanggaran
+    Route::post('/kategori-pelanggaran/store', [KategoriPelanggaranController::class, 'store'])->name('kategori-pelanggaran.store'); // Proses tambah kategori pelanggaran
+    Route::get('/kategori-pelanggaran/{id}/detail', [KategoriPelanggaranController::class, 'detail'])->name('kategori-pelanggaran.detail'); // Detail kategori pelanggaran
+    Route::post('/kategori-pelanggaran/{id}/detail', [KategoriPelanggaranController::class, 'actionDetail'])->name('kategori-pelanggaran.detail'); // Proses tambah bentuk pelanggaran ke kategori pelanggaran
+    Route::get('/kategori-pelanggaran/{kategoriId}/detail/{id}/edit', [KategoriPelanggaranController::class, 'detailShow'])->name('kategori-pelanggaran.detailShow'); // Edit bentuk pelanggaran
+    Route::post('/kategori-pelanggaran/{kategoriId}/detail/{id}/edit', [KategoriPelanggaranController::class, 'detailUpdate'])->name('kategori-pelanggaran.detailUpdate'); // Proses update bentuk pelanggaran
+    Route::delete('/kategori-pelanggaran/{kategoriId}/detail/{id}/delete', [KategoriPelanggaranController::class, 'detailDestroy'])->name('kategori-pelanggaran.detailDestroy'); // Hapus bentuk pelanggaran
+    Route::get('/kategori-pelanggaran/{id}/edit', [KategoriPelanggaranController::class, 'show'])->name('kategori-pelanggaran.show'); // Edit kategori pelanggaran
+    Route::post('/kategori-pelanggaran/{id}/update', [KategoriPelanggaranController::class, 'update'])->name('kategori-pelanggaran.update'); // Proses update kategori
+    Route::delete('/kategori-pelanggaran/{id}/delete', [KategoriPelanggaranController::class, 'destroy'])->name('kategori-pelanggaran.destroy'); // Hapus kategori pelanggaran
 
     /*
     |--------------------------------------------------------------------------

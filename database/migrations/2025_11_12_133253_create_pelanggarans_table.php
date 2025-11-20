@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('Tabel_Pelanggaran', function (Blueprint $table) {
             $table->id('id_pelanggaran');
-            $table->unsignedBigInteger('id_kategori_pelanggaran');
             $table->string('nama_pelanggaran');
-            $table->text('deskripsi_pelanggaran')->nullable();
             $table->integer('bobot_poin')->default(0);
+            $table->unsignedBigInteger('id_kategori_pelanggaran');
+            
             $table->foreign('id_kategori_pelanggaran')->references('id_kategori_pelanggaran')->on('Tabel_Kategori_Pelanggaran')->onDelete('cascade');
             $table->timestamps();
         });
