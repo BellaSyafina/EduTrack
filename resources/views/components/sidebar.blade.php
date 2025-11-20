@@ -85,7 +85,7 @@
                     <!-- ============================
                          MENU UNTUK ROLE ADMIN
                          ============================ -->
-                    @if (Auth::user()->role === 'admin')
+                    @if (Auth::user()->role === 'Admin')
                         <!-- Judul group -->
                         <li class="sidebar-main-title">
                             <div>
@@ -235,7 +235,7 @@
                     <!-- ============================
                          MENU ROLE ADMIN & WALI KELAS
                          ============================ -->
-                    @if (Auth::user()->role === 'admin' || Auth::user()->role === 'wali kelas')
+                    @if (Auth::user()->role === 'Admin' || Auth::user()->role === 'Wali Kelas')
                         <li class="sidebar-main-title">
                             <div>
                                 <h6>Kelola Input</h6>
@@ -295,7 +295,7 @@
                     </li>
 
                     <!-- Pengguna Sistem (khusus admin) -->
-                    @if (Auth::user()->role === 'admin')
+                    @if (Auth::user()->role === 'Admin')
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
                             <a class="sidebar-link sidebar-title link-nav" href="/pengguna-sistem">

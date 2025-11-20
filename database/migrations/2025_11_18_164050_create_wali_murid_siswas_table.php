@@ -11,18 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Tabel_Laporan', function (Blueprint $table) {
-            $table->id('id_laporan');
+        Schema::create('Tabel_Wali_Murid_Siswa', function (Blueprint $table) {
+            $table->id('id_wali_murid_siswa');
+            $table->unsignedBigInteger('id_wali_murid');
             $table->unsignedBigInteger('id_siswa');
-            $table->unsignedBigInteger('id_user');
-            $table->integer('total_poin')->default(0);
-            $table->string('status')->nullable();
-            $table->date('tanggal_cetak')->nullable();
-            $table->string('jenis')->nullable();
-            $table->string('periode')->nullable();
 
+            $table->foreign('id_wali_murid')->references('id_wali_murid')->on('Tabel_Wali_Murid')->onDelete('cascade');
             $table->foreign('id_siswa')->references('id_siswa')->on('Tabel_Siswa')->onDelete('cascade');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Tabel_Laporan');
+        Schema::dropIfExists('Tabel_Wali_Murid_Siswa');
     }
 };

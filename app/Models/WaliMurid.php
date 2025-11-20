@@ -11,21 +11,10 @@ class WaliMurid extends Model
 
     protected $table = 'Tabel_Wali_Murid';
     protected $primaryKey = 'id_wali_murid';
-    protected $fillable = [
-        'nama_wali_murid',
-        'no_hp',
-        'alamat',
-        'id_siswa',
-        'id_pengguna'
-    ];
+    protected $guarded = ['id_wali_murid'];
 
-    public function siswa()
+    public function user()
     {
-        return $this->belongsTo(Siswa::class, 'id_siswa');
-    }
-
-    public function pengguna()
-    {
-        return $this->belongsTo(Pengguna::class, 'id_pengguna');
+        return $this->belongsTo(User::class, 'id_user');
     }
 }

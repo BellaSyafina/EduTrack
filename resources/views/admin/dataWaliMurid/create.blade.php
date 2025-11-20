@@ -23,8 +23,9 @@
                 <h5>Form Wali Murid</h5>
             </div>
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input" novalidate="">
-                    <div class="col-md-6 position-relative">
+                <form class="row g-3 needs-validation custom-input" action="{{ route('wali-murid.store') }}" method="POST" novalidate="">
+                    @csrf
+                    <div class="col-md-12 position-relative">
                         <label class="form-label" for="nama_wali_murid">Nama Wali Murid</label>
                         <input class="form-control" id="nama_wali_murid" name="nama_wali_murid" type="text"
                             placeholder="Masukkan Nama Wali Murid..." required="">
@@ -32,8 +33,15 @@
                         <div class="invalid-tooltip">Please provide a valid city.</div>
                     </div>
                     <div class="col-md-6 position-relative">
-                        <label class="form-label" for="no_telepon">No Telepon</label>
-                        <input class="form-control" id="no_telepon" name="no_telepon" type="text"
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" id="email" name="email" type="text"
+                            placeholder="Masukkan Email Wali Murid..." required="">
+                        <div class="valid-tooltip">Looks good!</div>
+                        <div class="invalid-tooltip">Please provide a valid city.</div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                        <label class="form-label" for="no_hp">No Telepon</label>
+                        <input class="form-control" id="no_hp" name="no_hp" type="text"
                             placeholder="Masukkan No Telepon..." required="">
                         <div class="valid-tooltip">Looks good!</div>
                         <div class="invalid-tooltip">Please provide a valid city.</div>

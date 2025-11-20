@@ -18,10 +18,9 @@
 @endsection
 
 @section('content')
-
     <!-- ============================
-         FORM UNTUK MEMILIH SISWA
-         ============================ -->
+                     FORM UNTUK MEMILIH SISWA
+                     ============================ -->
     <div class="col-sm-4 col-xxl-4 col-lg-4 ord-xl-5 ord-md-6 box-ord-7 box-col-4e">
         <div class="card">
             <div class="card-header">
@@ -30,15 +29,18 @@
 
             <div class="card-body">
                 <!-- Form input siswa yang akan ditambahkan ke wali murid -->
-                <form class="row g-3 needs-validation custom-input" novalidate="">
-
+                <form class="row g-3 needs-validation custom-input"
+                    action="{{ route('wali-murid.action-siswa', $waliMurid->id_wali_murid) }}" method="POST"
+                    novalidate="">
+                    @csrf
                     <!-- Input: Dropdown Nama Siswa -->
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="namaSiswa">Nama Siswa</label>
-                        <select name="namaSiswa" id="namaSiswa" class="form-select">
+                        <select name="id_siswa" id="namaSiswa" class="form-select">
                             <option selected disabled>Pilih Siswa</option>
-                            <option value="S001">Rafi Nur Maulana</option>
-                            <option value="S002">Bella Arum Syafina</option>
+                            @foreach ($siswa as $item)
+                                <option value="{{ $item->id_siswa }}">{{ $item->nama_siswa }}</option>
+                            @endforeach
                         </select>
 
                         <!-- Tooltip validasi -->
@@ -58,13 +60,33 @@
     </div>
 
     <!-- =======================================
-         TABEL DAFTAR SISWA YANG SUDAH TERKAIT
-         ======================================= -->
+                     TABEL DAFTAR SISWA YANG SUDAH TERKAIT
+                     ======================================= -->
     <div class="col-xxl-8 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e">
+        {{-- Alert Success --}}
+        @if (session('success'))
+            <div class="alert alert-bg-success light alert-dismissible fade show txt-success border-left-success"
+                role="alert">
+                <i data-feather="check-square"></i>
+                <p>{{ session('success') }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        {{-- Alert Error --}}
+        @if (session('error'))
+            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                role="alert">
+                <i data-feather="alert-triangle"></i>
+                <p>{{ session('error') }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        
         <div class="card">
             <div class="card-header card-no-border">
                 <div class="header-top">
-                    <h5>Daftar Siswa Wali Murid</h5>
+                    <h5>Daftar Siswa Wali Murid {{ $waliMurid->nama_wali_murid }}</h5>
                 </div>
             </div>
 
@@ -83,41 +105,44 @@
                         </thead>
 
                         <tbody>
-                            <!-- Contoh satu baris data siswa -->
-                            <tr>
-                                <td></td>
-                                <td>S001</td>
+                            @foreach ($WaliMuridSiswa as $item)
+                                <tr>
+                                    <td></td>
+                                    <td>{{ 'S' . str_pad($item->id_siswa, 3, '0', STR_PAD_LEFT) }}</td>
 
-                                <!-- Nama siswa + NIS -->
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <div>
-                                            <a class="f-14 mb-0 f-w-500 c-light" href="">Bella Arum Syafina</a>
-                                            <p class="c-o-light">2202310099</p>
+                                    <!-- Nama siswa + NIS -->
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div>
+                                                <a class="f-14 mb-0 f-w-500 c-light"
+                                                    href="">{{ $item->siswa->nama_siswa }}</a>
+                                                <p class="c-o-light">{{ $item->siswa->nis }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
 
-                                <!-- Aksi: dropdown menu -->
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-light p-2 btn-sm" type="button" data-bs-toggle="dropdown">
-                                            <i class="fa fa-ellipsis-v"></i>
-                                        </button>
+                                    <!-- Aksi: dropdown menu -->
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-light p-2 btn-sm" type="button"
+                                                data-bs-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </button>
 
-                                        <!-- Menu dropdown aksi -->
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <button class="dropdown-item text-danger" type="button"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    <i class="fa fa-trash me-2"></i> Delete
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                            <!-- Menu dropdown aksi -->
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item text-danger"
+                                                        href="/wali-murid-siswa/{{ $waliMurid->id_wali_murid }}/{{ $item->id_wali_murid_siswa }}/delete">
+                                                        <i class="fa fa-trash me-2"></i> Delete
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
 
-                            </tr>
+                                </tr>
+                            @endforeach
                         </tbody>
 
                     </table>
@@ -126,5 +151,4 @@
             </div>
         </div>
     </div>
-
 @endsection

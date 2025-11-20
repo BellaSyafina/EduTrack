@@ -18,9 +18,9 @@ class Siswa extends Model
         return $this->belongsTo(Kelas::class, 'id_kelas');
     }
 
-    public function waliMurid()
+    public function waliMuridSiswa()
     {
-        return $this->hasOne(WaliMurid::class, 'id_siswa');
+        return $this->hasMany(WaliMuridSiswa::class, 'id_siswa');
     }
 
     public function dataKepatuhanSiswa()

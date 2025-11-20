@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\WaliMurid;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -80,6 +81,7 @@ class SiswaController extends Controller
             'title' => 'Edit Siswa',
             'siswa' => $siswa,
             'kelas' => Kelas::all(),
+            'waliMurid' => WaliMurid::all(),
         ];
 
         return view('admin.dataSiswa.update', $data);
@@ -97,6 +99,7 @@ class SiswaController extends Controller
                     'nama_siswa' => 'required|string|max:100',
                     'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
                     'id_kelas' => 'required|exists:Tabel_Kelas,id_kelas',
+                    'id_wali_murid' => 'required|exists:Tabel_Wali_Murid,id_wali_murid',
                     'alamat' => 'required|string',
                     'status' => 'required|in:Aktif,Nonaktif',
                 ],
@@ -106,6 +109,7 @@ class SiswaController extends Controller
                     'nama_siswa.required' => 'Nama siswa wajib diisi.',
                     'jenis_kelamin.required' => 'Jenis kelamin wajib dipilih.',
                     'id_kelas.required' => 'Kelas wajib dipilih.',
+                    'id_wali_murid.required' => 'Wali murid wajib dipilih.',
                     'alamat.required' => 'Alamat wajib diisi.',
                 ],
             );

@@ -83,8 +83,12 @@ Route::middleware('auth')->group(function () {
     */
     Route::get('/wali-murid', [WaliMuridController::class, 'index'])->name('wali-murid.index'); // List wali murid
     Route::get('/wali-murid/tambah', [WaliMuridController::class, 'create'])->name('wali-murid.create'); // Tambah wali murid
-    Route::get('/wali-murid/edit', [WaliMuridController::class, 'show'])->name('wali-murid.show'); // Edit wali murid
-    Route::get('/wali-murid/siswa', [WaliMuridController::class, 'siswa'])->name('wali-murid.siswa'); // Relasi wali murid ke siswa
+    Route::post('/wali-murid/store', [WaliMuridController::class, 'store'])->name('wali-murid.store'); // Proses tambah wali murid
+    Route::get('/wali-murid/{id}/edit', [WaliMuridController::class, 'show'])->name('wali-murid.show'); // Edit wali murid
+    Route::post('/wali-murid/{id}/update', [WaliMuridController::class, 'update'])->name('wali-murid.update'); // Proses update wali murid
+    Route::get('/wali-murid-siswa/{id}', [WaliMuridController::class, 'siswa'])->name('wali-murid.siswa'); // Relasi wali murid ke siswa
+    Route::post('/wali-murid-siswa/{id}', [WaliMuridController::class, 'actionSiswa'])->name('wali-murid.action-siswa');
+    Route::get('/wali-murid-siswa/{waliMuridId}/{id}/delete', [WaliMuridController::class, 'destroySiswa'])->name('wali-murid.destroy-siswa'); // Hapus relasi wali murid ke siswa
 
     /*
     |--------------------------------------------------------------------------

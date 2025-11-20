@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('nama_wali_murid');
             $table->string('no_hp');
             $table->text('alamat');
-            $table->unsignedBigInteger('id_siswa');
-            $table->unsignedBigInteger('id_pengguna');
-            $table->foreign('id_siswa')->references('id_siswa')->on('Tabel_Siswa')->onDelete('cascade');
-            $table->foreign('id_pengguna')->references('id_pengguna')->on('Tabel_Pengguna')->onDelete('cascade');
+            $table->unsignedBigInteger('id_user');
+
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

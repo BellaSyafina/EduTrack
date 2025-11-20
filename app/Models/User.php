@@ -41,4 +41,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function waliMurid()
+    {
+        return $this->hasOne(WaliMurid::class, 'id_user');
+    }
 }
