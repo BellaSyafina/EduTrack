@@ -96,10 +96,15 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item text-danger"
-                                                        href="/wali-murid/{{ $item->id_wali_murid }}/delete">
-                                                        <i class="fa fa-trash me-2"></i> Delete
-                                                    </a>
+                                                    <form action="{{ route('wali-murid.destroy', $item->id_wali_murid) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="dropdown-item text-danger"
+                                                            onclick="return confirm('Hapus wali murid ini?')">
+                                                            <i class="fa fa-trash me-2"></i> Delete
+                                                        </button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </div>

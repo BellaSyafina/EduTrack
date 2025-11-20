@@ -18,6 +18,16 @@
 
 @section('content')
     <div class="col-sm-12 col-xxl-12 col-lg-4 ord-xl-5 ord-md-6 box-ord-7 box-col-4e">
+        {{-- Alert Validasi --}}
+        @if ($errors->any())
+            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                role="alert">
+                <i data-feather="alert-triangle"></i>
+                <p>{{ $errors->first() }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        
         <div class="card">
             <div class="card-header">
                 <h5>Form Guru</h5>

@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/wali-murid-siswa/{id}', [WaliMuridController::class, 'siswa'])->name('wali-murid.siswa'); // Relasi wali murid ke siswa
     Route::post('/wali-murid-siswa/{id}', [WaliMuridController::class, 'actionSiswa'])->name('wali-murid.action-siswa');
     Route::get('/wali-murid-siswa/{waliMuridId}/{id}/delete', [WaliMuridController::class, 'destroySiswa'])->name('wali-murid.destroy-siswa'); // Hapus relasi wali murid ke siswa
+    Route::delete('/wali-murid/{id}/delete', [WaliMuridController::class, 'destroy'])->name('wali-murid.destroy'); // Hapus wali murid
 
     /*
     |--------------------------------------------------------------------------

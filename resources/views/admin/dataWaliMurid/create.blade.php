@@ -18,12 +18,22 @@
 
 @section('content')
     <div class="col-sm-12 col-xxl-12 col-lg-4 ord-xl-5 ord-md-6 box-ord-7 box-col-4e">
+        @if ($errors->any())
+            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                role="alert">
+                <i data-feather="alert-triangle"></i>
+                <p>{{ $errors->first() }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        
         <div class="card">
             <div class="card-header">
                 <h5>Form Wali Murid</h5>
             </div>
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input" action="{{ route('wali-murid.store') }}" method="POST" novalidate="">
+                <form class="row g-3 needs-validation custom-input" action="{{ route('wali-murid.store') }}" method="POST"
+                    novalidate="">
                     @csrf
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="nama_wali_murid">Nama Wali Murid</label>

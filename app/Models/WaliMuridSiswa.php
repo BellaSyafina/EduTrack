@@ -14,4 +14,9 @@ class WaliMuridSiswa extends Model
     {
         return $this->belongsTo(Siswa::class, 'id_siswa');
     }
+
+    public function waliMurid()
+    {
+        return $this->belongsTo(WaliMurid::class, 'id_wali_murid');
+    }
 }
