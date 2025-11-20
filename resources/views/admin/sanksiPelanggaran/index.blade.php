@@ -38,7 +38,7 @@
             </div>
 
             <div class="recent-table table-responsive currency-table recent-order-table custom-scrollbar">
-                <table class="table" id="main-recent-order">
+                <table class="table">
                     <thead>
                         <tr>
                             <th></th>
