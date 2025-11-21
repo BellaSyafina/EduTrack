@@ -113,6 +113,11 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/bentuk-pelanggaran', [BentukPelanggaranController::class, 'index'])->name('bentuk-pelanggaran.index'); // List bentuk pelanggaran
+    Route::get('/bentuk-pelanggaran/tambah', [BentukPelanggaranController::class, 'create'])->name('bentuk-pelanggaran.create'); // Tambah bentuk pelanggaran
+    Route::post('/bentuk-pelanggaran/store', [BentukPelanggaranController::class, 'store'])->name('bentuk-pelanggaran.store'); // Proses tambah bentuk pelanggaran
+    Route::get('/bentuk-pelanggaran/{id}/edit', [BentukPelanggaranController::class, 'edit'])->name('bentuk-pelanggaran.edit'); // Edit bentuk pelanggaran
+    Route::post('/bentuk-pelanggaran/{id}/update', [BentukPelanggaranController::class, 'update'])->name('bentuk-pelanggaran.update'); // Proses update bentuk pelanggaran
+    Route::delete('/bentuk-pelanggaran/{id}/delete', [BentukPelanggaranController::class, 'destroy'])->name('bentuk-pelanggaran.destroy'); // Hapus bentuk pelanggaran
 
     /*
     |--------------------------------------------------------------------------
