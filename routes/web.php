@@ -153,6 +153,11 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/bentuk-kepatuhan', [BentukKepatuhanController::class, 'index'])->name('bentuk-kepatuhan.index'); // List bentuk kepatuhan
+    Route::get('/bentuk-kepatuhan/tambah', [BentukKepatuhanController::class, 'create'])->name('bentuk-kepatuhan.create'); // Tambah bentuk kepatuhan
+    Route::post('/bentuk-kepatuhan/store', [BentukKepatuhanController::class, 'store'])->name('bentuk-kepatuhan.store'); // Proses tambah bentuk kepatuhan
+    Route::get('/bentuk-kepatuhan/{id}/edit', [BentukKepatuhanController::class, 'edit'])->name('bentuk-kepatuhan.edit'); // Edit bentuk kepatuhan
+    Route::post('/bentuk-kepatuhan/{id}/update', [BentukKepatuhanController::class, 'update'])->name('bentuk-kepatuhan.update'); // Proses update bentuk kepatuhan
+    Route::delete('/bentuk-kepatuhan/{id}/delete', [BentukKepatuhanController::class, 'destroy'])->name('bentuk-kepatuhan.destroy'); // Hapus bentuk kepatuhan
 
     /*
     |--------------------------------------------------------------------------
