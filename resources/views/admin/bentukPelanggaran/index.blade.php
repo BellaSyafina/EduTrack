@@ -30,7 +30,6 @@
         @php
             $colorStyles = [
                 ['bg' => '#e8f4ff', 'text' => '#0d6efd'], // biru
-                ['bg' => '#e8ffe8', 'text' => '#198754'], // hijau
                 ['bg' => '#fff7e6', 'text' => '#fd7e14'], // orange
                 ['bg' => '#ffe7e7', 'text' => '#dc3545'], // merah
                 ['bg' => '#f3e8ff', 'text' => '#6f42c1'], // ungu

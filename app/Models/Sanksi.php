@@ -11,14 +11,10 @@ class Sanksi extends Model
 
     protected $table = 'Tabel_Sanksi';
     protected $primaryKey = 'id_sanksi';
-    protected $fillable = [
-        'id_pelanggaran',
-        'nama_sanksi',
-        'keterangan'
-    ];
+    protected $guarded = ['id_sanksi'];
 
-    public function pelanggaran()
+    public function kategoriPelanggaran()
     {
-        return $this->hasMany(Pelanggaran::class, 'id_pelanggaran');
+        return $this->belongsTo(KategoriPelanggaran::class, 'id_kategori_pelanggaran');
     }
 }

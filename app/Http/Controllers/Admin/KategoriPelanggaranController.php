@@ -11,9 +11,11 @@ class KategoriPelanggaranController extends Controller
 {
     public function index()
     {
+        $lastNumber = KategoriPelanggaran::max('sampai_poin') ?? 0;
         $data = [
             'title' => 'Kategori Pelanggaran',
             'kategoriPelanggaran' => KategoriPelanggaran::all(),
+            'nextNumber' => $lastNumber + 1,
         ];
 
         return view('admin.kategoriPelanggaran.index', $data);
@@ -26,10 +28,16 @@ class KategoriPelanggaranController extends Controller
             $validatedData = $request->validate(
                 [
                     'nama_kategori' => 'required|string|max:100|unique:Tabel_Kategori_Pelanggaran,nama_kategori',
+                    'dari_poin' => 'required|integer',
+                    'sampai_poin' => 'required|integer',
                 ],
                 [
                     'nama_kategori.required' => 'Kategori pelanggaran wajib diisi.',
                     'nama_kategori.unique' => 'Kategori pelanggaran sudah terdaftar.',
+                    'dari_poin.required' => 'Poin awal wajib diisi.',
+                    'dari_poin.integer' => 'Poin awal harus berupa angka.',
+                    'sampai_poin.required' => 'Poin akhir wajib diisi.',
+                    'sampai_poin.integer' => 'Poin akhir harus berupa angka.',
                 ],
             );
 
@@ -148,9 +156,12 @@ class KategoriPelanggaranController extends Controller
     public function show($id)
     {
         $kategori = KategoriPelanggaran::where('id_kategori_pelanggaran', $id)->first();
+        $isLast = $kategori->id_kategori_pelanggaran === KategoriPelanggaran::max('id_kategori_pelanggaran');
+        
         $data = [
             'title' => 'Edit Kategori Pelanggaran',
             'kategori' => $kategori,
+            'isLast' => $isLast,
         ];
 
         return view('admin.kategoriPelanggaran.update', $data);

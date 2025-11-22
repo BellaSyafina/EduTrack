@@ -125,6 +125,11 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/sanksi-pelanggaran', [SanksiPelanggaranController::class, 'index'])->name('sanksi-pelanggaran.index'); // List sanksi pelanggaran
+    Route::delete('/sanksi-pelanggaran/{id}/delete', [SanksiPelanggaranController::class, 'destroy'])->name('sanksi-pelanggaran.destroy'); // Hapus sanksi pelanggaran
+    Route::get('/sanksi-pelanggaran/tambah', [SanksiPelanggaranController::class, 'create'])->name('sanksi-pelanggaran.create'); // Tambah sanksi pelanggaran
+    Route::post('/sanksi-pelanggaran/store', [SanksiPelanggaranController::class, 'store'])->name('sanksi-pelanggaran.store'); // Proses tambah sanksi pelanggaran
+    Route::get('/sanksi-pelanggaran/{id}/edit', [SanksiPelanggaranController::class, 'edit'])->name('sanksi-pelanggaran.edit'); // Edit sanksi pelanggaran
+    Route::post('/sanksi-pelanggaran/{id}/update', [SanksiPelanggaranController::class, 'update'])->name('sanksi-pelanggaran.update'); // Proses update sanksi pelanggaran
 
     /*
     |--------------------------------------------------------------------------
@@ -132,6 +137,15 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/kategori-kepatuhan', [KategoriKepatuhanController::class, 'index'])->name('kategori-kepatuhan.index'); // List kategori kepatuhan
+    Route::post('/kategori-kepatuhan/store', [KategoriKepatuhanController::class, 'store'])->name('kategori-kepatuhan.store'); // Proses tambah kategori kepatuhan
+    Route::get('/kategori-kepatuhan/{id}/detail', [KategoriKepatuhanController::class, 'detail'])->name('kategori-kepatuhan.detail'); // Detail kategori kepatuhan
+    Route::post('/kategori-kepatuhan/{id}/detail', [KategoriKepatuhanController::class, 'detailStore'])->name('kategori-kepatuhan.detailStore');
+    Route::delete('/kategori-kepatuhan/{kategoriId}/detail/{id}/delete', [KategoriKepatuhanController::class, 'detailDestroy'])->name('kategori-kepatuhan.detailDestroy'); // Hapus bentuk kepatuhan
+    Route::get('/kategori-kepatuhan/{kategoriId}/detail/{id}/edit', [KategoriKepatuhanController::class, 'detailEdit'])->name('kategori-kepatuhan.detailEdit'); // Edit bentuk kepatuhan
+    Route::post('/kategori-kepatuhan/{kategoriId}/detail/{id}/update', [KategoriKepatuhanController::class, 'detailUpdate'])->name('kategori-kepatuhan.detailUpdate'); // Proses update bentuk kepatuhan
+    Route::get('/kategori-kepatuhan/{id}/edit', [KategoriKepatuhanController::class, 'show'])->name('kategori-kepatuhan.show'); // Edit kategori kepatuhan
+    Route::post('/kategori-kepatuhan/{id}/update', [KategoriKepatuhanController::class, 'update'])->name('kategori-kepatuhan.update'); // Proses update kategori kepatuhan
+    Route::delete('/kategori-kepatuhan/{id}/delete', [KategoriKepatuhanController::class, 'destroy'])->name('kategori-kepatuhan.destroy'); // Hapus kategori kepatuhan
 
     /*
     |--------------------------------------------------------------------------

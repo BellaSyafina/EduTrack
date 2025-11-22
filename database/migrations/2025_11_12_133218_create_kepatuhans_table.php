@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('id_kepatuhan');
             $table->unsignedBigInteger('id_kategori_kepatuhan');
             $table->string('nama_kepatuhan');
-            $table->text('deskripsi_kepatuhan')->nullable();
             $table->integer('bobot_poin')->default(0);
             $table->foreign('id_kategori_kepatuhan')->references('id_kategori_kepatuhan')->on('Tabel_Kategori_Kepatuhan')->onDelete('cascade');
             $table->timestamps();

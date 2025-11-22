@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('Tabel_Kategori_Pelanggaran', function (Blueprint $table) {
             $table->id('id_kategori_pelanggaran');
             $table->string('nama_kategori');
+            $table->integer('dari_poin');
+            $table->integer('sampai_poin');
             $table->timestamps();
         });
     }
