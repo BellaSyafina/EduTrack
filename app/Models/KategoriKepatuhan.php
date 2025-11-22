@@ -11,7 +11,7 @@ class KategoriKepatuhan extends Model
 
     protected $table = 'Tabel_Kategori_Kepatuhan';
     protected $primaryKey = 'id_kategori_kepatuhan';
-    protected $fillable = ['nama_kategori'];
+    protected $guarded = ['id_kategori_kepatuhan'];
 
     public function kepatuhan()
     {
