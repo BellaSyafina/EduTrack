@@ -38,11 +38,9 @@
                     <option>VII - B</option>
                     <option>VII - C</option>
                     <option>VII - D</option>
-
                     <option>VIII - A</option>
                     <option>VIII - B</option>
                     <option>VIII - C</option>
-
                     <option>IX - A</option>
                     <option>IX - B</option>
                     <option>IX - C</option>
@@ -82,27 +80,23 @@
                     <tr>
                         <td>1</td>
                         <td>Ahmad Rizki</td>
-                        <td>IX-B</td>
+                        <td>IX - B</td>
                         <td>Terlambat masuk sekolah</td>
                         <td>-</td>
                         <td><span class="badge bg-danger">-5</span></td>
                         <td>25/10/2025</td>
-                        <td>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Detail</a>
-                        </td>
+                        <td><a href="#" class="btn btn-outline-primary btn-sm">Detail</a></td>
                     </tr>
 
                     <tr>
                         <td>2</td>
                         <td>Bella Safira</td>
-                        <td>IX-A</td>
+                        <td>IX - A</td>
                         <td>-</td>
                         <td>Hadir tepat waktu 1 bulan</td>
                         <td><span class="badge bg-success">+20</span></td>
                         <td>25/10/2025</td>
-                        <td>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Detail</a>
-                        </td>
+                        <td><a href="#" class="btn btn-outline-primary btn-sm">Detail</a></td>
                     </tr>
 
                 </tbody>

@@ -18,8 +18,8 @@
 
 @section('content')
     <!-- ============================
-                                FORM UNTUK MEMILIH SISWA
-                                ============================ -->
+        FORM UNTUK MEMILIH SISWA
+    ============================ -->
     <div class="col-sm-4 col-xxl-4 col-lg-4 ord-xl-5 ord-md-6 box-ord-7 box-col-4e">
         <div class="card">
             <div class="card-header">
@@ -28,19 +28,23 @@
 
             <div class="card-body">
                 <!-- Form input siswa yang akan ditambahkan ke wali murid -->
-                <form class="row g-3 needs-validation custom-input" action="{{ route('kategori-pelanggaran.detail', $kategori->id_kategori_pelanggaran) }}" method="POST" novalidate="">
+                <form class="row g-3 needs-validation custom-input"
+                    action="{{ route('kategori-pelanggaran.detail', $kategori->id_kategori_pelanggaran) }}" method="POST"
+                    novalidate="">
                     @csrf
                     <!-- Input: Dropdown Nama Siswa -->
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="namaPelanggaran">Nama Pelanggaran</label>
-                        <input type="text" class="form-control" name="nama_pelanggaran" id="namaPelanggaran" placeholder="Masukkan Nama Pelanggaran..." required>
+                        <input type="text" class="form-control" name="nama_pelanggaran" id="namaPelanggaran"
+                            placeholder="Masukkan Nama Pelanggaran..." required>
                         <!-- Tooltip validasi -->
                         <div class="valid-tooltip">Looks good!</div>
                         <div class="invalid-tooltip"></div>
                     </div>
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="poin">Poin</label>
-                        <input type="text" class="form-control" name="bobot_poin" id="poin" placeholder="Masukkan Poin..." required>
+                        <input type="text" class="form-control" name="bobot_poin" id="poin"
+                            placeholder="Masukkan Poin..." required>
                         <!-- Tooltip validasi -->
                         <div class="valid-tooltip">Looks good!</div>
                         <div class="invalid-tooltip"></div>
@@ -58,8 +62,8 @@
     </div>
 
     <!-- =======================================
-                                TABEL DAFTAR SISWA YANG SUDAH TERKAIT
-                                ======================================= -->
+        TABEL DAFTAR SISWA YANG SUDAH TERKAIT
+     ======================================= -->
     <div class="col-xxl-8 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e">
         {{-- Alert Success --}}
         @if (session('success'))
@@ -141,7 +145,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <form action="{{ route('kategori-pelanggaran.detailDestroy', [$kategori->id_kategori_pelanggaran, $item->id_pelanggaran]) }}"
+                                                    <form
+                                                        action="{{ route('kategori-pelanggaran.detailDestroy', [$kategori->id_kategori_pelanggaran, $item->id_pelanggaran]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
