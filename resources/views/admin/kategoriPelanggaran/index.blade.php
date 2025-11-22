@@ -36,7 +36,22 @@
                         <input class="form-control" id="kategoriPelanggaran" type="text" name="nama_kategori"
                             placeholder="Masukkan Kategori Pelanggaran..." required="">
                         <div class="valid-tooltip">Looks good!</div>
-                        <div class="invalid-tooltip">Please provide a valid input.</div>
+                        <div class="invalid-tooltip"></div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                        <label class="form-label" for="dariPoin">Dari Poin</label>
+                        <input class="form-control" id="dariPoin" type="number" name="dari_poin" value="{{ $nextNumber }}"
+                            placeholder="Masukkan Dari Poin..." readonly required="">
+                        <input type="hidden" name="poin" value="{{ $nextNumber }}">
+                        <div class="valid-tooltip">Looks good!</div>
+                        <div class="invalid-tooltip"></div>
+                    </div>
+                    <div class="col-md-6 position-relative">
+                        <label class="form-label" for="sampaiPoin">Sampai Poin</label>
+                        <input class="form-control" id="sampaiPoin" type="number" name="sampai_poin"
+                            placeholder="Masukkan Sampai Poin..." required="">
+                        <div class="valid-tooltip">Looks good!</div>
+                        <div class="invalid-tooltip"></div>
                     </div>
 
                     <div class="col-12 mt-3 d-flex gap-2">
@@ -87,6 +102,7 @@
                                 <th></th>
                                 <th>ID Kategori Pelanggaran</th>
                                 <th>Kategori Pelanggaran</th>
+                                <th>Bobot Poin</th>
                                 <th>Bentuk Pelanggaran</th>
                                 <th>Action</th>
                             </tr>
@@ -99,6 +115,11 @@
                                     <td></td>
                                     <td>{{ 'KP' . str_pad($item->id_kategori_pelanggaran, 3, '0', STR_PAD_LEFT) }}</td>
                                     <td>{{ $item->nama_kategori }}</td>
+                                    <td>
+                                        <span class="badge bg-primary text-white px-2 py-1" style="font-size: 13px;">
+                                            Bobot {{ $item->dari_poin }}–{{ $item->sampai_poin }} Poin
+                                        </span>
+                                    </td>
                                     <td>
                                         <a href="/kategori-pelanggaran/{{ $item->id_kategori_pelanggaran }}/detail"
                                             class="btn btn-outline-primary btn-sm">Detail</a>
@@ -121,7 +142,9 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <form action="{{ route('kategori-pelanggaran.destroy', ['id' => $item->id_kategori_pelanggaran]) }}" method="POST">
+                                                    <form
+                                                        action="{{ route('kategori-pelanggaran.destroy', ['id' => $item->id_kategori_pelanggaran]) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="dropdown-item text-danger"
