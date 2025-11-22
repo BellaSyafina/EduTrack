@@ -17,4 +17,9 @@ class KategoriPelanggaran extends Model
     {
         return $this->hasMany(Pelanggaran::class, 'id_kategori_pelanggaran');
     }
+
+    public function sanksi()
+    {
+        return $this->hasMany(Sanksi::class, 'id_kategori_pelanggaran');
+    }
 }

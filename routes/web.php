@@ -125,6 +125,11 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/sanksi-pelanggaran', [SanksiPelanggaranController::class, 'index'])->name('sanksi-pelanggaran.index'); // List sanksi pelanggaran
+    Route::delete('/sanksi-pelanggaran/{id}/delete', [SanksiPelanggaranController::class, 'destroy'])->name('sanksi-pelanggaran.destroy'); // Hapus sanksi pelanggaran
+    Route::get('/sanksi-pelanggaran/tambah', [SanksiPelanggaranController::class, 'create'])->name('sanksi-pelanggaran.create'); // Tambah sanksi pelanggaran
+    Route::post('/sanksi-pelanggaran/store', [SanksiPelanggaranController::class, 'store'])->name('sanksi-pelanggaran.store'); // Proses tambah sanksi pelanggaran
+    Route::get('/sanksi-pelanggaran/{id}/edit', [SanksiPelanggaranController::class, 'edit'])->name('sanksi-pelanggaran.edit'); // Edit sanksi pelanggaran
+    Route::post('/sanksi-pelanggaran/{id}/update', [SanksiPelanggaranController::class, 'update'])->name('sanksi-pelanggaran.update'); // Proses update sanksi pelanggaran
 
     /*
     |--------------------------------------------------------------------------

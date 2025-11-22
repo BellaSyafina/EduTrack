@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('Tabel_Sanksi', function (Blueprint $table) {
             $table->id('id_sanksi');
-            $table->unsignedBigInteger('id_pelanggaran');
+            $table->unsignedBigInteger('id_kategori_pelanggaran');
             $table->string('nama_sanksi');
-            $table->text('keterangan')->nullable();
-            $table->foreign('id_pelanggaran')->references('id_pelanggaran')->on('Tabel_Pelanggaran')->onDelete('cascade');
+            $table->foreign('id_kategori_pelanggaran')->references('id_kategori_pelanggaran')->on('Tabel_Kategori_Pelanggaran')->onDelete('cascade');
             $table->timestamps();
         });
     }
