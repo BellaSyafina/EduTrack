@@ -18,13 +18,13 @@ class Pelanggaran extends Model
         return $this->belongsTo(KategoriPelanggaran::class, 'id_kategori_pelanggaran');
     }
 
-    public function dataPelanggaranSiswa()
-    {
-        return $this->hasMany(DataPelanggaranSiswa::class, 'id_pelanggaran');
-    }
-
     public function sanksi()
     {
         return $this->belongsTo(Sanksi::class, 'id_pelanggaran');
+    }
+
+    public function inputSiswas()
+    {
+        return $this->hasMany(InputSiswa::class, 'id_pelanggaran', 'id_pelanggaran');
     }
 }

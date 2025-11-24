@@ -18,8 +18,8 @@ class Kepatuhan extends Model
         return $this->belongsTo(KategoriKepatuhan::class, 'id_kategori_kepatuhan');
     }
 
-    public function dataKepatuhanSiswa()
+    public function inputSiswas()
     {
-        return $this->hasMany(DataKepatuhanSiswa::class, 'id_kepatuhan');
+        return $this->hasMany(InputSiswa::class, 'id_kepatuhan', 'id_kepatuhan');
     }
 }

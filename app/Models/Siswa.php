@@ -28,13 +28,8 @@ class Siswa extends Model
         return $this->belongsToMany(WaliMurid::class, 'Tabel_Wali_Murid_Siswa', 'id_siswa', 'id_wali_murid');
     }
 
-    public function dataKepatuhanSiswa()
+    public function inputSiswas()
     {
-        return $this->hasMany(DataKepatuhanSiswa::class, 'id_siswa');
-    }
-
-    public function dataPelanggaranSiswa()
-    {
-        return $this->hasMany(DataPelanggaranSiswa::class, 'id_siswa');
+        return $this->hasMany(InputSiswa::class, 'id_siswa', 'id_siswa');
     }
 }
