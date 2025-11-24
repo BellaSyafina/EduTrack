@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\BentukKepatuhanController;
 use App\Http\Controllers\Admin\BentukPelanggaranController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\InputKepatuhanController;
+use App\Http\Controllers\Admin\InputPelanggaranController;
 use App\Http\Controllers\Admin\KategoriKepatuhanController;
 use App\Http\Controllers\Admin\KategoriPelanggaranController;
 use App\Http\Controllers\Admin\KelasController;
@@ -158,6 +160,28 @@ Route::middleware('auth')->group(function () {
     Route::get('/bentuk-kepatuhan/{id}/edit', [BentukKepatuhanController::class, 'edit'])->name('bentuk-kepatuhan.edit'); // Edit bentuk kepatuhan
     Route::post('/bentuk-kepatuhan/{id}/update', [BentukKepatuhanController::class, 'update'])->name('bentuk-kepatuhan.update'); // Proses update bentuk kepatuhan
     Route::delete('/bentuk-kepatuhan/{id}/delete', [BentukKepatuhanController::class, 'destroy'])->name('bentuk-kepatuhan.destroy'); // Hapus bentuk kepatuhan
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Input Kepatuhan Siswa
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/input-kepatuhan', [InputKepatuhanController::class, 'index'])->name('input-kepatuhan.index'); // List input kepatuhan siswa
+    Route::get('/get-bentuk/{id}', [InputKepatuhanController::class, 'getByKategori']); // Get bentuk kepatuhan by kategori kepatuhan
+    Route::get('/get-siswa/{nis}', [InputKepatuhanController::class, 'getSiswa']); // Get siswa by NIS
+    Route::post('/input-kepatuhan/store', [InputKepatuhanController::class, 'store'])->name('input-kepatuhan.store'); // Proses simpan
+    Route::delete('/input-kepatuhan/{id}/delete', [InputKepatuhanController::class, 'destroy'])->name('input-kepatuhan.destroy'); // Hapus input kepatuhan siswa
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Input Pelanggaran Siswa
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/input-pelanggaran', [InputPelanggaranController::class, 'index'])->name('input-pelanggaran.index'); // List input pelanggaran siswa
+    Route::get('/get-bentuk/{id}', [InputPelanggaranController::class, 'getByKategori']); // Get bentuk pelanggaran by kategori pelanggaran
+    Route::get('/get-siswa/{nis}', [InputPelanggaranController::class, 'getSiswa']); // Get siswa by NIS
+    Route::post('/input-pelanggaran/store', [InputPelanggaranController::class, 'store'])->name('input-pelanggaran.store'); // Proses simpan
+    Route::delete('/input-pelanggaran/{id}/delete', [InputPelanggaranController::class, 'destroy'])->name('input-pelanggaran.destroy'); // Hapus input pelanggaran siswa
 
     /*
     |--------------------------------------------------------------------------

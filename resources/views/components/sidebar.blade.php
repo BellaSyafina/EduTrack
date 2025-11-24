@@ -245,7 +245,7 @@
                         <!-- Input Kepatuhan -->
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="#">
+                            <a class="sidebar-link sidebar-title link-nav" href="/input-kepatuhan">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-landing-page">
                                     </use>
@@ -260,7 +260,7 @@
                         <!-- Input Pelanggaran -->
                         <li class="sidebar-list">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="#">
+                            <a class="sidebar-link sidebar-title link-nav" href="/input-pelanggaran">
                                 <svg class="stroke-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-sample-page">
                                     </use>

@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(WaliMurid::class, 'id_user');
     }
+
+    public function inputSiswas()
+    {
+        return $this->hasMany(InputSiswa::class, 'id_user', 'id');
+    }
 }
