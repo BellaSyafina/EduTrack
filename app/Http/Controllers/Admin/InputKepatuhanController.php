@@ -15,11 +15,13 @@ class InputKepatuhanController extends Controller
 {
     public function index()
     {
+        $id = Auth::user()->id;
+
         $data = [
             'title' => 'Input Kepatuhan Siswa',
             'kelas' => Kelas::all(),
             'kategori' => KategoriKepatuhan::with('kepatuhan')->get(),
-            'inputKepatuhan' => InputSiswa::with(['siswa', 'kepatuhan', 'user'])->get(),
+            'inputKepatuhan' => InputSiswa::with(['siswa', 'kepatuhan', 'user'])->where('id_user', $id)->get(),
             'no' => 1,
         ];
 
