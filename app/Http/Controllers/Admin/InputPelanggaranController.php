@@ -4,36 +4,36 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\InputSiswa;
-use App\Models\KategoriKepatuhan;
+use App\Models\KategoriPelanggaran;
 use App\Models\Kelas;
-use App\Models\Kepatuhan;
+use App\Models\Pelanggaran;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class InputKepatuhanController extends Controller
+class InputPelanggaranController extends Controller
 {
     public function index()
     {
         $id = Auth::id(); // lebih ringkas
 
         $data = [
-            'title' => 'Input Kepatuhan Siswa',
+            'title' => 'Input Pelanggaran Siswa',
             'kelas' => Kelas::all(),
-            'kategori' => KategoriKepatuhan::with('kepatuhan')->get(),
-            'inputKepatuhan' => InputSiswa::with(['siswa', 'kepatuhan', 'user'])
+            'kategori' => KategoriPelanggaran::with('pelanggaran')->get(),
+            'inputPelanggaran' => InputSiswa::with(['siswa', 'pelanggaran', 'user'])
                 ->where('id_user', $id)
-                ->whereNotNull('id_kepatuhan') // ✅ hanya data kepatuhan
+                ->whereNotNull('id_pelanggaran') // ✅ hanya data pelanggaran
                 ->get(),
             'no' => 1,
         ];
 
-        return view('admin.inputKepatuhan.index', $data);
+        return view('admin.inputPelanggaran.index', $data);
     }
 
     public function getByKategori($id)
     {
-        $data = Kepatuhan::where('id_kategori_kepatuhan', $id)->select('id_kepatuhan', 'nama_kepatuhan', 'bobot_poin')->get();
+        $data = Pelanggaran::where('id_kategori_pelanggaran', $id)->select('id_pelanggaran', 'nama_pelanggaran', 'bobot_poin')->get();
 
         return response()->json($data);
     }
@@ -61,14 +61,14 @@ class InputKepatuhanController extends Controller
             $request->validate(
                 [
                     'nis' => 'required|exists:Tabel_Siswa,nis',
-                    'bentuk_kepatuhan' => 'required|exists:Tabel_Kepatuhan,id_kepatuhan',
+                    'bentuk_pelanggaran' => 'required|exists:Tabel_Pelanggaran,id_pelanggaran',
                     'tanggal_waktu' => 'required|date',
                 ],
                 [
                     'nis.required' => 'NIS wajib diisi.',
                     'nis.exists' => 'NIS tidak ditemukan.',
-                    'bentuk_kepatuhan.required' => 'Bentuk Kepatuhan wajib diisi.',
-                    'bentuk_kepatuhan.exists' => 'Bentuk Kepatuhan tidak valid.',
+                    'bentuk_pelanggaran.required' => 'Bentuk Pelanggaran wajib diisi.',
+                    'bentuk_pelanggaran.exists' => 'Bentuk Pelanggaran tidak valid.',
                     'tanggal_waktu.required' => 'Tanggal dan Waktu wajib diisi.',
                     'tanggal_waktu.date' => 'Format Tanggal dan Waktu tidak valid.',
                 ],
@@ -82,17 +82,17 @@ class InputKepatuhanController extends Controller
                     ->withInput();
             }
 
-            $kepatuhan = Kepatuhan::find($request->bentuk_kepatuhan);
+            $pelanggaran = Pelanggaran::find($request->bentuk_pelanggaran);
 
             InputSiswa::create([
                 'id_siswa' => $siswa->id_siswa,
-                'id_user' => Auth::user()->id,
-                'id_kepatuhan' => $kepatuhan->id_kepatuhan,
-                'bobot_poin' => $kepatuhan->bobot_poin,
+                'id_user' => Auth::id(),
+                'id_pelanggaran' => $pelanggaran->id_pelanggaran,
+                'bobot_poin' => $pelanggaran->bobot_poin,
                 'created_at' => $request->tanggal_waktu,
             ]);
 
-            return redirect('/input-kepatuhan')->with('success', 'Data Kepatuhan Siswa berhasil disimpan!');
+            return redirect('/input-pelanggaran')->with('success', 'Data Pelanggaran Siswa berhasil disimpan!');
         } catch (\Exception $e) {
             return back()
                 ->withErrors(['error' => 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage()])
@@ -103,10 +103,10 @@ class InputKepatuhanController extends Controller
     public function destroy($id)
     {
         try {
-            $inputKepatuhan = InputSiswa::where('id_input_siswa', $id)->firstOrFail();
-            $inputKepatuhan->delete();
+            $inputPelanggaran = InputSiswa::where('id_input_siswa', $id)->firstOrFail();
+            $inputPelanggaran->delete();
 
-            return redirect('/input-kepatuhan')->with('success', 'Data Kepatuhan Siswa berhasil dihapus!');
+            return redirect('/input-pelanggaran')->with('success', 'Data Pelanggaran Siswa berhasil dihapus!');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage()]);
         }

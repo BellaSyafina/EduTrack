@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BentukPelanggaranController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\InputKepatuhanController;
+use App\Http\Controllers\Admin\InputPelanggaranController;
 use App\Http\Controllers\Admin\KategoriKepatuhanController;
 use App\Http\Controllers\Admin\KategoriPelanggaranController;
 use App\Http\Controllers\Admin\KelasController;
@@ -170,6 +171,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-siswa/{nis}', [InputKepatuhanController::class, 'getSiswa']); // Get siswa by NIS
     Route::post('/input-kepatuhan/store', [InputKepatuhanController::class, 'store'])->name('input-kepatuhan.store'); // Proses simpan
     Route::delete('/input-kepatuhan/{id}/delete', [InputKepatuhanController::class, 'destroy'])->name('input-kepatuhan.destroy'); // Hapus input kepatuhan siswa
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Input Pelanggaran Siswa
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/input-pelanggaran', [InputPelanggaranController::class, 'index'])->name('input-pelanggaran.index'); // List input pelanggaran siswa
+    Route::get('/get-bentuk/{id}', [InputPelanggaranController::class, 'getByKategori']); // Get bentuk pelanggaran by kategori pelanggaran
+    Route::get('/get-siswa/{nis}', [InputPelanggaranController::class, 'getSiswa']); // Get siswa by NIS
+    Route::post('/input-pelanggaran/store', [InputPelanggaranController::class, 'store'])->name('input-pelanggaran.store'); // Proses simpan
+    Route::delete('/input-pelanggaran/{id}/delete', [InputPelanggaranController::class, 'destroy'])->name('input-pelanggaran.destroy'); // Hapus input pelanggaran siswa
 
     /*
     |--------------------------------------------------------------------------

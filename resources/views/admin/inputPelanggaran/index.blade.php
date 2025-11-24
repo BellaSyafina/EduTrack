@@ -28,7 +28,7 @@
                 <h5>{{ $title }}</h5>
             </div>
             <div class="card-body">
-                <form class="row g-3 needs-validation custom-input" action="{{ route('input-kepatuhan.store') }}"
+                <form class="row g-3 needs-validation custom-input" action="{{ route('input-pelanggaran.store') }}"
                     method="POST" novalidate="">
                     @csrf
                     <div class="col-md-6 position-relative">
@@ -66,8 +66,8 @@
                         <label class="form-label" for="kategori">Pilihan Kategori</label>
                         <div class="mt-2 d-flex gap-2 flex-wrap">
                             @foreach ($kategori as $item)
-                                <button type="button" class="btn btn-outline-success btn-sm btn-kategori"
-                                    data-id="{{ $item->id_kategori_kepatuhan }}">
+                                <button type="button" class="btn btn-outline-danger btn-sm btn-kategori"
+                                    data-id="{{ $item->id_kategori_pelanggaran }}">
                                     {{ $item->nama_kategori }}
                                 </button>
                             @endforeach
@@ -76,21 +76,21 @@
                     </div>
 
                     <div class="col-md-12 position-relative d-none" id="wrap_bentuk">
-                        <label class="form-label">Pilihan Bentuk Kepatuhan</label>
-                        <select name="bentuk_kepatuhan" id="bentuk_kepatuhan" class="form-select">
-                            <option value="" disabled selected>-- Pilih Bentuk Kepatuhan --</option>
+                        <label class="form-label">Pilihan Bentuk Pelanggaran</label>
+                        <select name="bentuk_pelanggaran" id="bentuk_pelanggaran" class="form-select">
+                            <option value="" disabled selected>-- Pilih Bentuk Pelanggaran --</option>
                         </select>
                     </div>
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="keterangan">Bobot</label>
                         <div class="mt-2">
-                            <button id="btn_bobot" class="btn btn-secondary" type="button">+0 Poin</button>
+                            <button id="btn_bobot" class="btn btn-secondary" type="button">0 Poin</button>
                         </div>
                     </div>
 
                     <!-- Tombol dibuat sejajar di baris yang sama -->
                     <div class="col-12 mt-4 d-flex gap-2">
-                        <button class="btn btn-primary w-100" type="submit">Simpan Kepatuhan</button>
+                        <button class="btn btn-primary w-100" type="submit">Simpan Pelanggaran</button>
                     </div>
 
                 </form>
@@ -99,15 +99,14 @@
     </div>
 
     <div class=" col-sm-12 col-xxl-4 col-lg-12 ord-xl-5 ord-md-6 box-ord-7 box-col-4e">
-        <div class="alert bg-light-success mb-0" role="alert">
-            <h5 class="alert-heading pb-2 txt-success">Panduan Point</h5>
+        <div class="alert bg-light-danger mb-0" role="alert">
+            <h5 class="alert-heading pb-2 txt-danger">Panduan Point</h5>
             <hr>
             @php
                 $colorStyles = [
-                    ['bg' => '#e8f4ff', 'text' => '#0d6efd'], // biru
-                    ['bg' => '#f3e8ff', 'text' => '#6f42c1'], // ungu
-                    ['bg' => '#e9f9ef', 'text' => '#198754'], // hijau
+                    ['bg' => '#FFF9C4', 'text' => '#F57F17'], // yellow
                     ['bg' => '#fff7e6', 'text' => '#fd7e14'], // orange
+                    ['bg' => '#f3e8ff', 'text' => '#ef4444'], // accent
                     ['bg' => '#ffe7e7', 'text' => '#dc3545'], // merah
                 ];
             @endphp
@@ -116,8 +115,8 @@
                     style="color: {{ $colorStyles[$loop->index % count($colorStyles)]['text'] }}; padding: 5px; border-radius: 5px;">
                     Kategori {{ $item->nama_kategori }}</h6>
                 <ul>
-                    @foreach ($item->kepatuhan as $kep)
-                        <li style="padding: 5px; border-radius: 5px;">{{ $kep->nama_kepatuhan }}: +{{ $kep->bobot_poin }}
+                    @foreach ($item->pelanggaran as $pel)
+                        <li style="padding: 5px; border-radius: 5px;">{{ $pel->nama_pelanggaran }}: {{ $pel->bobot_poin }}
                             Poin</li>
                     @endforeach
                 </ul>
@@ -150,7 +149,7 @@
         <div class="card">
             <div class="card-header card-no-border">
                 <div class="header-top">
-                    <h5>Daftar Input Kepatuhan Siswa</h5>
+                    <h5>Daftar Input Pelanggaran Siswa</h5>
                 </div>
             </div>
             <div class="card-body px-0 pt-0 common-option">
@@ -162,7 +161,7 @@
                                 <th>No</th>
                                 <th>Nama Siswa</th>
                                 <th>Kelas</th>
-                                <th>Jenis Kepatuhan</th>
+                                <th>Jenis Pelanggaran</th>
                                 <th>Bobot</th>
                                 <th>Tanggal & Waktu</th>
                                 <th>Penanggung Jawab</th>
@@ -170,7 +169,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($inputKepatuhan as $item)
+                            @foreach ($inputPelanggaran as $item)
                                 <tr>
                                     <td></td>
                                     <td>{{ $no++ }}</td>
@@ -184,7 +183,7 @@
                                         </div>
                                     </td>
                                     <td>{{ $item->siswa->kelas->nama_kelas }}</td>
-                                    <td>{{ $item->kepatuhan->nama_kepatuhan }}</td>
+                                    <td>{{ $item->pelanggaran->nama_pelanggaran }}</td>
                                     <td>
                                         @if ($item->bobot_poin > 0)
                                             <span class="badge bg-success">+{{ $item->bobot_poin }} poin</span>
@@ -204,12 +203,12 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <form action="{{ route('input-kepatuhan.destroy', $item->id_input_siswa) }}"
+                                                    <form action="{{ route('input-pelanggaran.destroy', $item->id_input_siswa) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="dropdown-item text-danger"
-                                                            onclick="return confirm('Hapus data kepatuhan ini?')">
+                                                            onclick="return confirm('Hapus data pelanggaran ini?')">
                                                             <i class="fa fa-trash me-2"></i> Delete
                                                         </button>
                                                     </form>
@@ -232,7 +231,7 @@
         document.addEventListener('DOMContentLoaded', function() {
 
             const buttons = document.querySelectorAll('.btn-kategori');
-            const select = document.getElementById('bentuk_kepatuhan');
+            const select = document.getElementById('bentuk_pelanggaran');
             const wrap = document.getElementById('wrap_bentuk');
             const bobotBtn = document.getElementById('btn_bobot'); // target tombol bobot
             const nisInput = document.getElementById('nis');
@@ -250,13 +249,13 @@
 
                     // ✅ reset semua tombol ke outline
                     buttons.forEach(b => {
-                        b.classList.remove('btn-success');
-                        b.classList.add('btn-outline-success');
+                        b.classList.remove('btn-danger');
+                        b.classList.add('btn-outline-danger');
                     });
 
                     // ✅ tombol yang diklik berubah jadi solid
-                    this.classList.remove('btn-outline-success');
-                    this.classList.add('btn-success');
+                    this.classList.remove('btn-outline-danger');
+                    this.classList.add('btn-danger');
 
                     // fetch data
                     fetch(`/get-bentuk/${id}`)
@@ -267,12 +266,12 @@
                             window.bentukList = data;
 
                             select.innerHTML =
-                                '<option disabled selected>-- Pilih Bentuk Kepatuhan --</option>';
+                                '<option disabled selected>-- Pilih Bentuk Pelanggaran --</option>';
 
                             data.forEach(item => {
                                 select.innerHTML += `
-                                    <option value="${item.id_kepatuhan}">
-                                        ${item.nama_kepatuhan}
+                                    <option value="${item.id_pelanggaran}">
+                                        ${item.nama_pelanggaran}
                                     </option>`;
                             });
 
@@ -285,12 +284,12 @@
                 const selectedId = this.value;
 
                 // cari data bentuk yang sesuai
-                const selectedItem = window.bentukList.find(item => item.id_kepatuhan == selectedId);
+                const selectedItem = window.bentukList.find(item => item.id_pelanggaran == selectedId);
 
                 if (selectedItem) {
-                    bobotBtn.textContent = `+${selectedItem.bobot_poin} Poin`;
+                    bobotBtn.textContent = `${selectedItem.bobot_poin} Poin`;
                     bobotBtn.classList.remove('btn-secondary');
-                    bobotBtn.classList.add('btn-success');
+                    bobotBtn.classList.add('btn-danger');
                 }
             });
 
