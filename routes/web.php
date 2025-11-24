@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PenggunaSistemController;
 use App\Http\Controllers\Admin\SanksiPelanggaranController;
 use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\WaliKelasController;
 use App\Http\Controllers\Admin\WaliMuridController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -92,6 +93,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/wali-murid-siswa/{id}', [WaliMuridController::class, 'actionSiswa'])->name('wali-murid.action-siswa');
     Route::get('/wali-murid-siswa/{waliMuridId}/{id}/delete', [WaliMuridController::class, 'destroySiswa'])->name('wali-murid.destroy-siswa'); // Hapus relasi wali murid ke siswa
     Route::delete('/wali-murid/{id}/delete', [WaliMuridController::class, 'destroy'])->name('wali-murid.destroy'); // Hapus wali murid
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Wali Murid
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/wali-kelas', [WaliKelasController::class, 'index'])->name('wali-kelas.index'); // List wali kelas
+    Route::post('/wali-kelas/store', [WaliKelasController::class, 'store'])->name('wali-kelas.store'); // Proses tambah wali kelas
+    Route::delete('/wali-kelas/{id}/delete', [WaliKelasController::class, 'destroy'])->name('wali-kelas.destroy'); // Hapus wali kelas
 
     /*
     |--------------------------------------------------------------------------

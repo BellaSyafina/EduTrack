@@ -148,6 +148,18 @@
                                 <span>Data Wali Murid</span>
                             </a>
                         </li>
+                        <li class="sidebar-list">
+                            <i class="fa-solid fa-thumbtack"></i>
+                            <a class="sidebar-link sidebar-title link-nav" href="/wali-kelas">
+                                <svg class="stroke-icon">
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-blog"></use>
+                                </svg>
+                                <svg class="fill-icon">
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-blog"></use>
+                                </svg>
+                                <span>Data Wali Kelas</span>
+                            </a>
+                        </li>
 
                         <!-- Kelola Pelanggaran -->
                         <li class="sidebar-main-title">
@@ -296,18 +308,6 @@
 
                     <!-- Pengguna Sistem (khusus admin) -->
                     @if (Auth::user()->role === 'Admin')
-                        <li class="sidebar-list">
-                            <i class="fa-solid fa-thumbtack"></i>
-                            <a class="sidebar-link sidebar-title link-nav" href="/pengguna-sistem">
-                                <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-blog"></use>
-                                </svg>
-                                <svg class="fill-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-blog"></use>
-                                </svg>
-                                <span>Pengguna Sistem</span>
-                            </a>
-                        </li>
                     @endif
 
                 </ul>
