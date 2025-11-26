@@ -55,8 +55,7 @@
                         <div class="badge f-10 p-0" id="txt"></div>
                     </div>
                 </div>
-                <div class="cartoon"><img class="img-fluid"
-                        src="{{ asset('') }}assets/images/dashboard/cartoon.svg"
+                <div class="cartoon"><img class="img-fluid" src="{{ asset('') }}assets/images/dashboard/cartoon.svg"
                         alt="vector women with leptop"></div>
             </div>
         </div>
@@ -786,4 +785,12 @@
             </div>
         </div>
     </div>
+
+    @if (Auth::user()->role == 'Admin')
+        <h1>Untuk Admin</h1>
+    @elseif (Auth::user()->role == 'Wali Kelas')
+        <h1>Untuk Wali Kelas</h1>
+    @elseif (Auth::user()->role == 'Wali Murid')
+        <h1>Untuk Wali Murid</h1>
+    @endif
 @endsection
