@@ -788,9 +788,220 @@
 
     @if (Auth::user()->role == 'Admin')
         <h1>Untuk Admin</h1>
+
+        {{-- ============================
+        DASHBOARD ADMIN
+        ============================= --}}
+
+        {{-- CARD RINGKASAN --}}
+        <div class="row">
+
+            <div class="col-md-3 mb-3">
+                <div class="p-3 bg-primary text-white rounded shadow">
+                    <h5>Total Siswa</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="p-3 bg-success text-white rounded shadow">
+                    <h5>Total Kelas</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="p-3 bg-warning text-dark rounded shadow">
+                    <h5>Total Guru</h5>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="p-3 bg-danger text-white rounded shadow">
+                    <h5>Total Wali Murid</h5>
+                </div>
+            </div>
+
+        </div>
+
+        {{-- GRAFIK --}}
+        <div class="row mt-3">
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5 class="text-center">Grafik Pelanggaran per Bulan</h5>
+                    <canvas id="grafikPelanggaranAdmin"></canvas>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5 class="text-center">Grafik Kepatuhan per Bulan</h5>
+                    <canvas id="grafikKepatuhanAdmin"></canvas>
+                </div>
+            </div>
+        </div>
+
+        {{-- LOG REALTIME --}}
+        <div class="row mt-3">
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5>Pelanggaran Terbaru Hari Ini</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Siswa</th>
+                                <th>Pelanggaran</th>
+                                <th>Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5>Kepatuhan Terbaru Hari Ini</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Siswa</th>
+                                <th>Kepatuhan</th>
+                                <th>Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
     @elseif (Auth::user()->role == 'Wali Kelas')
         <h1>Untuk Wali Kelas</h1>
+
+        {{-- ============================
+        DASHBOARD WALI KELAS
+    ============================= --}}
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5 class="text-center">Grafik Pelanggaran Kelas</h5>
+                    <canvas id="grafikPelanggaranWaliKelas"></canvas>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5 class="text-center">Grafik Kepatuhan Kelas</h5>
+                    <canvas id="grafikKepatuhanWaliKelas"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5>Pelanggaran Terbaru Kelas</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Siswa</th>
+                                <th>Pelanggaran</th>
+                                <th>Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5>Kepatuhan Terbaru Kelas</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Siswa</th>
+                                <th>Kepatuhan</th>
+                                <th>Waktu</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
     @elseif (Auth::user()->role == 'Wali Murid')
         <h1>Untuk Wali Murid</h1>
+        {{-- ============================
+        DASHBOARD WALI MURID
+    ============================= --}}
+
+        {{-- PROFIL ANAK --}}
+        <div class="card shadow p-4 mb-3 border-primary border-3">
+            <h4>Profil Anak</h4>
+            <p><strong>Nama:</strong></p>
+            <p><strong>Kelas:</strong></p>
+            <p><strong>Total Pelanggaran:</strong></p>
+            <p><strong>Total Kepatuhan:</strong></p>
+            <p><strong>Status Kepatuhan:</strong></p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5>Grafik Pelanggaran Anak</h5>
+                    <canvas id="grafikPelanggaranAnak"></canvas>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5>Grafik Kepatuhan Anak</h5>
+                    <canvas id="grafikKepatuhanAnak"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5>Riwayat Pelanggaran Anak</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Pelanggaran</th>
+                                <th>Tingkat</th>
+                                <th>Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="card shadow p-3">
+                    <h5>Riwayat Kepatuhan Anak</h5>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Deskripsi</th>
+                                <th>Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
     @endif
 @endsection
