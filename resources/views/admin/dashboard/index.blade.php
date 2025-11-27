@@ -211,7 +211,7 @@
         {{--  @dd($dataPelanggaranWaliKelas)  --}}
         <div class="col-xxl-8">
             <div class="row">
-                <div class="col-xxl-6 mb-3">
+                {{--  <div class="col-xxl-6 mb-3">
                     <div class="card shadow p-3" style="height: 300px;"> <!-- Tinggi card -->
                         <h5 class="text-center mb-3">Grafik Pelanggaran Kelas</h5>
 
@@ -227,7 +227,7 @@
                         <h5 class="text-center">Grafik Kepatuhan Kelas</h5>
                         <canvas id="grafikKepatuhanWaliKelas" class="chart-fixed"></canvas>
                     </div>
-                </div>
+                </div>  --}}
                 <div class="col-xxl-6 mb-3">
                     <div class="card shadow p-3">
                         <h5>Pelanggaran Terbaru Kelas</h5>
@@ -239,7 +239,15 @@
                                     <th>Waktu</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                @foreach ($pelanggaranTerbaruWaliKelas as $item)
+                                    <tr>
+                                        <td>{{ $item->siswa->nama_siswa }}</td>
+                                        <td>{{ $item->pelanggaran->nama_pelanggaran }}</td>
+                                        <td>{{ $item->created_at->format('d M Y H:i') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -254,56 +262,117 @@
                                     <th>Waktu</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                @foreach ($kepatuhanTerbaruWaliKelas as $item)
+                                    <tr>
+                                        <td>{{ $item->siswa->nama_siswa }}</td>
+                                        <td>{{ $item->kepatuhan->nama_kepatuhan }}</td>
+                                        <td>{{ $item->created_at->format('d M Y H:i') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    @endif
-
-    @if (Auth::user()->role == 'Admin')
-    @elseif (Auth::user()->role == 'Wali Kelas')
-
     @elseif (Auth::user()->role == 'Wali Murid')
-        <h1>Untuk Wali Murid</h1>
-        {{-- ============================
-        DASHBOARD WALI MURID
-    ============================= --}}
-
-        {{-- PROFIL ANAK --}}
-        <div class="card shadow p-4 mb-3 border-primary border-3">
-            <h4>Profil Anak</h4>
-            <p><strong>Nama:</strong></p>
-            <p><strong>Kelas:</strong></p>
-            <p><strong>Total Pelanggaran:</strong></p>
-            <p><strong>Total Kepatuhan:</strong></p>
-            <p><strong>Status Kepatuhan:</strong></p>
-        </div>
-
-        <div class="row">
-
-            <div class="col-md-6 mb-3">
-                <div class="card shadow p-3">
-                    <h5>Grafik Pelanggaran Anak</h5>
-                    <canvas id="grafikPelanggaranAnak"></canvas>
+        <div class="col-xxl-8 mb-3">
+            <div class="card">
+                <div class="card-header bg-primary text-white rounded shadow">
+                    <h5>Profil Anak</h5>
                 </div>
-            </div>
 
-            <div class="col-md-6 mb-3">
-                <div class="card shadow p-3">
-                    <h5>Grafik Kepatuhan Anak</h5>
-                    <canvas id="grafikKepatuhanAnak"></canvas>
-                </div>
-            </div>
+                @if ($siswaList->count() == 1)
+                    @php $anak = $siswaList->first()->siswa; @endphp
 
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-md-2"><strong>Nama:</strong></div>
+                            <div class="col-md-6">{{ $anak->nama_siswa }}</div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-2"><strong>Kelas:</strong></div>
+                            <div class="col-md-6">{{ $anak->kelas->nama_kelas }}</div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-2"><strong>Total Pelanggaran:</strong></div>
+                            <div class="col-md-6">{{ $totalPelanggaranWaliMurid }}</div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-2"><strong>Total Kepatuhan:</strong></div>
+                            <div class="col-md-6">{{ $totalKepatuhanWaliMurid }}</div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-md-2"><strong>Status Kepatuhan:</strong></div>
+                            <div class="col-md-6">
+                                @if ($totalKepatuhanWaliMurid >= $totalPelanggaranWaliMurid)
+                                    Patuh
+                                @else
+                                    Tidak Patuh
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    {{-- Jika punya banyak anak --}}
+                    @foreach ($siswaList as $item)
+                        @php $anak = $item->siswa; @endphp
+
+                        <div class="card shadow-sm p-3 mb-3 border">
+
+                            <div class="row mb-2">
+                                <div class="col-md-2"><strong>Nama:</strong></div>
+                                <div class="col-md-6">{{ $anak->nama_siswa }}</div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-2"><strong>Kelas:</strong></div>
+                                <div class="col-md-6">{{ $anak->kelas->nama_kelas }}</div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-2"><strong>Total Pelanggaran:</strong></div>
+                                <div class="col-md-6">{{ $anak->dataPelanggaran()->count() }}</div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-2"><strong>Total Kepatuhan:</strong></div>
+                                <div class="col-md-6">{{ $anak->dataKepatuhan()->count() }}</div>
+                            </div>
+
+                            @php
+                                $pel = $anak->dataPelanggaran()->count();
+                                $kep = $anak->dataKepatuhan()->count();
+                            @endphp
+
+                            <div class="row mb-2">
+                                <div class="col-md-6"><strong>Status Kepatuhan:</strong></div>
+                                <div class="col-md-6">
+                                    @if ($kep >= $pel)
+                                        Patuh
+                                    @else
+                                        Tidak Patuh
+                                    @endif
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                @endif
+
+            </div>
         </div>
-
-        <div class="row mt-3">
-
-            <div class="col-md-6 mb-3">
-                <div class="card shadow p-3">
+        <div class="col-xxl-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-danger text-white rounded shadow">
                     <h5>Riwayat Pelanggaran Anak</h5>
+                </div>
+                <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -312,14 +381,25 @@
                                 <th>Tanggal</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            @foreach ($riwayatPelanggaran as $item)
+                                <tr>
+                                    <td>{{ $item->pelanggaran->nama_pelanggaran }}</td>
+                                    <td>{{ $item->pelanggaran->kategoriPelanggaran->nama_kategori ?? '' }}</td>
+                                    <td>{{ $item->created_at->format('d M Y H:i') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
-
-            <div class="col-md-6 mb-3">
-                <div class="card shadow p-3">
+        </div>
+        <div class="col-xxl-6 mb-3">
+            <div class="card">
+                <div class="card-header bg-success text-white rounded shadow">
                     <h5>Riwayat Kepatuhan Anak</h5>
+                </div>
+                <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -327,11 +407,17 @@
                                 <th>Tanggal</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            @foreach ($riwayatKepatuhan as $item)
+                                <tr>
+                                    <td>{{ $item->kepatuhan->nama_kepatuhan }}</td>
+                                    <td>{{ $item->created_at->format('d M Y H:i') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
     @endif
 @endsection

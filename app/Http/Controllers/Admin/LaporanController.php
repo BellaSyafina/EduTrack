@@ -8,35 +8,58 @@ use App\Models\InputSiswa;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
 {
     public function index(Request $request)
     {
-        $user = Auth::user(); // ambil user login
+        $user = Auth::user();
+
+        // Ambil ID wali murid
+        $wali = $user->waliMurid;
+
+        // Ambil daftar id siswa dari tabel pivot
+        $anakIds = [];
+        if ($user->role === 'Wali Murid' && $wali) {
+            $anakIds = DB::table('Tabel_Wali_Murid_Siswa')->where('id_wali_murid', $wali->id_wali_murid)->pluck('id_siswa');
+        }
 
         $laporan = InputSiswa::with(['siswa.kelas', 'pelanggaran', 'kepatuhan', 'user'])
+
+            // Filter khusus WALI MURID → hanya data anaknya
+            ->when($user->role === 'Wali Murid', function ($q) use ($anakIds) {
+                $q->whereIn('id_siswa', $anakIds);
+            })
+
+            // Filter Wali Kelas → lihat data yang dia input
             ->when($user->role === 'Wali Kelas', function ($q) use ($user) {
-                // ✅ wali kelas hanya lihat data yang dia input
                 $q->where('id_user', $user->id);
             })
+
+            // Filter pencarian
             ->when($request->search, function ($q) use ($request) {
                 $q->whereHas('siswa', function ($s) use ($request) {
                     $s->where('nama_siswa', 'like', '%' . $request->search . '%')->orWhere('nis', 'like', '%' . $request->search . '%');
                 });
             })
+
+            // Filter kelas
             ->when($request->kelas, function ($q) use ($request) {
                 $q->whereHas('siswa.kelas', function ($k) use ($request) {
                     $k->where('nama_kelas', $request->kelas);
                 });
             })
+
+            // Filter pelanggaran/kepatuhan
             ->when($request->jenis, function ($q) use ($request) {
                 if ($request->jenis == 'pelanggaran') {
-                    $q->whereNotNull('pelanggaran_id');
-                } elseif ($request->jenis == 'kepatuhan') {
-                    $q->whereNotNull('kepatuhan_id');
+                    $q->whereNotNull('id_pelanggaran');
+                } else {
+                    $q->whereNotNull('id_kepatuhan');
                 }
             })
+
             ->latest()
             ->paginate(5)
             ->withQueryString();
@@ -54,8 +77,7 @@ class LaporanController extends Controller
         $laporan = InputSiswa::with(['siswa.kelas', 'pelanggaran', 'kepatuhan', 'user'])
             ->when($request->search, function ($query) use ($request) {
                 $query->whereHas('siswa', function ($q) use ($request) {
-                    $q->where('nama_siswa', 'like', '%' . $request->search . '%')
-                        ->orWhere('nis', 'like', '%' . $request->search . '%');
+                    $q->where('nama_siswa', 'like', '%' . $request->search . '%')->orWhere('nis', 'like', '%' . $request->search . '%');
                 });
             })
             ->when($request->kelas, function ($query) use ($request) {
@@ -65,9 +87,9 @@ class LaporanController extends Controller
             })
             ->when($request->jenis, function ($query) use ($request) {
                 if ($request->jenis == 'pelanggaran') {
-                    $query->whereNotNull('pelanggaran_id');
+                    $query->whereNotNull('id_pelanggaran');
                 } elseif ($request->jenis == 'kepatuhan') {
-                    $query->whereNotNull('kepatuhan_id');
+                    $query->whereNotNull('id_kepatuhan');
                 }
             })
             ->latest()

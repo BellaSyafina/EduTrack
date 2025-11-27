@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use App\Models\InputSiswa;
 use App\Models\Kelas;
+use App\Models\Kepatuhan;
 use App\Models\Pelanggaran;
 use App\Models\Siswa;
 use App\Models\WaliKelas;
 use App\Models\WaliMurid;
+use App\Models\WaliMuridSiswa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,22 +62,59 @@ class DashboardController extends Controller
         } elseif (Auth::user()->role == 'Wali Kelas') {
             // Ambil kelas yang dipegang wali kelas
             $wali = WaliKelas::where('id_user', Auth::id())->first();
-            // dd($wali);
-            if ($wali) {
-                $idKelas = $wali->id_kelas;
 
-                $pelanggaranPerBulanWaliKelas = DB::table('Tabel_Input_Siswa')->join('Tabel_Siswa', 'Tabel_Input_Siswa.id_siswa', '=', 'Tabel_Siswa.id_siswa')->selectRaw('MONTH(Tabel_Input_Siswa.created_at) as bulan, COUNT(*) as total')->whereNotNull('Tabel_Input_Siswa.id_pelanggaran')->where('Tabel_Siswa.id_kelas', $idKelas)->groupBy('bulan')->pluck('total', 'bulan')->toArray();
-                // dd($pelanggaranPerBulanWaliKelas);
+            $pelanggaranTerbaruWaliKelas = InputSiswa::with(['siswa', 'pelanggaran'])
+                ->whereNotNull('id_pelanggaran')
+                ->whereHas('siswa', function ($query) use ($wali) {
+                    $query->where('id_kelas', $wali->id_kelas);
+                })
+                ->whereDate('created_at', Carbon::today())
+                ->latest()
+                ->limit(5)
+                ->get();
 
-                // Buat format 12 bulan
-                $dataPelanggaranWaliKelas = [];
-                for ($i = 1; $i <= 12; $i++) {
-                    $dataPelanggaranWaliKelas[] = $pelanggaranPerBulanWaliKelas[$i] ?? 0;
-                }
-            } else {
-                // jika wali kelas belum dikaitkan ke kelas
-                $dataPelanggaranWaliKelas = array_fill(0, 12, 0);
+            $kepatuhanTerbaruWaliKelas = InputSiswa::with(['siswa', 'kepatuhan'])
+                ->whereNotNull('id_kepatuhan')
+                ->whereHas('siswa', function ($query) use ($wali) {
+                    $query->where('id_kelas', $wali->id_kelas);
+                })
+                ->whereDate('created_at', Carbon::today())
+                ->latest()
+                ->limit(5)
+                ->get();
+
+            // dd($pelanggaranTerbaruWaliKelas);
+        } elseif (Auth::user()->role == 'Wali Murid') {
+            // Ambil data wali murid sesuai user login
+            $waliMurid = WaliMurid::where('id_user', Auth::id())->first();
+
+            // Ambil semua relasi WaliMuridSiswa + data siswa + kelas
+            $siswaList = WaliMuridSiswa::with(['siswa.kelas'])
+                ->where('id_wali_murid', $waliMurid->id_wali_murid)
+                ->get();
+
+            // Hitung total pelanggaran & kepatuhan untuk semua anak
+            $totalPelanggaranWaliMurid = 0;
+            $totalKepatuhanWaliMurid = 0;
+
+            foreach ($siswaList as $item) {
+                $totalPelanggaranWaliMurid += InputSiswa::where('id_siswa', $item->id_siswa)->count();
+                $totalKepatuhanWaliMurid += InputSiswa::where('id_siswa', $item->id_siswa)->count();
             }
+
+            $riwayatPelanggaran = InputSiswa::with(['siswa', 'pelanggaran'])
+                ->whereNotNull('id_pelanggaran')
+                ->whereIn('id_siswa', $siswaList->pluck('id_siswa'))
+                ->latest()
+                ->limit(5)
+                ->get();
+
+            $riwayatKepatuhan = InputSiswa::with(['siswa', 'kepatuhan'])
+                ->whereNotNull('id_kepatuhan')
+                ->whereIn('id_siswa', $siswaList->pluck('id_siswa'))
+                ->latest()
+                ->limit(5)
+                ->get();
         }
 
         $data = [
@@ -89,6 +128,13 @@ class DashboardController extends Controller
             'pelanggaranTerbaru' => $pelanggaranTerbaru ?? [],
             'kepatuhanTerbaru' => $kepatuhanTerbaru ?? [],
             'dataPelanggaranWaliKelas' => $dataPelanggaranWaliKelas ?? [],
+            'pelanggaranTerbaruWaliKelas' => $pelanggaranTerbaruWaliKelas ?? [],
+            'kepatuhanTerbaruWaliKelas' => $kepatuhanTerbaruWaliKelas ?? [],
+            'siswaList' => $siswaList ?? [],
+            'totalPelanggaranWaliMurid' => $totalPelanggaranWaliMurid ?? 0,
+            'totalKepatuhanWaliMurid' => $totalKepatuhanWaliMurid ?? 0,
+            'riwayatPelanggaran' => $riwayatPelanggaran ?? [],
+            'riwayatKepatuhan' => $riwayatKepatuhan ?? [],
         ];
 
         return view('admin.dashboard.index', $data);
