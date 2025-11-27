@@ -20,7 +20,7 @@
 
             <h4 class="fw-bold">Laporan</h4>
 
-            <a href="#" class="btn btn-danger">
+            <a href="{{ route('laporan.export.pdf', request()->query()) }}" class="btn btn-danger">
                 <i class="fa fa-file-pdf me-1"></i> Export PDF
             </a>
         </div>
