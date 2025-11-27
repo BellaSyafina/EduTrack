@@ -259,7 +259,7 @@
                     this.classList.add('btn-success');
 
                     // fetch data
-                    fetch(`/get-bentuk/${id}`)
+                    fetch(`/get-bentuk/${id}/kepatuhan`)
                         .then(res => res.json())
                         .then(data => {
 

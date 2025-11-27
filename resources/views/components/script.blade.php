@@ -87,3 +87,5 @@
 
 <!-- Pengaturan custom tema (warna, layout, dll) -->
 <script src="{{ asset('') }}assets/js/theme-customizer/customizer.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

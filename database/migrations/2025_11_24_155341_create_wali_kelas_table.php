@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id('id_wali_kelas');
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_guru');
+            $table->unsignedBigInteger('id_kelas');
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_guru')->references('id_guru')->on('Tabel_Guru')->onDelete('cascade');
+            $table->foreign('id_kelas')->references('id_kelas')->on('Tabel_Kelas')->onDelete('cascade');
             $table->timestamps();
         });
     }

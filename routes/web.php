@@ -177,7 +177,7 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::get('/input-kepatuhan', [InputKepatuhanController::class, 'index'])->name('input-kepatuhan.index'); // List input kepatuhan siswa
-    Route::get('/get-bentuk/{id}', [InputKepatuhanController::class, 'getByKategori']); // Get bentuk kepatuhan by kategori kepatuhan
+    Route::get('/get-bentuk/{id}/kepatuhan', [InputKepatuhanController::class, 'getByKategori']); // Get bentuk kepatuhan by kategori kepatuhan
     Route::get('/get-siswa/{nis}', [InputKepatuhanController::class, 'getSiswa']); // Get siswa by NIS
     Route::post('/input-kepatuhan/store', [InputKepatuhanController::class, 'store'])->name('input-kepatuhan.store'); // Proses simpan
     Route::delete('/input-kepatuhan/{id}/delete', [InputKepatuhanController::class, 'destroy'])->name('input-kepatuhan.destroy'); // Hapus input kepatuhan siswa

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
+use App\Models\Kelas;
 use App\Models\User;
 use App\Models\WaliKelas;
 use Illuminate\Http\Request;
@@ -14,8 +15,9 @@ class WaliKelasController extends Controller
     {
         $data = [
             'title' => 'Wali Kelas',
-            'waliKelas' => WaliKelas::with(['user', 'guru'])->get(),
+            'waliKelas' => WaliKelas::with(['user', 'guru', 'kelas'])->get(),
             'guru' => Guru::all(),
+            'kelas' => Kelas::all(),
         ];
 
         return view('admin.waliKelas.index', $data);
@@ -26,10 +28,13 @@ class WaliKelasController extends Controller
         $request->validate(
             [
                 'id_guru' => 'required|unique:Tabel_Wali_Kelas,id_guru',
+                'id_kelas' => 'required|unique:Tabel_Wali_Kelas,id_kelas',
             ],
             [
                 'id_guru.required' => 'Guru wajib dipilih.',
                 'id_guru.unique' => 'Guru ini sudah menjadi wali kelas.',
+                'id_kelas.required' => 'Kelas wajib dipilih.',
+                'id_kelas.unique' => 'Kelas ini sudah memiliki wali kelas.',
             ],
         );
 
@@ -53,6 +58,7 @@ class WaliKelasController extends Controller
             WaliKelas::create([
                 'id_user' => $user->id,
                 'id_guru' => $request->id_guru,
+                'id_kelas' => $request->id_kelas,
             ]);
 
             $guru->update([

@@ -53,6 +53,22 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-md-12 position-relative">
+                        <label class="form-label" for="id_kelas">Cari Kelas</label>
+                        <select class="form-select @error('id_kelas') is-invalid @enderror" id="id_kelas"
+                            name="id_kelas" required>
+                            <option value="" disabled selected>-- Pilih Kelas --</option>
+                            @foreach ($kelas as $item)
+                                <option value="{{ $item->id_kelas }}"
+                                    {{ old('id_kelas') == $item->id_kelas ? 'selected' : '' }}>
+                                    {{ $item->nama_kelas }}</option>
+                            @endforeach
+                        </select>
+                        <div class="valid-tooltip">Looks good!</div>
+                        @error('id_kelas')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <!-- Tombol dibuat sejajar di baris yang sama -->
                     <div class="col-12 mt-3 d-flex gap-2">
@@ -100,6 +116,7 @@
                                 <th></th>
                                 <th>ID Wali Kelas</th>
                                 <th>Nama Wali Kelas</th>
+                                <th>Kelas</th>
                                 <th>Alamat</th>
                                 <th>Email</th>
                                 <th>Password</th>
@@ -120,6 +137,7 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td>{{ $item->kelas->nama_kelas }}</td>
                                     <td>{{ $item->guru->alamat }}</td>
                                     <td>{{ $item->user->email }}</td>
                                     <td>{{ $item->user->dummy_password }}</td>
