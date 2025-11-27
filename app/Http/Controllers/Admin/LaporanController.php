@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\Models\InputSiswa;
 use App\Models\Kelas;
-use App\Models\Laporann;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,5 +47,34 @@ class LaporanController extends Controller
             'laporan' => $laporan,
             'no' => ($laporan->currentPage() - 1) * $laporan->perPage() + 1,
         ]);
+    }
+
+    public function exportPDF(Request $request)
+    {
+        $laporan = InputSiswa::with(['siswa.kelas', 'pelanggaran', 'kepatuhan', 'user'])
+            ->when($request->search, function ($query) use ($request) {
+                $query->whereHas('siswa', function ($q) use ($request) {
+                    $q->where('nama_siswa', 'like', '%' . $request->search . '%')
+                        ->orWhere('nis', 'like', '%' . $request->search . '%');
+                });
+            })
+            ->when($request->kelas, function ($query) use ($request) {
+                $query->whereHas('siswa.kelas', function ($q) use ($request) {
+                    $q->where('nama_kelas', $request->kelas);
+                });
+            })
+            ->when($request->jenis, function ($query) use ($request) {
+                if ($request->jenis == 'pelanggaran') {
+                    $query->whereNotNull('pelanggaran_id');
+                } elseif ($request->jenis == 'kepatuhan') {
+                    $query->whereNotNull('kepatuhan_id');
+                }
+            })
+            ->latest()
+            ->get();
+
+        $pdf = Pdf::loadView('admin.laporan.pdf', compact('laporan'));
+
+        return $pdf->download('laporan.pdf');
     }
 }
