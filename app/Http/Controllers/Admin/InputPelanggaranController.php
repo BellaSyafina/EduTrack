@@ -24,6 +24,7 @@ class InputPelanggaranController extends Controller
             'inputPelanggaran' => InputSiswa::with(['siswa', 'pelanggaran', 'user'])
                 ->where('id_user', $id)
                 ->whereNotNull('id_pelanggaran') // ✅ hanya data pelanggaran
+                ->latest('id_input_siswa', 'desc') // ✅ tampilkan yang terbaru di atas
                 ->get(),
             'no' => 1,
         ];

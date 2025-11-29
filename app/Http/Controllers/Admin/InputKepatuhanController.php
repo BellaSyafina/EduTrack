@@ -22,9 +22,10 @@ class InputKepatuhanController extends Controller
             'kelas' => Kelas::all(),
             'kategori' => KategoriKepatuhan::with('kepatuhan')->get(),
             'inputKepatuhan' => InputSiswa::with(['siswa', 'kepatuhan', 'user'])
-                ->where('id_user', $id)
-                ->whereNotNull('id_kepatuhan') // ✅ hanya data kepatuhan
-                ->get(),
+            ->where('id_user', $id)
+            ->whereNotNull('id_kepatuhan')
+            ->latest('id_input_siswa', 'desc') // ✅ tampilkan yang terbaru di atas
+            ->get(),
             'no' => 1,
         ];
 
