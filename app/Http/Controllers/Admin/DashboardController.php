@@ -98,8 +98,8 @@ class DashboardController extends Controller
             $totalKepatuhanWaliMurid = 0;
 
             foreach ($siswaList as $item) {
-                $totalPelanggaranWaliMurid += InputSiswa::where('id_siswa', $item->id_siswa)->count();
-                $totalKepatuhanWaliMurid += InputSiswa::where('id_siswa', $item->id_siswa)->count();
+                $totalPelanggaranWaliMurid += InputSiswa::where('id_siswa', $item->id_siswa)->whereNotNull('id_pelanggaran')->count();
+                $totalKepatuhanWaliMurid += InputSiswa::where('id_siswa', $item->id_siswa)->whereNotNull('id_kepatuhan')->count();
             }
 
             $riwayatPelanggaran = InputSiswa::with(['siswa', 'pelanggaran'])
