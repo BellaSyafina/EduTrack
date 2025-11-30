@@ -24,7 +24,7 @@
                             <br>
                             <small class="text-white">tempatnya belajar, berprestasi, dan berkarakter.</small>
                             <div class="whatsnew-btn">
-                                <a class="btn btn-outline-white" href="user-profile.html" target="_blank">View Profile</a>
+                                <a class="btn btn-outline-white" href="{{ route('profile.index') }}">View Profile</a>
                             </div>
                         </div>
                     </div>

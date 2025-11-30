@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\KategoriPelanggaranController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PenggunaSistemController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SanksiPelanggaranController;
 use App\Http\Controllers\Admin\SiswaController;
 use App\Http\Controllers\Admin\WaliKelasController;
@@ -43,6 +44,9 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     // Dashboard utama
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // web.php
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
     /*
     |--------------------------------------------------------------------------
