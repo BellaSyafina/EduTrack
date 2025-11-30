@@ -203,7 +203,8 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <form action="{{ route('input-pelanggaran.destroy', $item->id_input_siswa) }}"
+                                                    <form
+                                                        action="{{ route('input-pelanggaran.destroy', $item->id_input_siswa) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')

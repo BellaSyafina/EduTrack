@@ -128,7 +128,7 @@
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li>
-                            <a href="sign-up.html">
+                            <a href="{{ route('profile.index') }}">
                                 <i data-feather="user"></i>
                                 <span>Account </span>
                             </a>
