@@ -2,18 +2,41 @@
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active">
+        <li class="breadcrumb-item">
             <a href="">
                 <svg class="stroke-icon">
                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-home"></use>
                 </svg>
             </a>
         </li>
+        <li class="breadcrumb-item active">{{ $title }}</li>
     </ol>
 @endsection
 
 @section('content')
     <div class="row">
+
+        <div class="col-md-12">
+            {{-- Alert Success --}}
+            @if (session('success'))
+                <div class="alert alert-bg-success light alert-dismissible fade show txt-success border-left-success"
+                    role="alert">
+                    <i data-feather="check-square"></i>
+                    <p>{{ session('success') }}</p>
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            {{-- Alert Error --}}
+            @if (session('error'))
+                <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                    role="alert">
+                    <i data-feather="alert-triangle"></i>
+                    <p>{{ session('error') }}</p>
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+        </div>
 
         {{-- BAGIAN FOTO PROFIL --}}
         <div class="col-md-4">
@@ -21,7 +44,7 @@
                 <div class="card-body text-center">
 
                     {{-- FOTO USER --}}
-                    <img src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('assets/images/default-user.png') }}"
+                    <img src="{{ Auth::user()->photo ? asset('photos/' . Auth::user()->photo) : asset('assets/images/default-user.png') }}"
                         class="rounded-circle mb-3" width="140" height="140"
                         style="object-fit: cover; border: 4px solid #e5e5e5;">
 
@@ -33,7 +56,7 @@
                     <hr>
 
                     {{-- TOMBOL AKSI --}}
-                    <a href="#" class="btn btn-primary btn-sm w-100 mb-2">
+                    <a href="/profile/{{ Auth::user()->id }}/edit" class="btn btn-primary btn-sm w-100 mb-2">
                         Edit Profil
                     </a>
                     <a href="#" class="btn btn-outline-secondary btn-sm w-100">
@@ -46,46 +69,79 @@
         {{-- BAGIAN INFORMASI DETAIL --}}
         <div class="col-md-8">
             <div class="card shadow-sm border-0">
-                <div class="card-header bg-white border-0 pt-4 pb-0">
+                <div class="card-header bg-primary text-white rounded shadow">
                     <h5 class="fw-bold">Informasi Akun</h5>
                 </div>
-                <div class="card-body">
-
-                    <table class="table table-borderless mb-0">
-                        <tr>
-                            <th class="text-muted">Username</th>
-                            <td>{{ $user->username }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted">Email</th>
-                            <td>{{ $user->email }}</td>
-                        </tr>
-                        <tr>
-                            <th class="text-muted">Role</th>
-                            <td>{{ ucfirst($user->role) }}</td>
-                        </tr>
-                    </table>
-                </div>
+                <form class="form theme-form">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3">
+                                        <b>Username</b>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="text" value="{{ Auth::user()->username }}"
+                                            readonly>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3">
+                                        <b>Email</b>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="text" value="{{ Auth::user()->email }}"
+                                            readonly>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3">
+                                        <b>Role</b>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="text"
+                                            value="{{ ucfirst(Auth::user()->role) }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
 
             {{-- Card Tambahan --}}
             <div class="card shadow-sm border-0 mt-3">
-                <div class="card-header bg-white border-0 pt-4 pb-0">
+                <div class="card-header bg-success text-white rounded shadow">
                     <h5 class="fw-bold">Informasi Tambahan</h5>
                 </div>
-                <div class="card-body">
-                    <table class="table table-borderless mb-0">
-                        <tr>
-                            <th width="160" class="text-muted">Dibuat Pada</th>
-                            <td>{{ $user->created_at ? $user->created_at->format('d M Y') : '-' }}</td>
-                        </tr>
+                <form class="form theme-form">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3">
+                                        <b>Dibuat Pada</b>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="text"
+                                            value="{{ Auth::user()->created_at->format('d M Y') }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3">
+                                        <b>Terakhir Login</b>
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="text"
+                                            value="{{ Auth::user()->last_login_at ? \Carbon\Carbon::parse(Auth::user()->last_login_at)->format('d M Y') : '-' }}"
+                                            readonly>
 
-                        <tr>
-                            <th class="text-muted">Terakhir Login</th>
-                            <td>{{ $user->last_login_at ? $user->last_login_at : '-' }}</td>
-                        </tr>
-                    </table>
-                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

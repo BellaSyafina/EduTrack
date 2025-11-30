@@ -116,8 +116,10 @@
                     </div>
                 </li>
                 <li class="profile-nav onhover-dropdown pe-0 py-0">
-                    <div class="d-flex profile-media"><img class="b-r-10"
-                            src="{{ asset('') }}assets/images/dashboard/profile.png" alt="">
+                    <div class="d-flex profile-media">
+                        <img class="rounded-circle" width="40" height="40" style="object-fit: cover; 4px solid #e5e5e5;"
+                            src="{{ Auth::user()->photo ? asset('photos/' . Auth::user()->photo) : asset('assets/images/dashboard/profile.png') }}"
+                            alt="">
                         <div class="flex-grow-1">
                             <span>{{ Auth::user()->username }}</span>
                             <p class="mb-0">

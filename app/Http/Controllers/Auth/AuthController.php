@@ -11,7 +11,7 @@ class AuthController extends Controller
     public function login()
     {
         $data = [
-            'title' => 'Login'
+            'title' => 'Login',
         ];
 
         return view('auth.login', $data);
@@ -26,12 +26,16 @@ class AuthController extends Controller
             'username' => $username,
             'password' => $password,
         ];
-        // dd($login);
 
         if (Auth::attempt($login)) {
+            // 🔥 Update last login
+            Auth::user()->update([
+                'last_login_at' => now(),
+            ]);
+
             return redirect('/dashboard');
         } else {
-            return redirect('/');
+            return redirect('/')->with('error', 'Username atau Password salah');
         }
     }
 

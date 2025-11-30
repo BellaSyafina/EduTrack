@@ -45,8 +45,14 @@ Route::middleware('auth')->group(function () {
     // Dashboard utama
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // web.php
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    /*
+    |--------------------------------------------------------------------------
+    | Menu profil pengguna
+    |--------------------------------------------------------------------------
+    */
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index'); // Halaman profil pengguna
+    Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit'); // Halaman edit profil pengguna
+    Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update'); // Proses update profil pengguna
 
     /*
     |--------------------------------------------------------------------------
