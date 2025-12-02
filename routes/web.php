@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index'); // Halaman profil pengguna
     Route::get('/profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit'); // Halaman edit profil pengguna
     Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update'); // Proses update profil pengguna
+    Route::get('gantiPassword', [ProfileController::class, 'changePassword'])->name('profile.change-password');
+    Route::post('gantiPassword', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 
     /*
     |--------------------------------------------------------------------------

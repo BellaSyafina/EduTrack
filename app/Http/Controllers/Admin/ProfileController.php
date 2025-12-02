@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -82,5 +83,33 @@ class ProfileController extends Controller
                 ->back()
                 ->withErrors(['error' => 'Terjadi kesalahan saat memperbarui profil: ' . $e->getMessage()]);
         }
+    }
+
+    public function changePassword()
+    {
+        return view('admin.profile.gantiPassword', [
+            'title' => 'Ganti Password'
+        ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required'],
+            'new_password' => ['required', 'min:6'],
+            'confirm_password' => ['same:new_password'],
+        ]);
+
+        // Cek password lama
+        if (!Hash::check($request->current_password, auth()->user()->password)) {
+            return back()->with('error', 'Password lama tidak sesuai!');
+        }
+
+        // Simpan password baru
+        auth()->user()->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return back()->with('success', 'Password berhasil diperbarui!');
     }
 }

@@ -59,7 +59,7 @@
                     <a href="/profile/{{ Auth::user()->id }}/edit" class="btn btn-primary btn-sm w-100 mb-2">
                         Edit Profil
                     </a>
-                    <a href="#" class="btn btn-outline-secondary btn-sm w-100">
+                    <a href="{{ route('profile.change-password') }}" class="btn btn-outline-secondary btn-sm w-100">
                         Ganti Password
                     </a>
                 </div>
@@ -124,7 +124,8 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" type="text"
-                                            value="{{ Auth::user()->created_at->format('d M Y') }}" readonly>
+                                            value="{{ Auth::user()->last_login_at ? \Carbon\Carbon::parse(Auth::user()->last_login_at)->format('d M Y') : '-' }}"
+                                            readonly>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
