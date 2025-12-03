@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Laporan</title>
+    @include('components.title')
+    @include('components.style')
     <style>
         table {
             width: 100%;
@@ -27,9 +28,9 @@
 
 <body>
 
-    <h2>Laporan Pelanggaran & Kepatuhan</h2>
+    <h2 class="text-center mb-3">Laporan Pelanggaran & Kepatuhan</h2>
 
-    <table>
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>No</th>
@@ -57,7 +58,7 @@
             @endforeach
         </tbody>
     </table>
-
+    @include('components.script')
 </body>
 
 </html>

@@ -9,6 +9,9 @@
                 </svg>
             </a>
         </li>
+        <li class="breadcrumb-item">
+            <a href="/profile">Profil Saya</a>
+        </li>
         <li class="breadcrumb-item active">{{ $title }}</li>
     </ol>
 @endsection
@@ -59,7 +62,7 @@
                     <a href="/profile/{{ Auth::user()->id }}/edit" class="btn btn-primary btn-sm w-100 mb-2">
                         Edit Profil
                     </a>
-                    <a href="{{ route('profile.change-password') }}" class="btn btn-outline-secondary btn-sm w-100">
+                    <a href="/profile/{{ $user->id }}/change-password" class="btn btn-outline-secondary btn-sm w-100">
                         Ganti Password
                     </a>
                 </div>
@@ -124,7 +127,7 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <input class="form-control" type="text"
-                                            value="{{ Auth::user()->last_login_at ? \Carbon\Carbon::parse(Auth::user()->last_login_at)->format('d M Y') : '-' }}"
+                                            value="{{ Auth::user()->created_at ? \Carbon\Carbon::parse(Auth::user()->created_at)->format('d M Y') : '-' }}"
                                             readonly>
                                     </div>
                                 </div>

@@ -86,6 +86,7 @@
                                 <th>Jenis Kelamin</th>
                                 <th>Kelas</th>
                                 <th>Alamat</th>
+                                <th>Poin</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -107,6 +108,16 @@
                                     <td>{{ $item->jenis_kelamin }}</td>
                                     <td>{{ $item->kelas->nama_kelas }}</td>
                                     <td>{{ $item->alamat }}</td>
+                                    <td>
+                                        {{ $item->total_poin }}
+                                        @if ($item->total_poin < 0)
+                                            <i class="fa fa-arrow-down text-danger"></i>
+                                        @elseif ($item->total_poin > 0)
+                                            <i class="fa fa-arrow-up text-success"></i>
+                                        @else
+                                            <i class="fa fa-minus text-secondary"></i>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($item->status == 'Nonaktif')
                                             <button class="btn button-light-danger txt-danger f-w-500">Nonaktif</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\InputSiswa;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\WaliMurid;
@@ -12,7 +13,8 @@ class SiswaController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Siswa::with('kelas');
+        $query = Siswa::with('kelas')
+        ->withSum('inputSiswas as total_poin', 'bobot_poin'); // TAMBAHKAN INI
 
         // FILTER KELAS
         if ($request->kelas) {

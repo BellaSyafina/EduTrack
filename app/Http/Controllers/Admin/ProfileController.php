@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use function League\Flysystem\Local\read;
+
 class ProfileController extends Controller
 {
     public function index()
@@ -85,31 +87,52 @@ class ProfileController extends Controller
         }
     }
 
-    public function changePassword()
+    public function changePassword($id)
     {
+        $user = User::findOrFail($id);
+
         return view('admin.profile.gantiPassword', [
-            'title' => 'Ganti Password'
+            'user' => $user,
+            'title' => 'Ganti Password',
         ]);
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(Request $request, $id)
     {
-        $request->validate([
-            'current_password' => ['required'],
-            'new_password' => ['required', 'min:6'],
-            'confirm_password' => ['same:new_password'],
-        ]);
+        try {
+            $request->validate(
+                [
+                    'current_password' => ['required'],
+                    'new_password' => ['required', 'min:6'],
+                    'confirm_password' => ['required', 'same:new_password'],
+                ],
+                [
+                    'current_password.required' => 'Password lama wajib diisi.',
+                    'new_password.required' => 'Password baru wajib diisi.',
+                    'new_password.min' => 'Password baru minimal 6 karakter.',
+                    'confirm_password.required' => 'Konfirmasi password wajib diisi.',
+                    'confirm_password.same' => 'Konfirmasi password tidak sesuai dengan password baru.',
+                ],
+            );
 
-        // Cek password lama
-        if (!Hash::check($request->current_password, auth()->user()->password)) {
-            return back()->with('error', 'Password lama tidak sesuai!');
+            $user = User::findOrFail($id);
+
+            // Cek password lama
+            if (!Hash::check($request->current_password, $user->password)) {
+                return back()->withErrors(['error' => 'Password lama tidak sesuai!']);
+            }
+
+            // Update password
+            $user->update([
+                'password' => Hash::make($request->new_password),
+                'dummy_password' => $request->new_password,
+            ]);
+
+            return redirect('/profile ')->with('success', 'Password berhasil diperbarui!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Terjadi kesalahan saat memperbarui password: ' . $e->getMessage()]);
         }
-
-        // Simpan password baru
-        auth()->user()->update([
-            'password' => Hash::make($request->new_password),
-        ]);
-
-        return back()->with('success', 'Password berhasil diperbarui!');
     }
 }
