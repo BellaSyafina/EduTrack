@@ -67,57 +67,39 @@
                         <svg>
                             <use href="{{ asset('') }}assets/svg/icon-sprite.svg#notification"></use>
                         </svg>
-                        <span class="badge rounded-pill badge-success">4 </span>
+                        <span class="badge rounded-pill badge-success">{{ getNotifCount() }} </span>
                     </div>
                     <div class="onhover-show-div notification-dropdown">
                         <h6 class="f-18 mb-0 dropdown-title">Notifications </h6>
                         <ul>
-                            <li class="b-l-primary border-4 toast default-show-toast align-items-center text-light border-0 fade show"
-                                aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                                <div class="d-flex justify-content-between">
-                                    <div class="toast-body">
-                                        <p>Delivery processing</p>
+                            @foreach (getNotif() as $item)
+                                <li
+                                    class="{{ $item->id_pelanggaran ? 'b-l-danger' : 'b-l-success' }} border-4 toast default-show-toast align-items-center border-0 fade show">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="toast-body">
+
+                                            <p>{{ $item->siswa->nama_siswa }}</p>
+
+                                            @if ($item->id_pelanggaran)
+                                                <small>{{ $item->pelanggaran->nama_pelanggaran }}</small>
+                                            @else
+                                                <small>{{ $item->kepatuhan->nama_kepatuhan }}</small>
+                                            @endif
+                                            <br>
+                                            <small>{{ $item->created_at->diffForHumans() }}</small>
+                                        </div>
+
+                                        <button class="btn-close btn-close-white me-2 m-auto" type="button"></button>
                                     </div>
-                                    <button class="btn-close btn-close-white me-2 m-auto" type="button"
-                                        data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                            </li>
-                            <li class="b-l-success border-4 toast default-show-toast align-items-center text-light border-0 fade show"
-                                aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                                <div class="d-flex justify-content-between">
-                                    <div class="toast-body">
-                                        <p>Order Complete</p>
-                                    </div>
-                                    <button class="btn-close btn-close-white me-2 m-auto" type="button"
-                                        data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                            </li>
-                            <li class="b-l-secondary border-4 toast default-show-toast align-items-center text-light border-0 fade show"
-                                aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                                <div class="d-flex justify-content-between">
-                                    <div class="toast-body">
-                                        <p>Tickets Generated</p>
-                                    </div>
-                                    <button class="btn-close btn-close-white me-2 m-auto" type="button"
-                                        data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                            </li>
-                            <li class="b-l-warning border-4 toast default-show-toast align-items-center text-light border-0 fade show"
-                                aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                                <div class="d-flex justify-content-between">
-                                    <div class="toast-body">
-                                        <p>Delivery Complete</p>
-                                    </div>
-                                    <button class="btn-close btn-close-white me-2 m-auto" type="button"
-                                        data-bs-dismiss="toast" aria-label="Close"></button>
-                                </div>
-                            </li>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </li>
                 <li class="profile-nav onhover-dropdown pe-0 py-0">
                     <div class="d-flex profile-media">
-                        <img class="rounded-circle" width="40" height="40" style="object-fit: cover; 4px solid #e5e5e5;"
+                        <img class="rounded-circle" width="40" height="40"
+                            style="object-fit: cover; 4px solid #e5e5e5;"
                             src="{{ Auth::user()->photo ? asset('photos/' . Auth::user()->photo) : asset('assets/images/dashboard/profile.png') }}"
                             alt="">
                         <div class="flex-grow-1">
