@@ -13,15 +13,14 @@
             <div class="form-group">
                 <label class="col-form-label">Password</label>
                 <div class="form-input position-relative">
-                    <input class="form-control" type="password" name="password" required=""
-                        placeholder="*********">
+                    <input class="form-control" type="password" name="password" required="" placeholder="*********">
                     <div class="show-hide"><span class="show"> </span></div>
                 </div>
             </div>
             <div class="form-group mb-0">
                 <div class="form-check">
+                    <a class="link" href="forgot-password.html">Forgot password?</a>
                 </div>
-                <a class="link" href="forgot-password.html">Forgot password?</a>
                 <div class="text-end">
                     <button class="btn btn-primary btn-block w-100 mt-3" type="submit">Sign in</button>
                 </div>
@@ -31,20 +30,20 @@
 @endsection
 
 @push('script')
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const showHide = document.querySelector(".show-hide");
-        const passwordInput = document.querySelector("input[name='password']");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const showHide = document.querySelector(".show-hide");
+            const passwordInput = document.querySelector("input[name='password']");
 
-        showHide.addEventListener("click", function () {
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                this.classList.add("active");
-            } else {
-                passwordInput.type = "password";
-                this.classList.remove("active");
-            }
+            showHide.addEventListener("click", function() {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    this.classList.add("active");
+                } else {
+                    passwordInput.type = "password";
+                    this.classList.remove("active");
+                }
+            });
         });
-    });
-</script>
+    </script>
 @endpush
