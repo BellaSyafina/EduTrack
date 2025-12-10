@@ -23,7 +23,7 @@
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        
+
         <div class="card">
             <div class="card-header">
                 <h5>Form Kelas</h5>
