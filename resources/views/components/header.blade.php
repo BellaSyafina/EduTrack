@@ -67,7 +67,7 @@
                         <svg>
                             <use href="{{ asset('') }}assets/svg/icon-sprite.svg#notification"></use>
                         </svg>
-                        <span class="badge rounded-pill badge-success">{{ getNotifCount() }} </span>
+                        <span class="badge rounded-pill badge-success"></span>
                     </div>
                     <div class="onhover-show-div notification-dropdown">
                         <h6 class="f-18 mb-0 dropdown-title">Notifications </h6>
