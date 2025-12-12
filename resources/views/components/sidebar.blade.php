@@ -7,8 +7,8 @@
         <!-- Logo utama (versi terang & gelap) -->
         <div class="logo-wrapper">
             <a href="">
-                <img class="img-fluid for-light" src="{{ asset('') }}assets/images/logo/logo.png" alt="">
-                <img class="img-fluid for-dark" src="{{ asset('') }}assets/images/logo/logo_dark.png" alt="">
+                <img class="img-fluid for-light" src="{{ asset('') }}assets/images/logo-edutrack.png" alt="">
+                <img class="img-fluid for-dark" src="{{ asset('') }}assets/images/logo-edutrack.png" alt="">
             </a>
 
             <!-- Tombol kembali (mobile) -->
@@ -25,7 +25,7 @@
         <!-- Logo kecil (icon sidebar ketika collapsed) -->
         <div class="logo-icon-wrapper">
             <a href="">
-                <img class="img-fluid" src="{{ asset('') }}assets/images/logo/logo-icon.png" alt="">
+                <img class="img-fluid" src="{{ asset('') }}assets/images/logo-icon.png" alt="">
             </a>
         </div>
 
@@ -45,7 +45,7 @@
                     <!-- Logo kecil pada mode mobile -->
                     <li class="back-btn">
                         <a href="">
-                            <img class="img-fluid" src="{{ asset('') }}assets/images/logo/logo-icon.png"
+                            <img class="img-fluid" src="{{ asset('') }}assets/images/logo-edutrack.png"
                                 alt="">
                         </a>
                         <div class="mobile-back text-end">

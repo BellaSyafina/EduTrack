@@ -17,6 +17,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap"
         rel="stylesheet">
     @include('components.style')
+    <style>
+        .logo img {
+            height: 140px !important;
+            /* silakan sesuaikan angkanya */
+            width: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,10 +33,14 @@
             <div class="col-12 p-0">
                 <div class="login-card login-dark">
                     <div>
-                        <div><a class="logo" href="index.html"><img class="img-fluid for-light"
-                                    src="../assets/images/logo/logo.png" alt="looginpage"><img
-                                    class="img-fluid for-dark" src="../assets/images/logo/logo_dark.png"
-                                    alt="looginpage"></a></div>
+                        <div>
+                            <a class="logo" href="#">
+                                <img class="img-fluid for-light" src="{{ asset('assets/images/logo-edutrack.png') }}"
+                                    alt="looginpage">
+                                <img class="img-fluid for-dark" src="{{ asset('assets/images/logo-edutrack.png') }}"
+                                    alt="looginpage">
+                            </a>
+                        </div>
                         @yield('content')
                     </div>
                 </div>

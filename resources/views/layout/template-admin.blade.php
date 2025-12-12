@@ -55,6 +55,25 @@
             pointer-events: none;
             z-index: -1;
         }
+
+        .logo-icon-wrapper img {
+            height: 50px !important;
+            width: auto;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            padding-top: 0;
+            /* pastikan tidak ada padding atas */
+            margin-top: -20px;
+            /* naikkan logo, bisa disesuaikan */
+        }
+
+        .logo-wrapper img {
+            height: 110px !important;
+            width: auto;
+        }
     </style>
 
 
