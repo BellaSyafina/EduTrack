@@ -98,10 +98,10 @@
                             <i class="fa-solid fa-thumbtack"> </i>
                             <a class="sidebar-link sidebar-title link-nav" href="/kelas">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-project"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-board"></use>
                                 </svg>
                                 <svg class="fill-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-project"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-board"></use>
                                 </svg>
                                 <span>Data Kelas </span>
                             </a>
@@ -112,10 +112,10 @@
                             <i class="fa-solid fa-thumbtack"> </i>
                             <a class="sidebar-link sidebar-title link-nav" href="/siswa">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-project"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-user"></use>
                                 </svg>
                                 <svg class="fill-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-project"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-user"></use>
                                 </svg>
                                 <span>Data Siswa </span>
                             </a>
@@ -126,10 +126,10 @@
                             <i class="fa-solid fa-thumbtack"></i>
                             <a class="sidebar-link sidebar-title link-nav" href="/guru">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-file"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-user"></use>
                                 </svg>
                                 <svg class="fill-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-file"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-user"></use>
                                 </svg>
                                 <span>Data Guru</span>
                             </a>
@@ -140,10 +140,10 @@
                             <i class="fa-solid fa-thumbtack"> </i>
                             <a class="sidebar-link sidebar-title link-nav" href="/wali-murid">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-board"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-file"></use>
                                 </svg>
                                 <svg class="fill-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-board"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-file"></use>
                                 </svg>
                                 <span>Data Wali Murid</span>
                             </a>
@@ -152,10 +152,10 @@
                             <i class="fa-solid fa-thumbtack"></i>
                             <a class="sidebar-link sidebar-title link-nav" href="/wali-kelas">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-blog"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-file"></use>
                                 </svg>
                                 <svg class="fill-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-blog"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-file"></use>
                                 </svg>
                                 <span>Data Wali Kelas</span>
                             </a>
@@ -187,10 +187,10 @@
                             <i class="fa-solid fa-thumbtack"></i>
                             <a class="sidebar-link sidebar-title link-nav" href="/bentuk-pelanggaran">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-table"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-sample-page"></use>
                                 </svg>
                                 <svg class="fill-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-table"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-sample-page"></use>
                                 </svg>
                                 <span>Bentuk Pelanggaran</span>
                             </a>

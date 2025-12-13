@@ -74,9 +74,31 @@
             height: 110px !important;
             width: auto;
         }
+
+        .sidebar-wrapper {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar-main {
+            height: calc(100vh - 130px);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        #sidebar-menu {
+            height: 100%;
+        }
+
+        .sidebar-main::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-main::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
     </style>
-
-
 </head>
 
 <body onload="startTime()">

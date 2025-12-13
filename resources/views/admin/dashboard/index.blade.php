@@ -55,10 +55,10 @@
                         <div class="badge f-10 p-0" id="txt"></div>
                     </div>
                 </div>
-                <div class="cartoon">
+                {{--  <div class="cartoon">
                     <img class="img-fluid" src="{{ asset('') }}assets/images/dashboard/cartoon.svg"
                         alt="vector women with leptop">
-                </div>
+                </div>  --}}
             </div>
         </div>
     </div>

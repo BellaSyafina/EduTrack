@@ -19,7 +19,7 @@
     @include('components.style')
     <style>
         .logo img {
-            height: 140px !important;
+            height: 160px !important;
             /* silakan sesuaikan angkanya */
             width: auto;
         }
@@ -35,10 +35,17 @@
                     <div>
                         <div>
                             <a class="logo" href="#">
-                                <img class="img-fluid for-light" src="{{ asset('assets/images/logo-edutrack.png') }}"
+                                <img class="img-fluid for-light" src="{{ asset('assets/images/smpn.png') }}"
                                     alt="looginpage">
-                                <img class="img-fluid for-dark" src="{{ asset('assets/images/logo-edutrack.png') }}"
+                                <img class="img-fluid for-dark" src="{{ asset('assets/images/smpn.png') }}"
                                     alt="looginpage">
+                                <h2>SMPN 2 Saronggi</h2>
+                                <small class="mt-2">
+                                    <i>
+                                        "<b>Sekolah boleh di desa, tapi mimpi kami mendunia!</b>"
+                                    </i>
+
+                                </small>
                             </a>
                         </div>
                         @yield('content')
