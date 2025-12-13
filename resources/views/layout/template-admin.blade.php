@@ -31,72 +31,97 @@
     <!-- Stack tambahan CSS dari halaman lain -->
     @stack('style')
     <style>
-        .page-body {
-            position: relative;
-            z-index: 1;
-        }
-
-        .page-body::before {
-            content: "";
-            position: fixed;
-            /* ✅ ubah jadi fixed */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-
-            background-image: url('{{ asset('assets/images/smpn.png') }}');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 800px auto;
-            opacity: 0.08;
-
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .logo-icon-wrapper img {
-            height: 50px !important;
-            width: auto;
-        }
-
+        /* =============================
+   LOGO + TEKS
+   ============================= */
         .logo-wrapper {
             display: flex;
             align-items: center;
-            padding-top: 0;
-            /* pastikan tidak ada padding atas */
-            margin-top: -20px;
-            /* naikkan logo, bisa disesuaikan */
+            justify-content: center;
+            height: 110px;
+            position: relative;
         }
 
-        .logo-wrapper img {
-            height: 110px !important;
+        /* Link logo */
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            margin-left: -30px;
+        }
+
+        /* Gambar logo */
+        .logo-brand img {
+            height: 60px;
             width: auto;
         }
+
+        /* Teks EduTrack */
+        .logo-text {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0d6efd;
+            margin-left: -15px;
+            /* 🔹 rapat ke logo */
+        }
+
+
+        /* Tombol mobile & toggle tetap di posisi aslinya */
+        .back-btn,
+        .toggle-sidebar {
+            position: absolute;
+        }
+
+        .back-btn {
+            left: 15px;
+        }
+
+        .toggle-sidebar {
+            right: 15px;
+        }
+
+        /* Logo kecil (sidebar collapse) */
+        .logo-icon-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 84px;
+            /* area logo kecil */
+        }
+
+        .logo-icon-wrapper a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon-wrapper img {
+            height: 50px;
+            /* kecil tapi tetap jelas */
+            width: auto;
+        }
+
+        .logo-wrapper img,
+        .logo-icon-wrapper img {
+            transition: all 0.3s ease;
+        }
+
+        /* =============================
+   SIDEBAR SCROLL FIX
+   ============================= */
 
         .sidebar-wrapper {
             height: 100vh;
             overflow: hidden;
+            /* wrapper dikunci */
         }
 
+        /* tinggi sidebar dikurangi tinggi logo-wrapper */
         .sidebar-main {
-            height: calc(100vh - 130px);
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        #sidebar-menu {
-            height: 100%;
-        }
-
-        .sidebar-main::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar-main::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 4px;
+            height: calc(100vh - 110px);
+            padding-bottom: 30px;
+            /* agar menu terakhir tidak ketutup */
         }
     </style>
 </head>

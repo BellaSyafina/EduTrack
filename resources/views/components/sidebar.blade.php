@@ -6,9 +6,10 @@
 
         <!-- Logo utama (versi terang & gelap) -->
         <div class="logo-wrapper">
-            <a href="">
-                <img class="img-fluid for-light" src="{{ asset('') }}assets/images/logo-edutrack.png" alt="">
-                <img class="img-fluid for-dark" src="{{ asset('') }}assets/images/logo-edutrack.png" alt="">
+            <a href="/" class="logo-brand">
+                <img class="img-fluid for-light" src="{{ asset('') }}assets/images/smpn.png" alt="">
+                <img class="img-fluid for-dark" src="{{ asset('') }}assets/images/smpn.png" alt="">
+                <span class="logo-text">EduTrack</span>
             </a>
 
             <!-- Tombol kembali (mobile) -->
@@ -18,14 +19,15 @@
 
             <!-- Tombol toggle sidebar -->
             <div class="toggle-sidebar">
-                <i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i>
+                <i class="status_toggle middle sidebar-toggle" data-feather="grid"></i>
             </div>
         </div>
+
 
         <!-- Logo kecil (icon sidebar ketika collapsed) -->
         <div class="logo-icon-wrapper">
             <a href="">
-                <img class="img-fluid" src="{{ asset('') }}assets/images/logo-icon.png" alt="">
+                <img class="img-fluid" src="{{ asset('') }}assets/images/smpn.png" alt="">
             </a>
         </div>
 
@@ -187,7 +189,8 @@
                             <i class="fa-solid fa-thumbtack"></i>
                             <a class="sidebar-link sidebar-title link-nav" href="/bentuk-pelanggaran">
                                 <svg class="stroke-icon">
-                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-sample-page"></use>
+                                    <use href="{{ asset('') }}assets/svg/icon-sprite.svg#stroke-sample-page">
+                                    </use>
                                 </svg>
                                 <svg class="fill-icon">
                                     <use href="{{ asset('') }}assets/svg/icon-sprite.svg#fill-sample-page"></use>
