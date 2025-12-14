@@ -89,7 +89,9 @@
                                             <small>{{ $item->created_at->diffForHumans() }}</small>
                                         </div>
 
-                                        <button class="btn-close btn-close-white me-2 m-auto" type="button"></button>
+                                        <button class="btn-close btn-close-white me-2 m-auto" type="button"
+                                            data-bs-dismiss="toast" aria-label="Close">
+                                        </button>
                                     </div>
                                 </li>
                             @endforeach

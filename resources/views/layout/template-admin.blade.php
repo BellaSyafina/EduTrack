@@ -193,6 +193,20 @@
 
     <!-- Tambahan script dari halaman lain -->
     @stack('script')
+    <script>
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-close')) {
+                const badge = document.querySelector('.notification-box .badge');
+                if (badge && badge.innerText > 0) {
+                    badge.innerText = parseInt(badge.innerText) - 1;
+                    if (badge.innerText == 0) {
+                        badge.style.display = 'none';
+                    }
+                }
+            }
+        });
+    </script>
+
 </body>
 
 </html>

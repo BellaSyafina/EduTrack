@@ -14,10 +14,6 @@
 @endsection
 
 @section('content')
-    <div class="col-xxl-12 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e mb-3 d-flex justify-content-end">
-        <a href="/wali-Kelas/tambah" class="btn btn-primary">Tambah Wali Kelas</a>
-    </div>
-
     <div class="col-sm-4 col-xxl-4 col-lg-4 ord-xl-5 ord-md-6 box-ord-7 box-col-4e">
         {{-- Alert Validasi --}}
         @if ($errors->any())
