@@ -66,6 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelas/{id}/edit', [KelasController::class, 'show'])->name('kelas.show'); // Edit kelas
     Route::post('/kelas/{id}/update', [KelasController::class, 'update'])->name('kelas.update'); // Proses update kelas
     Route::get('/kelas/{id}/delete', [KelasController::class, 'destroy'])->name('kelas.destroy'); // Hapus Kelas
+    Route::post('/kelas/import', [KelasController::class, 'import'])->name('kelas.import'); // Import kelas dari Excel
 
     /*
     |--------------------------------------------------------------------------
@@ -78,6 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/siswa/{id}/edit', [SiswaController::class, 'edit'])->name('siswa.edit'); // Edit siswa
     Route::post('/siswa/{id}/update', [SiswaController::class, 'update'])->name('siswa.update'); // Proses update siswa
     Route::get('/siswa/{id}/delete', [SiswaController::class, 'destroy'])->name('siswa.destroy'); // Hapus siswa
+    Route::post('/siswa/import', [SiswaController::class, 'import'])->name('siswa.import'); // Import siswa dari Excel
 
     /*
     |--------------------------------------------------------------------------

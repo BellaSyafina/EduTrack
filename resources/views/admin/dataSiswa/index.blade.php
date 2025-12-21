@@ -15,7 +15,51 @@
 
 @section('content')
     <div class="col-xxl-12 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e mb-3 d-flex justify-content-end">
-        <a href="/siswa/tambah" class="btn btn-primary">Tambah Siswa</a>
+        <!-- Tombol -->
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importModal">
+            Import Data
+        </button>
+        <a href="/siswa/tambah" class="btn btn-primary ms-2">Tambah Siswa</a>
+        <!-- Modal -->
+        <div class="modal fade" id="importModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Import Data Siswa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form action="{{ route('siswa.import') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="mb-3 text-center">
+                                <p class="fw-semibold">Upload file Excel (.xlsx)</p>
+
+                                <input type="file" name="file" class="form-control" accept=".xlsx,.xls" required>
+                                <small class="text-muted">
+                                    Pastikan format sesuai template sistem.
+                                </small>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Batal
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    Import
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-xxl-12 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e">
@@ -69,6 +113,15 @@
             </div>
         @endif
 
+        @if ($errors->any())
+            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                role="alert">
+                <i data-feather="alert-triangle"></i>
+                <p>{{ $errors->first() }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header card-no-border">
                 <div class="header-top">
@@ -101,7 +154,7 @@
                                             <div>
                                                 <a class="f-14 mb-0 f-w-500 c-light"
                                                     href="">{{ $item->nama_siswa }}</a>
-                                                <p class="c-o-light">{{ $item->nis }}</p>
+                                                <p class="c-o-light">{{ $item->nisn ?? '-' }}.{{ $item->nis }}</p>
                                             </div>
                                         </div>
                                     </td>

@@ -14,10 +14,49 @@
 @endsection
 
 @section('content')
-    <div class="col-sm-4-xxl-5 col-lg-4 ord-xl-5 ord-md-6 box-ord-7 box-col-4e">
+    <div class="col-sm-12 col-xxl-12 col-lg-12 ord-xl-5 ord-md-6 box-ord-7 box-col-4e d-flex justify-content-end">
+        <!-- Tombol Import -->
+        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#importModal">
+            <i class="fa fa-file-excel"></i> Import Excel
+        </button>
+    </div>
+
+    <!-- Modal Import Excel -->
+    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ route('kelas.import') }}" method="POST" enctype="multipart/form-data" class="modal-content">
+                @csrf
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importModalLabel">Import Data Kelas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Upload File Excel</label>
+                        <input type="file" name="file" class="form-control" required>
+                        <small class="text-muted">Format file: .xlsx / .xls</small>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Batal</button>
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa fa-upload"></i> Upload
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+    <div class="col-sm-4-xxl-5 col-lg-4 ord-xl-5 ord-md-6 box-ord-7 box-col-4e mt-3">
         {{-- Alert Validasi --}}
         @if ($errors->any())
-            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger" role="alert">
+            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                role="alert">
                 <i data-feather="alert-triangle"></i>
                 <p>{{ $errors->first() }}</p>
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -55,7 +94,7 @@
         </div>
     </div>
 
-    <div class="col-xxl-8 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e">
+    <div class="col-xxl-8 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e mt-3">
         {{-- Alert Success --}}
         @if (session('success'))
             <div class="alert alert-bg-success light alert-dismissible fade show txt-success border-left-success"

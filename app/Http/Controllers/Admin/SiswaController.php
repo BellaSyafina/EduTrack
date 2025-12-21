@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\SiswaImport;
 use App\Models\InputSiswa;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\WaliMurid;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -139,6 +141,27 @@ class SiswaController extends Controller
             return redirect()
                 ->back()
                 ->withErrors(['error' => 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage()]);
+        }
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx',
+        ],
+        [
+            'file.required' => 'File wajib diunggah.',
+            'file.mimes' => 'Format file harus berupa xls atau xlsx.',
+        ]);
+
+        try {
+            Excel::import(new SiswaImport, $request->file('file'));
+
+            return back()->with('success', 'Data siswa berhasil diimpor.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => 'Terjadi kesalahan saat mengimpor data: ' . $e->getMessage()]);
         }
     }
 }
