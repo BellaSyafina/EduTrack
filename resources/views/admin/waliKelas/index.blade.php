@@ -26,7 +26,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h5>Form Kelas</h5>
+                <h5>Form Wali Kelas</h5>
             </div>
             <div class="card-body">
                 <form class="row g-3 needs-validation custom-input" action="{{ route('wali-kelas.store') }}" method="POST"
@@ -35,8 +35,8 @@
                     {{-- Nama Kelas --}}
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="id_guru">Cari Guru</label>
-                        <select class="form-select @error('id_guru') is-invalid @enderror" id="id_guru"
-                            name="id_guru" required>
+                        <select class="form-select @error('id_guru') is-invalid @enderror" id="id_guru" name="id_guru"
+                            required>
                             <option value="" disabled selected>-- Pilih Guru --</option>
                             @foreach ($guru as $item)
                                 <option value="{{ $item->id_guru }}"
@@ -51,8 +51,8 @@
                     </div>
                     <div class="col-md-12 position-relative">
                         <label class="form-label" for="id_kelas">Cari Kelas</label>
-                        <select class="form-select @error('id_kelas') is-invalid @enderror" id="id_kelas"
-                            name="id_kelas" required>
+                        <select class="form-select @error('id_kelas') is-invalid @enderror" id="id_kelas" name="id_kelas"
+                            required>
                             <option value="" disabled selected>-- Pilih Kelas --</option>
                             @foreach ($kelas as $item)
                                 <option value="{{ $item->id_kelas }}"
