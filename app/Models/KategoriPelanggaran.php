@@ -11,7 +11,12 @@ class KategoriPelanggaran extends Model
 
     protected $table = 'Tabel_Kategori_Pelanggaran';
     protected $primaryKey = 'id_kategori_pelanggaran';
-    protected $fillable = ['nama_kategori'];
+    protected $fillable = [
+    'nama_kategori',
+    'dari_poin',
+    'sampai_poin',
+];
+
 
     public function pelanggaran()
     {
