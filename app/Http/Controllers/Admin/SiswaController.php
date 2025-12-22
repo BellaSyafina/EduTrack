@@ -48,6 +48,7 @@ class SiswaController extends Controller
             // Validasi input
             $validatedData = $request->validate(
                 [
+                    'nisn' => 'required|unique:Tabel_Siswa,nisn|max:20',
                     'nis' => 'required|unique:Tabel_Siswa,nis|max:20',
                     'nama_siswa' => 'required|string|max:100',
                     'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
@@ -56,6 +57,9 @@ class SiswaController extends Controller
                     'status' => 'required|in:Aktif,Nonaktif',
                 ],
                 [
+                    'nisn.required' => 'NISN wajib diisi.',
+                    'nisn.unique' => 'NISN sudah terdaftar.',
+                    'nisn.max' => 'NISN maksimal 20 karakter.',
                     'nis.required' => 'NIS wajib diisi.',
                     'nis.unique' => 'NIS sudah terdaftar.',
                     'nama_siswa.required' => 'Nama siswa wajib diisi.',
@@ -99,6 +103,7 @@ class SiswaController extends Controller
             // Validasi input
             $validatedData = $request->validate(
                 [
+                    'nisn' => 'required|max:20|unique:Tabel_Siswa,nisn,' . $id . ',id_siswa',
                     'nis' => 'required|max:20|unique:Tabel_Siswa,nis,' . $id . ',id_siswa',
                     'nama_siswa' => 'required|string|max:100',
                     'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
@@ -108,6 +113,9 @@ class SiswaController extends Controller
                     'status' => 'required|in:Aktif,Nonaktif',
                 ],
                 [
+                    'nisn.required' => 'NISN wajib diisi.',
+                    'nisn.unique' => 'NISN sudah terdaftar.',
+                    'nisn.max' => 'NISN maksimal 20 karakter.',
                     'nis.required' => 'NIS wajib diisi.',
                     'nis.unique' => 'NIS sudah terdaftar.',
                     'nama_siswa.required' => 'Nama siswa wajib diisi.',

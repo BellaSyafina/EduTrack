@@ -14,9 +14,55 @@
 @endsection
 
 @section('content')
-    <div class="col-xxl-12 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e mb-3 d-flex justify-content-end">
+    <div class="col-xxl-12 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e mb-3 d-flex justify-content-end gap-2">
+        <!-- Tombol Import -->
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#importGuruModal">
+            Import Guru
+        </button>
+
+        <!-- Tombol Tambah -->
         <a href="/guru/tambah" class="btn btn-primary">Tambah Guru</a>
     </div>
+
+    <div class="modal fade" id="importGuruModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Import Data Guru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form action="{{ route('guru.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="form-label">Upload File Excel</label>
+                            <input type="file" name="file" class="form-control" accept=".xls,.xlsx" required>
+                            <small class="text-muted">
+                                Format file: .xls atau .xlsx
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Batal
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            Import
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 
     <div class="col-xxl-12 col-lg-8 ord-xl-6 ord-md-6 box-ord-6 box-col-8e">
         {{-- Alert Success --}}
@@ -35,6 +81,15 @@
                 role="alert">
                 <i data-feather="alert-triangle"></i>
                 <p>{{ session('error') }}</p>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-bg-danger light alert-dismissible fade show txt-danger border-left-danger"
+                role="alert">
+                <i data-feather="alert-triangle"></i>
+                <p>{{ $errors->first() }}</p>
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
@@ -69,7 +124,7 @@
                                             <div>
                                                 <a class="f-14 mb-0 f-w-500 c-light"
                                                     href="">{{ $item->nama_guru }}</a>
-                                                <p class="c-o-light">{{ $item->nip }}</p>
+                                                <p class="c-o-light">{{ $item->nuptk }}.{{ $item->nip }}</p>
                                             </div>
                                         </div>
                                     </td>

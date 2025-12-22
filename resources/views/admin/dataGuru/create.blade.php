@@ -37,8 +37,18 @@
                     novalidate="">
                     @csrf
 
+                    {{-- NUPTK --}}
+                    <div class="col-md-6 position-relative">
+                        <label class="form-label" for="nuptk">NUPTK</label>
+                        <input class="form-control @error('nuptk') is-invalid @enderror" id="nuptk" name="nuptk"
+                            type="text" placeholder="Masukkan NUPTK..." value="{{ old('nuptk') }}" required>
+                        <div class="valid-tooltip">Looks good!</div>
+                        @error('nuptk')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                     {{-- NIP --}}
-                    <div class="col-md-12 position-relative">
+                    <div class="col-md-6 position-relative">
                         <label class="form-label" for="nip">NIP</label>
                         <input class="form-control @error('nip') is-invalid @enderror" id="nip" name="nip"
                             type="text" placeholder="Masukkan NIP..." value="{{ old('nip') }}" required>

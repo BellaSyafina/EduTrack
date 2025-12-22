@@ -35,7 +35,16 @@
                 <form class="row g-3 needs-validation custom-input" action="{{ route('siswa.update', $siswa->id_siswa) }}"
                     method="POST" novalidate="">
                     @csrf
-                    <div class="col-md-12 position-relative">
+                    <div class="col-md-6 position-relative">
+                        <label class="form-label" for="nisn">NISN</label>
+                        <input class="form-control @error('nisn') is-invalid @enderror" id="nisn" name="nisn"
+                            type="text" value="{{ $siswa->nisn }}" placeholder="Masukkan NISN..." required="">
+                        <div class="valid-tooltip">Looks good!</div>
+                        @error('nisn')
+                            <div class="invalid-tooltip">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6 position-relative">
                         <label class="form-label" for="nis">NIS</label>
                         <input class="form-control @error('nis') is-invalid @enderror" id="nis" name="nis"
                             type="text" value="{{ $siswa->nis }}" placeholder="Masukkan NIS..." required="">

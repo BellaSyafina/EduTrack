@@ -27,7 +27,7 @@
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        
+
         <div class="card">
             <div class="card-header">
                 <h5>Form Guru</h5>
@@ -35,7 +35,14 @@
             <div class="card-body">
                 <form class="row g-3 needs-validation custom-input" action="{{ route('guru.update', $guru->id_guru) }}" method="POST" novalidate="">
                     @csrf
-                    <div class="col-md-12 position-relative">
+                    <div class="col-md-6 position-relative">
+                        <label class="form-label" for="nuptk">NUPTK</label>
+                        <input class="form-control" id="nuptk" name="nuptk" type="text" value="{{ $guru->nuptk }}"
+                            placeholder="Masukkan NUPTK..." required="">
+                        <div class="valid-tooltip">Looks good!</div>
+                        <div class="invalid-tooltip"></div>
+                    </div>
+                    <div class="col-md-6 position-relative">
                         <label class="form-label" for="nip">NIP</label>
                         <input class="form-control" id="nip" name="nip" type="text" value="{{ $guru->nip }}"
                             placeholder="Masukkan NIP..." required="">

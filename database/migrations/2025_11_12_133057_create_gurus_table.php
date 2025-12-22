@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Tabel_Guru', function (Blueprint $table) {
             $table->id('id_guru');
-            $table->string('nip')->unique();
+            $table->string('nip')->nullable()->unique();
             $table->string('nama_guru');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('jabatan');

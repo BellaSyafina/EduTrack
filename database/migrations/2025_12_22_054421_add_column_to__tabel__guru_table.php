@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('Tabel_Siswa', function (Blueprint $table) {
-            $table->string('nisn', 20)->after('id_siswa')->nullable()->unique();
+        Schema::table('Tabel_Guru', function (Blueprint $table) {
+            $table->string('nuptk', 50)->after('id_guru')->nullable()->unique();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('Tabel_Siswa', function (Blueprint $table) {
-            $table->dropColumn('nisn');
+        Schema::table('Tabel_Guru', function (Blueprint $table) {
+            $table->dropColumn('nuptk');
         });
     }
 };

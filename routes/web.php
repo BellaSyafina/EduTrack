@@ -92,6 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/guru/{id}/edit', [GuruController::class, 'show'])->name('guru.show'); // Edit guru / detail guru
     Route::post('/guru/{id}/update', [GuruController::class, 'update'])->name('guru.update'); // Proses update guru
     Route::get('/guru/{id}/delete', [GuruController::class, 'destroy'])->name('guru.destroy'); // Hapus guru
+    Route::post('/guru/import', [GuruController::class, 'import'])->name('guru.import'); // Import guru dari Excel
 
     /*
     |--------------------------------------------------------------------------
